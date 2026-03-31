@@ -1,5 +1,6 @@
 import { CollaboratePage } from '../../components/collaborate';
 import HeroSub from '../../components/SharedComponent/HeroSub';
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   const breadcrumbLinks = [
