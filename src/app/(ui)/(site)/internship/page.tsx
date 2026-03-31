@@ -1,5 +1,6 @@
 import { InternshipPage } from '../../components/Internship';
 import HeroSub from '../../components/SharedComponent/HeroSub';
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   const breadcrumbLinks = [

@@ -1,6 +1,6 @@
 import HeroSub from '../../components/SharedComponent/HeroSub';
 import { FaqPage } from '../../components/Faq';
-
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   const breadcrumbLinks = [

@@ -1,5 +1,6 @@
 import { ActivitiesPage } from '../../components/Activites';
 import HeroSub from '../../components/SharedComponent/HeroSub';
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   const breadcrumbLinks = [
