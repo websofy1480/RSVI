@@ -6,6 +6,7 @@ import { getData } from "@/lib/getData";
 
 export const Awards = async () => {
     const awards = await getData(Award);
+    
     return (
         <div>
             <div className="md:pb-12 text-center pb-8">

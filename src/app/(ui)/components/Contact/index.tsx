@@ -176,8 +176,8 @@ export default function ContactPage() {
                 required
                 className="w-full p-3 border rounded-md outline-none resize-none text-primary"
               />
-              <div className="flex flex-col-reverse sm:flex-row  gap-2 items-center">
-                <div className="w-[230px] origin-left scale-75">
+              <div className="flex flex-col sm:flex-row  gap-2 items-center">
+                <div className="sm:w-[230px] w-[100%]  origin-left scale-[90%] sm:scale-75">
                   <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                     onChange={(value) => setCaptchaValue(value)}
                     ref={captchaRef}

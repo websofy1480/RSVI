@@ -1,16 +1,13 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+import { useState, useMemo, FC } from "react";
 import { ArrowUpDown } from "lucide-react";
-import { Radio } from "react-loader-spinner";
 import PageBreadcrumb from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
 import Pagination from "../common/Pagination";
+import { joinus, JoinUsProps } from "@/types/joinUsContext";
 
-export default function JoinUsRequest() {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [enquiries, setEnquiries] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
+export const JoinUsRequest: FC<JoinUsProps> = ({ joinUsData }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
     const [sortField, setSortField] = useState<
@@ -31,30 +28,11 @@ export default function JoinUsRequest() {
         date: ""
     });
 
-
     const handleOnChange = (name: string, phone: string, department: string, message: string, date: string) => {
         setJoinUsRecord({ ...joinUsRecord, name: name, phone: phone, department: department, message: message, date: date })
     }
 
-    useEffect(() => {
-        const fetchEnquiris = async () => {
-            try {
-                const res = await fetch("/api/auth/join-us");
-                if (!res.ok) throw new Error("Failed to fetch");
-                const result = await res.json();
-                setEnquiries(result?.data || []);
-            } catch (error) {
-                console.error("Error fetching collaborate records:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchEnquiris();
-    }, []);
-
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const getFieldValue = (item: any, field: "name" | "phone" | "department" | "date") => {
+    const getFieldValue = (item: joinus, field: "name" | "phone" | "department" | "date") => {
         switch (field) {
             case "name":
                 return String(item.name ?? "").toLowerCase();
@@ -72,15 +50,11 @@ export default function JoinUsRequest() {
 
     const filteredData = useMemo(() => {
         const term = searchTerm.trim().toLowerCase();
-        const filtered = enquiries.filter((d) => {
+        const filtered = joinUsData.filter((d) => {
             const department = String(d.department ?? "").toLowerCase();
             const phone = String(d.phone ?? "");
 
-            const matchesSearch =
-                !term ||
-                department.includes(term) ||
-                phone.includes(term)
-
+            const matchesSearch = !term || department.includes(term) || phone.includes(term)
             const recordDate = new Date(d.createdAt).getTime();
 
             const from = fromDate ? new Date(fromDate).getTime() : null;
@@ -108,7 +82,7 @@ export default function JoinUsRequest() {
             });
         }
         return filtered;
-    }, [enquiries, searchTerm, sortField, sortOrder, fromDate, toDate]);
+    }, [joinUsData, searchTerm, sortField, sortOrder, fromDate, toDate]);
 
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -199,137 +173,125 @@ export default function JoinUsRequest() {
                 </button>
             </div>
 
-            {loading ? (
-                <div className="flex justify-center items-center text-center">
-                    <Radio
-                        visible={true}
-                        height="150"
-                        width="150"
-                        colors={["#3c3c30", "#727057", "#727057"]}
-                        ariaLabel="radio-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                    />
-                </div>
-            ) : filteredData.length === 0 ? (
-                <div className="text-center text-primary">No matching records found.</div>
-            ) : (
-                <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-                    <table className="min-w-full divide-y divide-formbg">
-                        <thead className="bg-formbg/30">
-                            <tr>
-                                <th className="px-6 py-3 text-left text-sm font-semibold text-black">
-                                    Sn. No.
-                                </th>
-                                <th
-                                    onClick={() => handleSort("name")}
-                                    className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        Name
-                                        <ArrowUpDown
-                                            className={`w-4 h-4 transition-transform ${sortField === "name"
-                                                ? sortOrder === "asc"
-                                                    ? "rotate-180 text-learning"
-                                                    : "text-learning"
-                                                : "text-primary"
-                                                }`}
-                                        />
-                                    </div>
-                                </th>
-                                <th
-                                    onClick={() => handleSort("phone")}
-                                    className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        Phone
-                                        <ArrowUpDown
-                                            className={`w-4 h-4 transition-transform ${sortField === "phone"
-                                                ? sortOrder === "asc"
-                                                    ? "rotate-180 text-learning"
-                                                    : "text-learning"
-                                                : "text-primary"
-                                                }`}
-                                        />
-                                    </div>
-                                </th>
-                                <th
-                                    onClick={() => handleSort("department")}
-                                    className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        Department
-                                        <ArrowUpDown
-                                            className={`w-4 h-4 transition-transform ${sortField === "department"
-                                                ? sortOrder === "asc"
-                                                    ? "rotate-180 text-learning"
-                                                    : "text-learning"
-                                                : "text-primary"
-                                                }`}
-                                        />
-                                    </div>
-                                </th>
+            {
+                filteredData.length === 0 ? (
+                    <div className="text-center text-primary">No matching records found.</div>
+                ) : (
+                    <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+                        <table className="min-w-full divide-y divide-formbg">
+                            <thead className="bg-formbg/30">
+                                <tr>
+                                    <th className="px-6 py-3 text-left text-sm font-semibold text-black">
+                                        Sn. No.
+                                    </th>
+                                    <th
+                                        onClick={() => handleSort("name")}
+                                        className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            Name
+                                            <ArrowUpDown
+                                                className={`w-4 h-4 transition-transform ${sortField === "name"
+                                                    ? sortOrder === "asc"
+                                                        ? "rotate-180 text-learning"
+                                                        : "text-learning"
+                                                    : "text-primary"
+                                                    }`}
+                                            />
+                                        </div>
+                                    </th>
+                                    <th
+                                        onClick={() => handleSort("phone")}
+                                        className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            Phone
+                                            <ArrowUpDown
+                                                className={`w-4 h-4 transition-transform ${sortField === "phone"
+                                                    ? sortOrder === "asc"
+                                                        ? "rotate-180 text-learning"
+                                                        : "text-learning"
+                                                    : "text-primary"
+                                                    }`}
+                                            />
+                                        </div>
+                                    </th>
+                                    <th
+                                        onClick={() => handleSort("department")}
+                                        className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            Department
+                                            <ArrowUpDown
+                                                className={`w-4 h-4 transition-transform ${sortField === "department"
+                                                    ? sortOrder === "asc"
+                                                        ? "rotate-180 text-learning"
+                                                        : "text-learning"
+                                                    : "text-primary"
+                                                    }`}
+                                            />
+                                        </div>
+                                    </th>
 
-                                <th className="px-6 py-3 text-left text-sm font-semibold text-black select-none">
-                                    <div className="flex items-center gap-1">Message</div>
-                                </th>
-                                <th
-                                    onClick={() => handleSort("date")}
-                                    className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
-                                >
-                                    <div className="flex items-center gap-1">
-                                        Date
-                                        <ArrowUpDown
-                                            className={`w-4 h-4 transition-transform ${sortField === "date"
-                                                ? sortOrder === "asc"
-                                                    ? "rotate-180 text-learning"
-                                                    : "text-learning"
-                                                : "text-primary"
-                                                }`}
-                                        />
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <tbody className="divide-y divide-gray-200">
-                            {currentRecords.map((record, index) => (
-                                <tr key={record._id} className="hover:bg-formbg/10 transition-colors">
-                                    <td className="px-6 py-4 text-sm text-SlateBlueText">
-                                        {(currentPage - 1) * recordsPerPage + index + 1}.
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.name}</td>
-                                    <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.phone}</td>
-                                    <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.department}</td>
-                                    <td className="py-4 text-sm w-48 items-center justify-center flex gap-1 text-SlateBlueText">
-                                        <span className="w-[32em]">{record.message.substring(0, 20)}...</span>
-
-                                        <span onClick={() => {
-                                            handleOnChange(record.name, record.phone, record.department, record.message, new Date(record?.createdAt).toLocaleDateString("en-IN"));
-                                            setShowMessage(!showMessage);
-                                        }}>
-                                            {showMessage ? (
-                                                <IoEyeOutline size={17} className="text-primary cursor-pointer" />
-                                            ) : (
-                                                <IoEyeOffOutline size={17} className="text-primary cursor-pointer" />
-                                            )}
-                                        </span>
-                                    </td>
-                                    <td className="px-6 py-4 text-sm text-SlateBlueText">{
-                                        new Date(record?.createdAt).toLocaleDateString("en-IN")
-                                    }</td>
+                                    <th className="px-6 py-3 text-left text-sm font-semibold text-black select-none">
+                                        <div className="flex items-center gap-1">Message</div>
+                                    </th>
+                                    <th
+                                        onClick={() => handleSort("date")}
+                                        className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
+                                    >
+                                        <div className="flex items-center gap-1">
+                                            Date
+                                            <ArrowUpDown
+                                                className={`w-4 h-4 transition-transform ${sortField === "date"
+                                                    ? sortOrder === "asc"
+                                                        ? "rotate-180 text-learning"
+                                                        : "text-learning"
+                                                    : "text-primary"
+                                                    }`}
+                                            />
+                                        </div>
+                                    </th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+                            </thead>
+
+                            <tbody className="divide-y divide-gray-200">
+                                {currentRecords.reverse()?.map((record, index) => (
+                                    <tr key={record._id} className="hover:bg-formbg/10 transition-colors">
+                                        <td className="px-6 py-4 text-sm text-SlateBlueText">
+                                            {(currentPage - 1) * recordsPerPage + index + 1}.
+                                        </td>
+                                        <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.name}</td>
+                                        <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.phone}</td>
+                                        <td className="px-6 py-4 text-sm text-SlateBlueText">{record?.department}</td>
+                                        <td className="py-4 text-sm w-48 items-center justify-center flex gap-1 text-SlateBlueText">
+                                            <span className="w-[32em]">{record.message.substring(0, 20)}...</span>
+
+                                            <span onClick={() => {
+                                                handleOnChange(record.name, record.phone, record.department, record.message, new Date(record?.createdAt).toLocaleDateString("en-IN"));
+                                                setShowMessage(!showMessage);
+                                            }}>
+                                                {showMessage ? (
+                                                    <IoEyeOutline size={17} className="text-primary cursor-pointer" />
+                                                ) : (
+                                                    <IoEyeOffOutline size={17} className="text-primary cursor-pointer" />
+                                                )}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 text-sm text-SlateBlueText">{
+                                            new Date(record?.createdAt).toLocaleDateString("en-IN")
+                                        }</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
 
             {
                 totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-
             }
-            
+
             {
                 showMessage && <MessageModel closedModel={setShowMessage} data={joinUsRecord} mode="join-request" />
             }

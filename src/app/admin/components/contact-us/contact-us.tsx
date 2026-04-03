@@ -1,16 +1,13 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
 import { ArrowUpDown } from "lucide-react";
-import { Radio } from "react-loader-spinner";
 import PageBreadcrumb from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
 import Pagination from "../common/Pagination";
+import { contactUs, ContactUsProps } from "@/types/contactUsContext";
+import { FC, useMemo, useState } from "react";
 
-export default function ContactUs() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [contacts, setContacts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export const ContactUs: FC<ContactUsProps> = ({ contactUsData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [showMessage, setShowMessage] = useState(false);
@@ -36,24 +33,7 @@ export default function ContactUs() {
   const [toDate, setToDate] = useState("");
   const recordsPerPage = 10;
 
-  useEffect(() => {
-    const fetchContacts = async () => {
-      try {
-        const res = await fetch("/api/auth/contact-us");
-        if (!res.ok) throw new Error("Failed to fetch");
-        const result = await res.json();
-        setContacts(result?.data || []);
-      } catch (error) {
-        console.error("Error fetching contact data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchContacts();
-  }, []);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getFieldValue = (item: any, field: "name" | "phone" | "email" | "date") => {
+  const getFieldValue = (item: contactUs, field: "name" | "phone" | "email" | "date") => {
     switch (field) {
       case "name":
         return String(item.name ?? "").toLowerCase();
@@ -72,14 +52,11 @@ export default function ContactUs() {
 
   const filteredData = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
-    const filtered = contacts.filter((d) => {
+    const filtered = contactUsData.filter((d) => {
       const email = String(d.email ?? "").toLowerCase();
       const phone = String(d.phone ?? "");
 
-      const matchesSearch =
-        !term ||
-        email.includes(term) ||
-        phone.includes(term)
+      const matchesSearch = !term || email.includes(term) || phone.includes(term)
 
       const recordDate = new Date(d.createdAt).getTime();
       const from = fromDate ? new Date(fromDate).getTime() : null;
@@ -110,7 +87,7 @@ export default function ContactUs() {
     }
 
     return filtered;
-  }, [contacts, searchTerm, sortField, sortOrder, fromDate, toDate]);
+  }, [contactUsData, searchTerm, sortField, sortOrder, fromDate, toDate]);
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
@@ -202,19 +179,7 @@ export default function ContactUs() {
         </button>
       </div>
 
-      {loading ? (
-        <div className="flex justify-center items-center text-center">
-          <Radio
-            visible={true}
-            height="150"
-            width="150"
-            colors={["#3c3c30", "#727057", "#727057"]}
-            ariaLabel="radio-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-        </div>
-      ) : filteredData.length === 0 ? (
+      {filteredData.length === 0 ? (
         <div className="text-center text-primary">No matching records found.</div>
       ) :
 
@@ -298,8 +263,8 @@ export default function ContactUs() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-black">
-                {currentRecords.map((record, index) => (
+              <tbody className="divide-y divide-gray-200">
+                {currentRecords?.reverse().map((record, index) => (
                   <tr key={record._id} className="hover:bg-formbg/10 transition-colors">
                     <td className="px-6 py-4 text-sm text-SlateBlueText">
                       {(currentPage - 1) * recordsPerPage + index + 1}.

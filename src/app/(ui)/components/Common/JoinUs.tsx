@@ -148,37 +148,43 @@ export const JoinUs = () => {
                                 <p className="text-primary text-xs mt-1">{errors.phone}</p>
                             )}
                         </div>
-                        <select
-                            name="department"
-                            className="w-full p-3 border rounded-md outline-none text-MidnightNavyText cursor-pointer"
-                            value={formData.department}
-                            onChange={handleOnchange}
-                        >
-                            <option value="">Select Department</option>
-                            {
-                                ["Work From Home", "Part-Time", "Flexible Hours", "Develop Marketing Skills", "Social Media Shotout", "Letter Of Reccommendation", "Internship Certificate"].map((item: string, index: number) => (
-                                    <option key={index} value={item}>{item}</option>
-                                ))
-                            }
-                        </select>
-                        <textarea
-                            name="message"
-                            placeholder="Your Message..."
-                            rows={6}
-                            value={formData.message}
-                            onChange={handleOnchange}
-                            required
-                            className="w-full p-3 border rounded-md outline-none resize-none text-MidnightNavyText"
-                        />
-                        <div className="flex flex-col-reverse sm:flex-row items-center justify-center">
+                        <div>
+                            <select
+                                name="department"
+                                className="w-full p-3 border rounded-md outline-none text-MidnightNavyText cursor-pointer"
+                                value={formData.department}
+                                onChange={handleOnchange}
+                            >
+                                <option value="">Select Department</option>
+                                {
+                                    ["Work From Home", "Part-Time", "Flexible Hours", "Develop Marketing Skills", "Social Media Shotout", "Letter Of Reccommendation", "Internship Certificate"].map((item: string, index: number) => (
+                                        <option key={index} value={item}>{item}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                        <div>
+                            <textarea
+                                name="message"
+                                placeholder="Your Message..."
+                                rows={6}
+                                value={formData.message}
+                                onChange={handleOnchange}
+                                required
+                                className="w-full p-3 border rounded-md outline-none resize-none text-MidnightNavyText"
+                            />
+                        </div>
 
-                            <div className="scale-75">
+                        <div className="flex flex-col sm:flex-row items-center justify-center">
+
+                            <div className="scale-[60%] sm:scale-75">
                                 <ReCAPTCHA
                                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                                     onChange={(value) => setCaptchaValue(value)}
                                     ref={captchaRef}
                                 />
                             </div>
+
                             <button
                                 type="submit"
                                 className="font-semibold btn btn-1 hover-filled-slide-down rounded-lg"
@@ -195,6 +201,8 @@ export const JoinUs = () => {
                                 }
                             </button>
                         </div>
+
+                        
                     </form>
                 </div>
             </div>

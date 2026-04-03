@@ -7,35 +7,22 @@ import { RxCross2 } from "react-icons/rx";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader } from "react-icons/fi";
 import { GiCancel } from "react-icons/gi";
+import { ModalProps } from "@/types/modelContext";
+import { initiatives } from "@/types/initiativesContext";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function AwardsModel({ mode, onClose, onSave, initialData }: any) {
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState(
+export const AwardsModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: initiatives }) => {
+
+  const [form, setForm] = useState<initiatives>(
     initialData || {
       title: "",
-      awardYear : "",
+      awardYear: "",
       description: "",
       image: "",
       image_publicId: "",
     }
   );
 
-  // {title, awardYear, image,imgae_publicId }
-
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
-    setTooltip({ message, type });
-    setTimeout(() => setTooltip(null), 3000);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = () => {
     setLoading(true);
@@ -45,7 +32,7 @@ export default function AwardsModel({ mode, onClose, onSave, initialData }: any)
       !form.image ||
       !form.image_publicId
     ) {
-      showTooltip("Please fill all fields!", "error");
+      showTooltip({ message: "Please fill all fields!", type: "error" });
       setLoading(false);
       return;
     }
@@ -56,8 +43,7 @@ export default function AwardsModel({ mode, onClose, onSave, initialData }: any)
     <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60" onClick={onClose}>
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
       <div
-        className="bg-white p-6 rounded-lg w-[95%] max-w-[800px] max-h-[90vh] shadow-lg 
-                   overflow-y-auto scroll-smooth hide-scrollbar" onClick={(e) => e.stopPropagation()}
+        className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[500px]" : "max-w-[800px]"}  max-h-[90vh] shadow-lg overflow-y-auto scroll-smooth hide-scrollbar`} onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Add"} Awards</h2>
@@ -105,7 +91,7 @@ export default function AwardsModel({ mode, onClose, onSave, initialData }: any)
                   placeholder="About your about..."
                   rows={5}
                   onChange={handleChange}
-                  className="border border-formbg shadow-md shadow-formbg/50 outline-none w-full p-2 rounded resize-none "
+                  className="border border-formbg shadow-md shadow-formbg/50 outline-none w-full p-2 rounded resize-none"
                 />
               </div>
 

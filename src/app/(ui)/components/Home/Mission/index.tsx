@@ -44,6 +44,7 @@ export const Mission = () => {
                         images={["/images/hero/rsvi-hero-1.jpg", "/images/hero/rsvi-hero-1.jpg"]}
                         link="/success-story"
                     />
+                    
                     <HighlightBlock
                         title="Media Coverage"
                         description="RSVI has been featured in newspapers, news channels, and social platforms. Its impactful initiatives continue to inspire communities."
@@ -98,7 +99,7 @@ const HighlightBlock: React.FC<HighlightBlockProps> = ({
                 }`}>
             <div
                 data-aos="zoom-in"
-                className={`grid grid-cols-2 gap-6 ${reverse ? "lg:col-start-2 lg:col-span-2" : "lg:col-span-2"
+                className={`grid grid-cols-1 sm:grid-cols-2 gap-6 ${reverse ? "lg:col-start-2 lg:col-span-2" : "lg:col-span-2"
                     }`}
             >
                 {images.map((img, index) => (
@@ -120,20 +121,20 @@ const HighlightBlock: React.FC<HighlightBlockProps> = ({
             {/* Text Content */}
             <div
                 data-aos="fade-up"
-                className="relative bg-formbg/20  p-6 h-64 rounded-xl shadow-md">
-                <div
-                    className="absolute left-0 top-0 h-full w-2 rounded-l-xl"
-                    style={{ backgroundColor: borderColor }}/>
+                className="relative bg-formbg/20  p-6 sm:h-64 h-68 rounded-xl shadow-md">
+                <div className="absolute left-0 top-0 h-full w-2 rounded-l-xl" style={{ backgroundColor: borderColor }}/>
+
                 <h3 className="text-2xl font-semibold text-primary sm:text-3xl mb-4">
                     {title}
                 </h3>
                 <p className="text-SlateBlueText text-justify text-lg">
                     {description}
                 </p>
+
                 {link && (
                     <Link
                         href={link}
-                        className="block text-right text-learning hover:underline">
+                        className="block text-right bg-slate- text-learning hover:underline">
                         Know More
                     </Link>
                 )}

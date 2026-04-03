@@ -1,4 +1,4 @@
-import Initiatives from '@/app/admin/components/initiatives/Initiatives';
+import { Initiatives } from '@/app/admin/components/initiatives/Initiatives';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <Initiatives/>
+  return <Initiatives />
 }
 
 export default page

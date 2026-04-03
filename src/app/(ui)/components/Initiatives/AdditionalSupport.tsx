@@ -30,7 +30,7 @@ export const AdditionalSupport = ({ additionalSupports }: { additionalSupports: 
                             {category?.map((support, ind) => (
                                 <button
                                     key={support}
-                                    onClick={() => { setActiveSupport(support), setIndex(ind) }}
+                                    onClick={() => { setActiveSupport(support!), setIndex(ind) }}
                                     className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${activeSupport === support
                                         ? "bg-primary text-white scale-105"
                                         : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"

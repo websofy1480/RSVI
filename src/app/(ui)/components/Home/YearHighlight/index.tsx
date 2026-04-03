@@ -42,12 +42,17 @@ export const YearHighlight = () => {
             <div key={index} className="w-full sm:w-[45%] lg:w-[22%] relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
               data-aos="zoom-in" data-aos-delay={`${index * 150}`}>
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary rounded-t-3xl" />
-              <Image src={stat.imageUrl!}
-                alt="RSVI Impact"
-                width={200}
-                height={70}
-                className="mb-6 rounded-lg group-hover:scale-110 transition duration-300"
-              />
+
+              <div className="mb-6 relative w-full aspect-square overflow-hidden rounded-lg">
+                <Image
+                  src={stat.imageUrl!}
+                  alt="RSVI Impact"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="group-hover:scale-110 transition duration-300"
+                />
+              </div>
+
               <h3 className={`text-4xl text-center font-bold ${stat.stateTextCol}`}>
                 {counts[index]}{stat.suffix}
               </h3>

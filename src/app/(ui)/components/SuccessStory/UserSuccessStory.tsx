@@ -67,7 +67,7 @@ export const UserSuccessStory: FC<SuccessStoryProps> = ({ successStoryData }) =>
                                     >
                                         <Image
                                             src={successStory.image}
-                                            alt={successStory.name}
+                                            alt={successStory.name!}
                                             fill
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             className="object-cover"

@@ -1,12 +1,13 @@
-import JoinUsRequest from '@/app/admin/components/join-us-request/JoinUsRequest';
+import { JoinUsRequestPage } from '@/app/admin/components/join-us-request';
 import { Metadata } from 'next';
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Join Us Request | RSVI"
 };
 
 const page = () => {
-  return <JoinUsRequest/>
+  return <JoinUsRequestPage/>
 }
 
 export default page

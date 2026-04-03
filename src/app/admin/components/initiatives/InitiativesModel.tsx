@@ -1,7 +1,6 @@
 "use client";
 import ImageUploader from "../common/ImageUploader";
 import { useState } from "react";
-import { X } from "lucide-react";
 import Label from "../form/Label";
 import Tooltip from "../common/Tooltip";
 import { additionalSupport, projects } from "@/app/api/data";
@@ -9,13 +8,11 @@ import { RxCross2 } from "react-icons/rx";
 import { GiCancel } from "react-icons/gi";
 import { FiLoader } from "react-icons/fi";
 import { LiaCheckCircle } from "react-icons/lia";
+import { ModalProps } from "@/types/modelContext";
+import { initiatives } from "@/types/initiativesContext";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function InitiativesModel({ mode, onClose, onSave, initialData }: any) {
-    const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-        null
-    );
-    const [loading, setLoading] = useState(false);
+export const InitiativesModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: initiatives }) => {
+
     const [form, setForm] = useState(
         initialData || {
             title: "",
@@ -27,16 +24,7 @@ export default function InitiativesModel({ mode, onClose, onSave, initialData }:
         }
     );
 
-    const showTooltip = (
-        message: string,
-        type: "success" | "error" | "info" = "info"
-    ) => {
-        setTooltip({ message, type });
-        setTimeout(() => setTooltip(null), 3000);
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value });
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => setForm({ ...form, [e.target.name]: e.target.value });
 
     const handleSubmit = () => {
         setLoading(true);
@@ -47,20 +35,18 @@ export default function InitiativesModel({ mode, onClose, onSave, initialData }:
             !form.image ||
             !form.image_publicId
         ) {
-            showTooltip("Please fill all fields!", "error");
+            showTooltip({ message: "Please fill all fields!", type: "error" });
             setLoading(false);
             return;
         }
         onSave(form);
     };
 
-
     return (
         <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60" onClick={onClose}>
             {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
             <div
-                className="bg-white p-6 rounded-lg w-[95%] max-w-[850px] max-h-[90vh] shadow-lg 
-                   overflow-y-auto scroll-smooth hide-scrollbar" onClick={(e) => e.stopPropagation()}
+                className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[500px]" : "max-w-[800px]"}  max-h-[90vh] shadow-lg overflow-y-auto scroll-smooth hide-scrollbar`} onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-xl font-semibold">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Add"} Initiatives</h2>
@@ -155,30 +141,30 @@ export default function InitiativesModel({ mode, onClose, onSave, initialData }:
                     </>
                 )}
                 <div className="flex justify-end gap-3 mt-6">
-                          <button
-                            className="bg-primary text-white cursor-pointer flex items-center gap-2 px-3 py-1 rounded hover:bg-primary/20 hover:text-primary"
-                            onClick={onClose}
-                          >
-                            <span>Cancel</span>
-                            <GiCancel className="text-midnight_text" />
-                          </button>
-                          <button
-                            className={`${mode === "delete"
-                              ? "bg-error"
-                              : "bg-primary hover:bg-primary/20 hover:text-primary"
-                              } text-white px-3 py-1 flex items-center gap-2 cursor-pointer rounded hover:opacity-90`}
-                            onClick={handleSubmit}
-                          >
-                            <span>
-                              {mode === "delete" ? "Delete" : "Save"}
-                            </span>
-                            {loading ? (
-                              <FiLoader size={15} className="animate-spin" />
-                            ) : (
-                              <LiaCheckCircle size={18} />
-                            )}
-                          </button>
-                        </div>
+                    <button
+                        className="bg-primary text-white cursor-pointer flex items-center gap-2 px-3 py-1 rounded hover:bg-primary/20 hover:text-primary"
+                        onClick={onClose}
+                    >
+                        <span>Cancel</span>
+                        <GiCancel className="text-midnight_text" />
+                    </button>
+                    <button
+                        className={`${mode === "delete"
+                            ? "bg-error"
+                            : "bg-primary hover:bg-primary/20 hover:text-primary"
+                            } text-white px-3 py-1 flex items-center gap-2 cursor-pointer rounded hover:opacity-90`}
+                        onClick={handleSubmit}
+                    >
+                        <span>
+                            {mode === "delete" ? "Delete" : "Save"}
+                        </span>
+                        {loading ? (
+                            <FiLoader size={15} className="animate-spin" />
+                        ) : (
+                            <LiaCheckCircle size={18} />
+                        )}
+                    </button>
+                </div>
             </div>
         </div>
     );

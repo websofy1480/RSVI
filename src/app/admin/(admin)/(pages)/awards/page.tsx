@@ -1,4 +1,4 @@
-import Awards from '@/app/admin/components/awards/Awards';
+import { Awards } from '@/app/admin/components/awards/Awards';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <Awards/>
+  return <Awards />
 }
 
 export default page

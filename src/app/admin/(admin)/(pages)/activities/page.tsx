@@ -1,4 +1,4 @@
-import Activity from '@/app/admin/components/activities/Activities';
+import { Activity } from '@/app/admin/components/activities/Activities';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

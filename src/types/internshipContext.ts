@@ -1,11 +1,12 @@
-export interface Internship {
-  _id: string;
+export interface internship {
+  _id?: string;
   title: string;
   image: string;
   description: string;
+  image_publicId?: string | null
 };
 
 export interface InternshipProps {
-  internshipData?: Internship[];
-  perksData?: Internship[];
+  internshipData?: internship[];
+  perksData?: internship[];
 };

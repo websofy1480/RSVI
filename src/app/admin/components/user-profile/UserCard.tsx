@@ -5,9 +5,8 @@ import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import Label from "../form/Label";
 import Image from "next/image";
-import { CircleCheckBig, Key, Loader, SquarePen } from "lucide-react";
 import { Radio } from "react-loader-spinner";
-import Tooltip from "../common/Tooltip";
+import Tooltip, { TooltipProps } from "../common/Tooltip";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
 import PageBreadcrumb from "../common/PageBreadCrumb";
@@ -15,6 +14,8 @@ import { strongPasswordRegex } from "@/lib/strongPasswordRegex";
 import { GiCancel } from "react-icons/gi";
 import { FiLoader } from "react-icons/fi";
 import { LiaCheckCircle } from "react-icons/lia";
+import { IoKeyOutline } from "react-icons/io5";
+import { FaRegEdit } from "react-icons/fa";
 
 interface User {
   firstName: string;
@@ -33,8 +34,7 @@ export default function UserCard() {
   const [user, setUser] = useState<User | null>(null);
   const [mode, setMode] = useState<string>("");
   const captchaRef = useRef<ReCAPTCHA | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(
     null
   );
 
@@ -100,6 +100,15 @@ export default function UserCard() {
     }
   }, [user]);
 
+
+  const showTooltip = (
+    { message,
+      type = "info" }: TooltipProps
+  ) => {
+    setTooltip({ message, type });
+    setTimeout(() => setTooltip(null), 3000);
+  };
+
   const updateProfile = () => {
     if (user) {
       setFormData({
@@ -126,8 +135,7 @@ export default function UserCard() {
     setFormData(prev => ({ ...prev, [name]: value } as User));
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSaveProfile = async (e: any) => {
+  const handleSaveProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     const userEmail = localStorage.getItem("userEmail");
@@ -151,14 +159,14 @@ export default function UserCard() {
       const data = await res.json();
       if (res.ok) {
         setTimeout(() => {
-          showTooltip(data.message, "success");
+          showTooltip({ message: data.message, type: "success" });
         }, 1000)
       } else {
-        showTooltip(data.error || "Update failed", "error");
+        showTooltip({ message: data.error ?? "Update failed", type: "error" });
       }
     } catch (e) {
-      console.log("Internal Server Error ", e)
-      showTooltip("Internal Server Error", "error");
+      console.log("Internal Server Error", e)
+      showTooltip({ message: "Internal Server Error", type: "error" });
     } finally {
       setTimeout(() => {
         closeModal();
@@ -168,31 +176,30 @@ export default function UserCard() {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handlePasswordChange = (e: any) => {
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUpdateCredentials(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSavePassword = async (e: any) => {
+
+  const handleSavePassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!captchaValue) {
-      showTooltip("Please verify the CAPTCHA before reset password.", "error");
+      showTooltip({ message: "Please verify the CAPTCHA before reset password.", type: "error" });
       return;
     }
-    setLoading(true)
+
     if (!updateCredentials.oldPassword || !updateCredentials.newPassword || !updateCredentials.confirmPassword) {
       setLoading(false);
       captchaRef.current?.reset();
       setCaptchaValue(null);
-      return showTooltip("All fields are required", "error");
+      return showTooltip({ message: "All fields are required", type: "error" });
     }
 
     if (updateCredentials.newPassword !== updateCredentials.confirmPassword) {
       setLoading(false);
       captchaRef.current?.reset();
       setCaptchaValue(null);
-      return showTooltip("New and Confirm Password do not match", "error");
+      return showTooltip({ message: "New and Confirm Password do not match", type: "error" });
     }
 
     if (!strongPasswordRegex.test(updateCredentials.confirmPassword)) {
@@ -200,11 +207,14 @@ export default function UserCard() {
       captchaRef.current?.reset();
       setCaptchaValue(null);
       return showTooltip(
-        "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
-        "error"
+        {
+          message: "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
+          type: "error"
+        }
       );
     }
 
+    setLoading(true);
 
     try {
       const res = await fetch("/admin/api/auth/update-password", {
@@ -215,17 +225,15 @@ export default function UserCard() {
       const data = await res.json();
       if (res.ok) {
         setTimeout(() => {
-          showTooltip(data.message, "success");
+          showTooltip({ message: data.message, type: "success" });
         }, 1000)
         router.push("/admin/logout")
       } else {
-        showTooltip(data.message || "Something went wrong", "error");
+        showTooltip({ message: data.message ?? "Something went wrong", type: "error" });
       }
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error) {
+    } catch (error) {
       console.log("Internal Server Error ", error)
-      showTooltip("Internal Server Error", "error");
+      showTooltip({ message: "Internal Server Error", type: "error" });
     } finally {
       setTimeout(() => {
         closeModal();
@@ -236,14 +244,6 @@ export default function UserCard() {
       captchaRef.current?.reset();
       setCaptchaValue(null);
     }
-  };
-
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
-    setTooltip({ message, type });
-    setTimeout(() => setTooltip(null), 3000);
   };
 
   return (
@@ -287,14 +287,14 @@ export default function UserCard() {
                   onClick={updateProfile}
                   className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-primary bg-white px-4 py-3 text-14 font-medium text-primary shadow-theme-xs hover:bg-formbg/10 hover:text-primary/80 lg:inline-flex lg:w-auto"
                 >
-                  <SquarePen size={13} />
+                  <FaRegEdit size={13} />
                   Edit
                 </button>
                 <button
                   onClick={updatePassword}
                   className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-primary bg-white px-4 py-3 text-sm font-medium text-primary shadow-theme-xs hover:bg-formbg/10 hover:text-primary/80 lg:inline-flex lg:w-44"
                 >
-                  <Key size={15} />
+                  <IoKeyOutline size={15} />
                   Reset Password
                 </button>
               </div>
@@ -404,7 +404,7 @@ export default function UserCard() {
                   <textarea
                     rows={4}
                     name="bio"
-                    placeholder="Write your boi here..."
+                    placeholder="Write your bio here..."
                     value={formData.bio}
                     onChange={handleChange}
                     className="w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs resize-none placeholder:text-primary focus:outline-hidden"
@@ -467,7 +467,7 @@ export default function UserCard() {
               <div className="flex justify-between items-center gap-3 mt-6">
                 <p className="text-sm text-error w-72"> <span className="font-bold">Note* :</span> You will be logged out of the admin panel once you update your password.</p>
                 <div className="flex gap-3">
-                  <Button type="button" variant="outline" onClick={closeModal}>Cancel 
+                  <Button type="button" variant="outline" onClick={closeModal}>Cancel
                     <GiCancel className="text-midnight_text" />
                   </Button>
                   {

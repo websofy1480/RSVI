@@ -1,4 +1,4 @@
-import Internship from '@/app/admin/components/internship/Internship';
+import { Internship } from '@/app/admin/components/internship/Internship';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <Internship/>
+  return <Internship />
 }
 
 export default page

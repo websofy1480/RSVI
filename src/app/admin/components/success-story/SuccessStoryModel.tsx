@@ -7,14 +7,11 @@ import { RxCross2 } from "react-icons/rx";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader } from "react-icons/fi";
 import { GiCancel } from "react-icons/gi";
+import { successStory } from "@/types/successStoryContext";
+import { ModalProps } from "@/types/modelContext";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function SuccessStoryModel({ mode, onClose, onSave, initialData }: any) {
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
-  const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState(
+export const SuccessStoryModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: successStory }) => {
+  const [form, setForm] = useState<successStory>(
     initialData || {
       name: "",
       description: "",
@@ -22,17 +19,8 @@ export default function SuccessStoryModel({ mode, onClose, onSave, initialData }
       image_publicId: "",
     }
   );
-
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
-    setTooltip({ message, type });
-    setTimeout(() => setTooltip(null), 3000);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value });
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = () => {
     setLoading(true);
@@ -42,7 +30,7 @@ export default function SuccessStoryModel({ mode, onClose, onSave, initialData }
       !form.image ||
       !form.image_publicId
     ) {
-      showTooltip("Please fill all fields!", "error");
+      showTooltip({ message: "Please fill all fields!", type: "error" });
       setLoading(false);
       return;
     }
@@ -50,18 +38,16 @@ export default function SuccessStoryModel({ mode, onClose, onSave, initialData }
   };
 
   return (
-    <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60" onClick={onClose}>
+    <div className={"fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60"} onClick={onClose}>
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
       <div
-        className="bg-white p-6 rounded-lg w-[95%] max-w-[800px] max-h-[90vh] shadow-lg 
-                   overflow-y-auto scroll-smooth hide-scrollbar" onClick={(e) => e.stopPropagation()}
-      >
+        className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[500px]" : "max-w-[800px]"}  max-h-[90vh] shadow-lg 
+                   overflow-y-auto scroll-smooth hide-scrollbar`} onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Add"} Success Story</h2>
           <button
             onClick={onClose}
-            className="cursor-pointer right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-transparent hover:text-secondary hover:border hover:border-secondary/30 sm:right-6 sm:top-6 sm:h-9 sm:w-9"
-          >
+            className="cursor-pointer right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-primary/20 text-primary transition-colors hover:bg-transparent hover:text-secondary hover:border hover:border-secondary/30 sm:right-6 sm:top-6 sm:h-9 sm:w-9">
             <RxCross2 size={20} />
           </button>
         </div>

@@ -10,4 +10,6 @@ export interface DataContextType {
     setFontSize: (size: number) => void;
     theme: ThemeType;
     setTheme: (theme: ThemeType) => void;
+    navbarOpen: boolean,
+    setNavbarOpen: (flag: boolean) => void
 };

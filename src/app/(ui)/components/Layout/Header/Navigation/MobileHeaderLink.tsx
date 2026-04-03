@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { HeaderItem } from '@/types/menu';
+import { useData } from '@/app/context/DataContext';
 
 const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
+  const { setNavbarOpen } = useData();
 
   const handleToggle = () => {
     setSubmenuOpen(!submenuOpen);
@@ -14,6 +15,14 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
 
   const handleNavigate = () => {
     router.push(item.href);
+    setNavbarOpen(false);
+
+  }
+
+  const handleSubMenuNavigate = (subMenuHref: string) => {
+    router.push(subMenuHref);
+    setNavbarOpen(false);
+    setSubmenuOpen(false);
   }
 
   const path = usePathname();
@@ -34,9 +43,9 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
       {submenuOpen && item.submenu && (
         <div className="bg-white p-2 w-full">
           {item.submenu.map((subItem, index) => (
-            <Link key={index} href={subItem.href} className="block py-2 text-gray-500 hover:bg-gray-200">
+            <button key={index} onClick={() => handleSubMenuNavigate(subItem.href)} className="block py-2 text-gray-500 hover:bg-gray-200">
               {subItem.label}
-            </Link>
+            </button>
           ))}
         </div>
       )}

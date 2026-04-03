@@ -1,12 +1,13 @@
-import ContactUs from '@/app/admin/components/contact-us/contact-us';
+import { ContactUsPage } from '@/app/admin/components/contact-us';
 import { Metadata } from 'next';
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Contact Us | Stintwol"
 };
 
 const page = () => {
-  return <ContactUs/>
+  return <ContactUsPage/>
 }
 
 export default page

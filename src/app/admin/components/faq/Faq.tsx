@@ -1,35 +1,31 @@
 "use client";
 import { useEffect, useState } from "react";
 import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip from "../common/Tooltip";
+import Tooltip, { TooltipProps } from "../common/Tooltip";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
 import { FaqModel } from "./FaqModel";
 import Pagination from "../common/Pagination";
+import { faq } from "@/types/faqContext";
+import { Form, Mode } from "@/types/modelContext";
+import { ApiResponseProps } from "@/types/apiResponseContext";
+import { searchKeys, SearchState, updateStateField } from "@/types/searchState";
 
 export const Faq = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [data, setData] = useState<any[]>([]);
+    const [data, setData] = useState<faq[]>([]);
+    const [modal, setModal] = useState<{ mode: Mode; item?: faq } | null>(null);
+    const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+
     const [showMessage, setShowMessage] = useState(false);
-    const [userFaq, setUserFaq] = useState({
-        question: "",
-        answer: [] as string[]
-    });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [modal, setModal] = useState<{ mode: string; item?: any } | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-        null
-    );
+    const [userFaq, setUserFaq] = useState({ question: "", answer: [] as string[] });
 
     const handleOnChange = (question: string, answer: string[],) => {
         setUserFaq({ ...userFaq, question: question, answer: answer });
     }
 
     const showTooltip = (
-        message: string,
-        type: "success" | "error" | "info" = "info"
-    ) => {
+        { message, type = "info" }: TooltipProps) => {
         setTooltip({ message, type });
         setTimeout(() => setTooltip(null), 3000);
     };
@@ -37,7 +33,7 @@ export const Faq = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 10;
 
-    const [search, setSearch] = useState({ question: "" });
+    const [search, setSearch] = useState<SearchState>({ question: "" });
 
     const fetchData = async () => {
         const res = await fetch("/api/auth/faq");
@@ -49,9 +45,8 @@ export const Faq = () => {
         fetchData();
     }, []);
 
-    const filteredData = data.filter(
-        (item) =>
-            item.question.toLowerCase().includes(search.question.toLowerCase())
+    const filteredData = data.filter((item) =>
+        item.question.toLowerCase().includes(search.question!.toLowerCase())
     );
 
     const totalPages = Math.ceil(filteredData.length / recordsPerPage);
@@ -60,13 +55,11 @@ export const Faq = () => {
         currentPage * recordsPerPage
     );
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleSave = async (form: any) => {
+    const handleSave = async (form: Form) => {
         if (!modal) return;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let res: any = null;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let data: any = null;
+        setLoading(true);
+        let res: Response;
+        let data: ApiResponseProps<faq>;
 
         try {
             if (modal.mode === "create") {
@@ -76,27 +69,29 @@ export const Faq = () => {
                     body: JSON.stringify(form)
                 });
             } else if (modal.mode === "edit") {
-                res = await fetch(`/api/auth/faq/${modal.item._id}`, {
+                res = await fetch(`/api/auth/faq/${modal.item?._id}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(form),
                 });
-            } else if (modal.mode === "delete") {
-                res = await fetch(`/api/auth/faq/${modal.item._id}`, {
+            } else {
+                res = await fetch(`/api/auth/faq/${modal.item?._id}`, {
                     method: "DELETE",
                 });
             }
-            data = await res.json();
+
+            data = (await res.json()) as ApiResponseProps<faq>;
             if (res.ok) {
-                showTooltip(data?.message, "success");
+                showTooltip({ message: data?.message ?? "Success", type: "success" });
             } else {
-                showTooltip(data.message || "Something went wrong", "error");
+                showTooltip({ message: data.message ?? "Something went wrong", type: "error" });
             }
         } catch (error) {
             const err = error as Error;
             console.log("Internal Server Error ", err)
-            showTooltip("Internal Server Error", "error");
+            showTooltip({ message: "Internal Server Error", type: "error" });
         } finally {
+            setLoading(false);
             setModal(null);
             fetchData();
         }
@@ -113,15 +108,14 @@ export const Faq = () => {
             </div>
 
             <div className="flex gap-3 mb-4 w-[15em]">
-                {["question"].map((key) => (
+                {[searchKeys[4]].map((key) => (
                     <input
                         key={key}
                         type="text"
                         placeholder={`Search by ${key}`}
                         className="border px-2 py-1 rounded"
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        value={(search as any)[key]}
-                        onChange={(e) => setSearch({ ...search, [key]: e.target.value })}
+                        value={search[key] ?? ""}
+                        onChange={(e) => updateStateField(setSearch, key, e.target.value)}
                     />
                 ))}
             </div>
@@ -154,10 +148,10 @@ export const Faq = () => {
                             </td>
                             <td className="border text-center border-formbg shadow-md shadow-formbg/50">
                                 <div className="flex mx-1 gap-2 justify-center">
-                                    <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
+                                    <button onClick={() => setModal({ mode: "edit", item })} className="bg-success cursor-pointer text-white px-3 py-1 rounded">
                                         Edit
                                     </button>
-                                    <button onClick={() => setModal({ mode: "delete", item })} className="bg-red-600 cursor-pointer text-white px-3 py-1 rounded">
+                                    <button onClick={() => setModal({ mode: "delete", item })} className="bg-error cursor-pointer text-white px-3 py-1 rounded">
                                         Delete
                                     </button>
                                 </div>
@@ -169,15 +163,18 @@ export const Faq = () => {
 
             {
                 totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-
             }
-            
+
             {modal && (
                 <FaqModel
                     mode={modal.mode}
                     initialData={modal.item}
                     onClose={() => setModal(null)}
                     onSave={handleSave}
+                    loading={loading}
+                    setLoading={setLoading}
+                    showTooltip={showTooltip}
+                    tooltip={tooltip}
                 />
             )}
             {

@@ -59,7 +59,7 @@ export const TopBar = () => {
           }
         </div>
 
-        <div className="flex flex-wrap  items-center gap-4 justify-center sm:justify-start">
+        <div className="hidden sm:flex flex-wrap  items-center gap-4 justify-center sm:justify-start">
           {
             dynamicFont?.map((item: any, index: number) => (
               <button key={index} onClick={() => changeFont(item.value)} className="w-7 h-7 text-[12px]

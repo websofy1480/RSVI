@@ -1,5 +1,5 @@
 
-import SuccessStory from '@/app/admin/components/success-story/SuccessStory';
+import { SuccessStory } from '@/app/admin/components/success-story/SuccessStory';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

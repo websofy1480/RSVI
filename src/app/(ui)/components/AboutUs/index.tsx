@@ -69,8 +69,6 @@ export const AboutUs = () => {
                         <span className="font-semibold text-secondary">- Rehabilitation Society of the Visually Impaired</span>
                     </p>
                 </div>
-
-                {/* What makes differte */}
                 <div className="mb-10 container">
                     <h2
                         className="text-2xl md:text-[40px] text-center font-bold uppercase text-primary"
@@ -102,7 +100,7 @@ export const AboutUs = () => {
                     </div>
                 </div>
 
-                <div className="relative mb-10 h-screen flex items-center justify-center text-white overflow-hidden">
+                <div className="relative mb-10 sm:h-screen h-96 flex items-center justify-center text-white overflow-hidden">
                     <video
                         autoPlay
                         muted
@@ -111,6 +109,7 @@ export const AboutUs = () => {
                         className="absolute inset-0 w-full h-full object-cover">
                         <source src="/videos/ngo-video.mp4" type="video/mp4" />
                     </video>
+                    
                     <div className="absolute inset-0 bg-black/60" />
                     <div className="relative z-10 text-center px-6">
                         <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -138,7 +137,6 @@ export const AboutUs = () => {
           to all the organizations that complement our cause and help uplift the lives of the visually impaired. Major highlights include Uber India, 
           Enactus, NSS Society of various colleges, Yoga Sessions, and Mental Wellness professionals." buttonText="Become a Partner" nevigateUrl="collaborate" />
             </div>
-
         </section>
     );
 };

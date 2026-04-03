@@ -1,29 +1,27 @@
 "use client";
 import { useEffect, useState } from "react";
 import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip from "../common/Tooltip";
+import Tooltip, { TooltipProps } from "../common/Tooltip";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
-import InternshipModel from "./InternshipModel";
+import { InternshipModel } from "./InternshipModel";
 import Pagination from "../common/Pagination";
+import { Form, Mode } from "@/types/modelContext";
+import { internship } from "@/types/internshipContext";
+import { ApiResponseProps } from "@/types/apiResponseContext";
+import { searchKeys, SearchState, updateStateField } from "@/types/searchState";
 
-export default function Internship() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [data, setData] = useState<any[]>([]);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [modal, setModal] = useState<{ mode: string; item?: any } | null>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
+export const Internship = () => {
+  const [data, setData] = useState<internship[]>([]);
+  const [modal, setModal] = useState<{ mode: Mode; item?: internship } | null>(null);
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [internshipDescription, setInternshipDescription] = useState("");
   const [showDescription, setShowDescription] = useState(false);
 
   const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
+    { message, type = "info" }: TooltipProps
   ) => {
     setTooltip({ message, type });
     setTimeout(() => setTooltip(null), 3000);
@@ -32,7 +30,7 @@ export default function Internship() {
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
 
-  const [search, setSearch] = useState({ title: "" });
+  const [search, setSearch] = useState<SearchState>({ title: "" });
 
   const fetchData = async () => {
     const internshipRes = await fetch("/api/auth/internship");
@@ -46,7 +44,7 @@ export default function Internship() {
 
   const filteredData = data.filter(
     (item) =>
-      item.title.toLowerCase().includes(search.title.toLowerCase())
+      item.title.toLowerCase().includes(search.title!.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredData.length / recordsPerPage);
@@ -55,13 +53,11 @@ export default function Internship() {
     currentPage * recordsPerPage
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSave = async (form: any) => {
+  const handleSave = async (form: Form) => {
     if (!modal) return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let res: any = null;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let data: any = null;
+    setLoading(true);
+    let res: Response;
+    let data: ApiResponseProps<internship>;
 
     try {
       if (modal.mode === "create") {
@@ -71,28 +67,28 @@ export default function Internship() {
           body: JSON.stringify(form)
         });
       } else if (modal.mode === "edit") {
-        res = await fetch(`/api/auth/internship/${modal.item._id}`, {
+        res = await fetch(`/api/auth/internship/${modal.item?._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form),
         });
-      } else if (modal.mode === "delete") {
-        res = await fetch(`/api/auth/internship/${modal.item._id}`, {
+      } else {
+        res = await fetch(`/api/auth/internship/${modal.item?._id}`, {
           method: "DELETE",
         });
       }
-      data = await res.json();
+      data = (await res.json()) as ApiResponseProps<internship>;
+
       if (res.ok) {
-        showTooltip(data?.message, "success");
+        showTooltip({ message: data.message ?? "Success", type: "success" });
       } else {
-        showTooltip(data.message || "Something went wrong", "error");
+        showTooltip({ message: data.message ?? "Something went wrong", type: "error" });
       }
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error) {
+    } catch (error) {
       console.log("Internal Server Error ", error)
-      showTooltip("Internal Server Error", "error");
+      showTooltip({ message: "Internal Server Error", type: "error" });
     } finally {
+      setLoading(false);
       setModal(null);
       fetchData();
     }
@@ -108,15 +104,14 @@ export default function Internship() {
         </button>
       </div>
       <div className="flex gap-3 mb-4">
-        {["title"].map((key) => (
+        {searchKeys.slice(1, 2)?.map((key) => (
           <input
             key={key}
             type="text"
             placeholder={`Search by ${key}`}
             className="border px-2 py-1 rounded"
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            value={(search as any)[key]}
-            onChange={(e) => setSearch({ ...search, [key]: e.target.value })}
+            value={search[key] ?? ""}
+            onChange={(e) => updateStateField(setSearch, key, e.target.value)}
           />
         ))}
       </div>
@@ -147,10 +142,10 @@ export default function Internship() {
               </td>
               <td className="border text-center border-formbg shadow-md shadow-formbg/50">
                 <div className="flex mx-1 gap-2 justify-center">
-                  <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
+                  <button onClick={() => setModal({ mode: "edit", item })} className="bg-success cursor-pointer text-white px-3 py-1 rounded">
                     Edit
                   </button>
-                  <button onClick={() => setModal({ mode: "delete", item })} className="bg-red-600 cursor-pointer text-white px-3 py-1 rounded">
+                  <button onClick={() => setModal({ mode: "delete", item })} className="bg-error cursor-pointer text-white px-3 py-1 rounded">
                     Delete
                   </button>
                 </div>
@@ -159,18 +154,20 @@ export default function Internship() {
           ))}
         </tbody>
       </table>
-
       {
         totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-
       }
-      
+
       {modal && (
         <InternshipModel
           mode={modal.mode}
           initialData={modal.item}
           onClose={() => setModal(null)}
           onSave={handleSave}
+          loading={loading}
+          setLoading={setLoading}
+          showTooltip={showTooltip}
+          tooltip={tooltip}
         />
       )}
       {

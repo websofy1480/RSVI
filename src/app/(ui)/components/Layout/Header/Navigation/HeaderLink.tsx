@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-import Cookies from "js-cookie";
 
 import { usePathname } from 'next/navigation';
 import { HeaderItem } from '@/types/menu';

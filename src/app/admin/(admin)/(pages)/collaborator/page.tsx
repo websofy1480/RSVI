@@ -1,4 +1,4 @@
-import Collaborator from '@/app/admin/components/collaborator/Collaborator';
+import { CollaboratorPage } from '@/app/admin/components/collaborator';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <Collaborator/>
+  return <CollaboratorPage/>
 }
 
 export default page

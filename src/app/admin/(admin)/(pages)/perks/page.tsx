@@ -1,4 +1,4 @@
-import Perks from '@/app/admin/components/perks/Perks';
+import { Perks } from '@/app/admin/components/perks/Perks';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <Perks/>
+  return <Perks />
 }
 
 export default page

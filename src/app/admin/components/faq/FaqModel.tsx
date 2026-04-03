@@ -7,30 +7,19 @@ import { FiLoader, FiMinus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import { GiCancel } from "react-icons/gi";
 import { IoIosAdd } from "react-icons/io";
+import { faq } from "@/types/faqContext";
+import { ModalProps } from "@/types/modelContext";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const FaqModel = ({ mode, onClose, onSave, initialData }: any) => {
-    const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-        null
-    );
-    const [loading, setLoading] = useState(false);
+export const FaqModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: faq }) => {
 
-    const [form, setForm] = useState(
+    const [form, setForm] = useState<faq>(
         initialData || {
             question: "",
             answer: [""],
         }
     );
 
-    const showTooltip = (
-        message: string,
-        type: "success" | "error" | "info" = "info"
-    ) => {
-        setTooltip({ message, type });
-        setTimeout(() => setTooltip(null), 3000);
-    };
-
-    const handleChange = (e: any, index?: number) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index?: number) => {
         if (e.target.name === "answer") {
             const updatedAnswers = [...form.answer];
             updatedAnswers[index!] = e.target.value;
@@ -57,7 +46,7 @@ export const FaqModel = ({ mode, onClose, onSave, initialData }: any) => {
             !form.question ||
             form.answer.some((ans: string) => !ans.trim())
         ) {
-            showTooltip("Please fill all fields!", "error");
+            showTooltip({ message: "Please fill all fields!", type: "error" });
             setLoading(false);
             return;
         }
@@ -70,7 +59,7 @@ export const FaqModel = ({ mode, onClose, onSave, initialData }: any) => {
             onClick={onClose}>
             {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
             <div
-                className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[550px]" : "max-w-[800px]"
+                className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[500px]" : "max-w-[800px]"
                     } max-h-[90vh] shadow-lg overflow-y-auto scroll-smooth hide-scrollbar`}
                 onClick={(e) => e.stopPropagation()}
             >

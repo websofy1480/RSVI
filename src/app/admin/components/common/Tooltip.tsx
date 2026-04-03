@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-interface TooltipProps {
+export interface TooltipProps {
   message: string;
   type?: "success" | "error" | "info";
 }
@@ -17,9 +17,9 @@ export default function Tooltip({ message, type = "info" }: TooltipProps) {
   if (!visible) return null;
 
   const colors = {
-    success: "bg-green-500",
-    error: "bg-red-500",
-    info: "bg-blue-500",
+    success: "bg-success",
+    error: "bg-error",
+    info: "bg-learning",
   };
 
   return (

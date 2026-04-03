@@ -20,6 +20,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
     const [fontSize, setFontSize] = useState<number>(16);
     const [theme, setTheme] = useState<ThemeType>("default");
+    const [navbarOpen, setNavbarOpen] = useState(false);
 
     const categoryCounts = useMemo(() => {
         return blogs.reduce((acc, blog) => {
@@ -80,6 +81,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                     setFontSize,
                     theme,
                     setTheme,
+                    navbarOpen,
+                    setNavbarOpen
                 }
             }
         >

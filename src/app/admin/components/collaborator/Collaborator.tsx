@@ -6,22 +6,24 @@ import PageBreadcrumb from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
 import Pagination from "../common/Pagination";
-import Tooltip from "../common/Tooltip";
+import Tooltip, { TooltipProps } from "../common/Tooltip";
 import { LuToggleLeft, LuToggleRight } from "react-icons/lu";
-import { useData } from "@/app/context/DataContext";
+import { collab } from "@/types/collabContext";
+import { Mode } from "@/types/modelContext";
+import { ApiResponseProps } from "@/types/apiResponseContext";
 
-export default function Collaborator() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [collabs, setCollabs] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+export const Collaborator = () => {
+  const [collabs, setCollabs] = useState<collab[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortField, setSortField] = useState<
     "name" | "phone" | "email" | "date" | null
   >(null);
+
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [showMessage, setShowMessage] = useState(false);
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(
     null
   );
 
@@ -40,10 +42,7 @@ export default function Collaborator() {
     isVerified: false
   });
 
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
+  const showTooltip = ({ message, type = "info" }: TooltipProps) => {
     setTooltip({ message, type });
     setTimeout(() => setTooltip(null), 3000);
   };
@@ -71,9 +70,7 @@ export default function Collaborator() {
     fetchCollab();
   }, []);
 
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getFieldValue = (item: any, field: "name" | "phone" | "email" | "date") => {
+  const getFieldValue = (item: collab, field: "name" | "phone" | "email" | "date") => {
     switch (field) {
       case "name":
         return String(item.name ?? "").toLowerCase();
@@ -161,14 +158,10 @@ export default function Collaborator() {
   };
 
 
-  const handleAction = async (mode: string, id: string, newVerified?: boolean) => {
+  const handleAction = async (mode: Mode, id: string, newVerified?: boolean) => {
     if (!mode) return;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let res: any = null;
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let data: any = null;
+    let res: Response;
+    let data: ApiResponseProps<collab>;
 
     try {
       if (mode === "edit") {
@@ -182,16 +175,17 @@ export default function Collaborator() {
           method: "DELETE",
         });
       }
-      data = await res.json();
+      data = (await res.json()) as ApiResponseProps<collab>;
+
       if (res?.ok) {
-        data?.success ? showTooltip(data?.message, "success") : showTooltip(data?.message, "error")
+        data?.success ? showTooltip({ message: data?.message ?? "Success", type: "success" }) : showTooltip({ message: data?.message ?? "Error", type: "error" })
       } else {
-        showTooltip(data?.message || "Something went wrong", "error");
+        showTooltip({ message: data?.message || "Something went wrong", type: "error" });
       }
     } catch (error) {
       const err = error as Error;
       console.log("Internal Server Error ", err)
-      showTooltip("Internal Server Error", "error");
+      showTooltip({ message: "Internal Server Error", type: "error" });
     } finally {
       fetchCollab();
     }
@@ -310,23 +304,6 @@ export default function Collaborator() {
                   </div>
                 </th>
 
-                {/* <th
-                  onClick={() => handleSort("email")}
-                  className="px-6 py-3 text-left text-sm font-semibold text-black cursor-pointer select-none"
-                >
-                  <div className="flex items-center gap-1">
-                    Email
-                    <ArrowUpDown
-                      className={`w-4 h-4 transition-transform ${sortField === "email"
-                        ? sortOrder === "asc"
-                          ? "rotate-180 text-learning"
-                          : "text-learning"
-                        : "text-primary"
-                        }`}
-                    />
-                  </div>
-                </th> */}
-
                 <th className="px-6 py-3 text-left text-sm font-semibold text-black select-none">
                   <div className="flex items-center gap-1">Message</div>
                 </th>
@@ -388,17 +365,16 @@ export default function Collaborator() {
                       record.isVerified ?
                         <div className="flex items-center justify-cente gap-2">
                           <span className="w-20">Verified</span>
-                          <LuToggleRight size={20} className="text-success cursor-pointer" onClick={() => handleAction("edit", record._id, !record.isVerified)} />
+                          <LuToggleRight size={20} className="text-success cursor-pointer" onClick={() => handleAction("edit", record._id!, !record.isVerified)} />
                         </div> :
                         <div className="flex items-center justify-cente gap-2">
                           <span className="w-20">Not Verified</span>
-                          <LuToggleLeft size={20} className="text-error cursor-pointer" onClick={() => handleAction("edit", record._id, !record.isVerified)} />
+                          <LuToggleLeft size={20} className="text-error cursor-pointer" onClick={() => handleAction("edit", record._id!, !record.isVerified)} />
                         </div>
                     }
                   </td>
-
                   <td className="px-6 py-4 text-sm text-SlateBlueText">
-                    <button onClick={() => handleAction("delete", record._id)} className="bg-error cursor-pointer text-white px-3 py-1 rounded">
+                    <button onClick={() => handleAction("delete", record._id!)} className="bg-error cursor-pointer text-white px-3 py-1 rounded">
                       Delete
                     </button>
                   </td>
