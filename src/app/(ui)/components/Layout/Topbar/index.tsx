@@ -1,17 +1,18 @@
 "use client";
-import { dynamicFont, dynamicTheme, footer } from "@/app/api/data";
+import { dynamicFont, footer } from "@/app/api/data";
 import { useData } from "@/app/context/DataContext";
 import Link from "next/link";
 
 export const TopBar = () => {
-  const { fontSize, setFontSize, theme, setTheme } = useData();
+  const { setFontSize} = useData();
+
   const changeFont = (size: number) => {
     setFontSize(size);
   };
 
   return (
-    <div className="w-full flex fixed top-0 lg:h-12 sm:h-18 md:h-10 bg-formbg text-sm z-50">
-      <div className="container flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div className="w-full flex fixed top-0 sm:h-10  h-8  bg-formbg text-sm z-50">
+      <div className="flex  h-full container items-center justify-between gap-2">
         <div className="flex flex-wrap  items-center gap-4 justify-center sm:justify-start">
           {
             footer?.contactDetails.slice(1).map((item, index) => (
@@ -30,7 +31,7 @@ export const TopBar = () => {
                           {item.title}
                         </Link>
                       </div>
-                      <div className="h-5 w-px bg-black" />
+                      <div className="h-4 w-px bg-black" />
                     </div>
                     :
                     <div
@@ -49,10 +50,11 @@ export const TopBar = () => {
             ))
           }
         </div>
+
         <div className="hidden sm:flex items-center justify-center sm:justify-end gap-4">
           {
             footer?.socialMedia.map((item, index) => (
-              <Link key={index} href={item.url} target="_blank" className="w-7 h-7 flex items-center justify-center bg-white rounded-full shadow hover:bg-secondary hover:text-white hover:animate-pulse transition">
+              <Link key={index} href={item.url} target="_blank" className="lg:w-7 lg:h-7 sm:w-6 sm:h-6 flex items-center justify-center bg-white rounded-full shadow hover:bg-secondary hover:text-white hover:animate-pulse transition">
                 {item.icon}
               </Link>
             ))
@@ -62,7 +64,7 @@ export const TopBar = () => {
         <div className="hidden sm:flex flex-wrap  items-center gap-4 justify-center sm:justify-start">
           {
             dynamicFont?.map((item: any, index: number) => (
-              <button key={index} onClick={() => changeFont(item.value)} className="w-7 h-7 text-[12px]
+              <button key={index} onClick={() => changeFont(item.value)} className="lg:w-7 lg:h-7 sm:w-6 sm:h-6 sm:text-[12px] text-[10px]
                  flex items-center justify-center bg-white rounded-full shadow hover:bg-secondary hover:text-white transition">{item.key}</button>
             ))
           }

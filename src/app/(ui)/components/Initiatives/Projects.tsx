@@ -105,7 +105,7 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
     }, [filter]);
 
     return (
-        <section className=" bg-formbg/20  pb-0 " id="project">
+        <section className="bg-formbg/20  pb-0 " id="project">
             <div className="md:pb-12 text-center pb-8">
                 <h2 className="text-4xl font-bold uppercase text-center text-primary">
                     Our Transformative{" "}
@@ -115,29 +115,34 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
 
             {
                 projetcs?.length === 0 ? <PreLoader /> :
-                    <div className="h-96 overflow-hidden flex flex-col">
-                        <div className="text-center">
-                            <div className="flex justify-center gap-4 flex-wrap">
+                    <div className="h-[50vh] sm:h-[85vh] md:h-[60vh] overflow-hidden flex flex-col container">
+
+                        {/* Filters */}
+                        <div className="text-center mb-6">
+                            <div className="flex justify-center gap-2 sm:gap-4 flex-wrap">
                                 {["all", "Upcoming", "Udaan"].map((type) => (
                                     <button
                                         key={type}
                                         onClick={() => setFilter(type as any)}
-                                        className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${filter === type
-                                            ? "bg-primary text-white scale-105"
-                                            : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"
-                                            }`}>
-                                        {type === "all"
-                                            ? "All"
-                                            : type === "Upcoming" ? "Upcoming" : "Udaan"}
+                                        className={`px-3 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md font-semibold transition-all duration-300 ${filter === type
+                                                ? "bg-primary text-white scale-105"
+                                                : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"
+                                            }`}
+                                    >
+                                        {type === "all" ? "All" : type}
                                     </button>
                                 ))}
                             </div>
                         </div>
-                        <div ref={scrollRef} className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth">
+                        <div
+                            ref={scrollRef}
+                            className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth"
+                        >
                             {filteredProjects.map((project, index) => {
                                 const udaanProjects = filteredProjects.filter(
                                     (p) => p.category === "Udaan"
                                 );
+
                                 const isLastUdaan =
                                     project.category === "Udaan" &&
                                     project._id === udaanProjects[udaanProjects.length - 1]?._id;
@@ -145,54 +150,49 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
                                 return (
                                     <div
                                         key={project._id}
-                                        className="snap-start h-96 flex items-center justify-center px-6"
-                                    >
-                                        <div className="w-full max-w-6xl grid md:grid-cols-2 gap-12 items-center">
+                                        className="snap-start min-h-full flex items-center justify-center py-6">
+                                        <div className="w-full max-w-6xl grid md:grid-cols-2 gap-6 sm:gap-10 items-center">
                                             <div
-                                                className={`relative h-[45vh] md:h-[40vh] rounded-3xl overflow-hidden shadow-xl ${index % 2 !== 0 ? "md:order-2" : ""
+                                                className={`relative h-[30vh] sm:h-[35vh] md:h-[40vh] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl ${index % 2 !== 0 ? "md:order-2" : ""
                                                     }`}
                                             >
                                                 <Image
                                                     src={project.image}
                                                     alt={project.title}
                                                     fill
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                                    priority
-                                                    className="object-cover hover:scale-110 transition duration-700"
+                                                    className="object-cover"
                                                 />
                                             </div>
 
                                             {/* Content */}
-                                            <div
-                                                className={`text-center md:text-left ${index % 2 !== 0 ? "md:order-1" : ""
-                                                    }`}
-                                            >
-                                                <h3 className="text-3xl font-bold text-primary mb-4">
+                                            <div className={`text-center md:text-left ${index % 2 !== 0 ? "md:order-1" : ""
+                                                }`}>
+                                                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-primary mb-3 sm:mb-4">
                                                     {project.title}
                                                 </h3>
-                                                <p className="text-base md:text-lg text-SlateBlueText mb-8">
+
+                                                <p className="text-sm sm:text-base md:text-lg text-SlateBlueText mb-5 sm:mb-8">
                                                     {project.description}
                                                 </p>
-                                                {
-                                                    isLastUdaan && <button
+
+                                                {isLastUdaan && (
+                                                    <button
                                                         onClick={() => setOpenModal(true)}
-                                                        className="px-6 py-3 rounded-md font-semibold transition-all duration-300 border border-secondary/50 text-primary hover:bg-primary hover:text-white">
+                                                        className="px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md font-semibold border border-secondary/50 text-primary hover:bg-primary hover:text-white"
+                                                    >
                                                         Learn More
                                                     </button>
-                                                }
+                                                )}
                                             </div>
+
                                         </div>
                                     </div>
                                 );
                             })}
                         </div>
-
                     </div>
             }
 
-
-
-            {/* Modal */}
             {openModal && (
                 <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4" onClick={() => setOpenModal(false)}>
                     <div className="w-full p-8 rounded-2xl relative" >
@@ -206,7 +206,7 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
                         <div className="flex items-center gap-4 container">
                             <button
                                 onClick={(e) => { scroll("left"), e.stopPropagation() }}
-                                className="bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
+                                className="hidden sm:flex bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
                             >
                                 <FaChevronLeft className="text-secondary" size={20} />
                             </button>
@@ -214,13 +214,13 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
 
                             <div
                                 ref={scrollRef}
-                                className="flex overflow-x-hidden scroll-smooth snap-x snap-mandatory rounded-2xl"
+                                className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory rounded-2xl"
                                 onClick={(e) => e.stopPropagation()}>
                                 {Infotainment?.map((item, index) => (
                                     <div
                                         key={index}
                                         className="w-full flex-shrink-0 snap-center bg-formbg rounded-2xl shadow-xl overflow-hidden">
-                                        <div className="relative h-80 w-full">
+                                        <div className="relative h-48 sm:h-80 md:h-64 w-full">
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -241,7 +241,7 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
                             </div>
                             <button
                                 onClick={(e) => { scroll("right"), e.stopPropagation() }}
-                                className="bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
+                                className="hidden sm:flex bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
                             >
                                 <FaChevronRight size={20} className="text-[#262017]" />
                             </button>

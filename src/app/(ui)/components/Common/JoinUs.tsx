@@ -174,35 +174,26 @@ export const JoinUs = () => {
                                 className="w-full p-3 border rounded-md outline-none resize-none text-MidnightNavyText"
                             />
                         </div>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center">
-
-                            <div className="scale-[60%] sm:scale-75">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                            <div className="sm:w-[230px] w-[100%]  origin-left scale-[90%] sm:scale-75">
                                 <ReCAPTCHA
                                     sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                                     onChange={(value) => setCaptchaValue(value)}
                                     ref={captchaRef}
                                 />
                             </div>
-
-                            <button
-                                type="submit"
-                                className="font-semibold btn btn-1 hover-filled-slide-down rounded-lg"
-                            >
+                            <button type="submit" className="sm:w-[230px] w-full font-semibold btn btn-1 hover-filled-slide-down rounded-lg">
                                 {
                                     processing ? <span className="!flex items-center justify-center gap-2">
 
                                         Submitting... <RiLoader2Fill className="animate-spin" />
                                     </span>
                                         : <span className="!flex items-center justify-center gap-2">
-
                                             Submit Now <FiSend />
                                         </span>
                                 }
                             </button>
                         </div>
-
-                        
                     </form>
                 </div>
             </div>

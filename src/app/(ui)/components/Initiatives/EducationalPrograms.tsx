@@ -39,7 +39,7 @@ export const EducationalPrograms = ({ educations }: { educations: initiatives[] 
                             className={`fixed top-0 right-0 h-full w-full md:w-[500px] bg-white shadow-2xl transform transition-transform duration-500 z-50 ${active !== null ? "translate-x-0" : "translate-x-full"}`}>
                             {active !== null && (
                                 <div className="p-8 h-full flex flex-col">
-                                    <button onClick={() => setActive(null)} className="self-end mb-6">
+                                    <button onClick={() => setActive(null)} className="mb-6">
                                         <RxCross2 size={10}
                                             className="cursor-pointer text-primary bg-primary/20 p-1 w-8 h-8 rounded-full hover:border hover:border-secondary/30 hover:bg-transparent" />
                                     </button>

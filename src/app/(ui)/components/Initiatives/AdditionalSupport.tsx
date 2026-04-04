@@ -18,24 +18,22 @@ export const AdditionalSupport = ({ additionalSupports }: { additionalSupports: 
                     <span className="text-secondary">Support</span>
                 </h2>
             </div>
-
             {
                 additionalSupports?.length === 0 ? <PreLoader /> :
                     additionalSupports &&
                     <div>
                         <div
-                            className="flex flex-wrap justify-center gap-4 mb-14"
+                            className="flex sm:flex-wrap overflow-x-auto sm:overflow-visible gap-2 sm:gap-4 mb-10 sm:mb-14 px-2 sm:px-0 scrollbar-hide"
                             data-aos="fade-up"
                         >
                             {category?.map((support, ind) => (
                                 <button
                                     key={support}
-                                    onClick={() => { setActiveSupport(support!), setIndex(ind) }}
-                                    className={`px-6 py-3 rounded-md font-semibold transition-all duration-300 ${activeSupport === support
-                                        ? "bg-primary text-white scale-105"
-                                        : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"
-                                        }`}
-                                >
+                                    onClick={() => {
+                                        setActiveSupport(support!);
+                                        setIndex(ind);
+                                    }}
+                                    className={`whitespace-nowrap px-3 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md font-semibold transition-all duration-300 flex-shrink-0 ${activeSupport === support ? "bg-primary text-white scale-105" : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"}`}>
                                     {support}
                                 </button>
                             ))}

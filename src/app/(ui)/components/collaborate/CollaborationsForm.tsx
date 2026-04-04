@@ -186,15 +186,15 @@ export const CollaborationsForm = () => {
                         onUpload={(url, public_Id) => setFormData({ ...formData, image: url || "", image_publicId: public_Id || "" })}
                         defaultPreview={formData.image}
                     />
-                    <div className="flex flex-col-reverse sm:flex-row items-center justify-center">
-                        <div className="scale-75">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                        <div className="sm:w-[230px] w-[100%]  origin-left scale-[90%] sm:scale-75">
                             <ReCAPTCHA
                                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
                                 onChange={(value) => setCaptchaValue(value)}
                                 ref={captchaRef}
                             />
                         </div>
-                        <button type="submit" className="font-semibold btn btn-1 hover-filled-slide-down rounded-lg">
+                        <button type="submit" className="sm:w-[230px] w-full font-semibold btn btn-1 hover-filled-slide-down rounded-lg">
                             {
                                 processing ? <span className="!flex items-center justify-center gap-2">
 

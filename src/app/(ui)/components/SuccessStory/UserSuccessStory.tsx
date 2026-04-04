@@ -50,8 +50,8 @@ export const UserSuccessStory: FC<SuccessStoryProps> = ({ successStoryData }) =>
                                 />
                                 <div className="absolute inset-0 bg-black/60" />
 
-                                <div className="relative z-10  grid md:grid-cols-2 gap-12 items-center container">
-                                    <div>
+                                <div className="relative z-10  grid grid-cols-1 md:grid-cols-2 gap-12 items-center container">
+                                    <div className='order-2 md:order-1'>
                                         <h2 className="text-2xl md:text-[35px] font-bold text-white mb-4">
                                             {successStory.name}
                                         </h2>
@@ -63,7 +63,7 @@ export const UserSuccessStory: FC<SuccessStoryProps> = ({ successStoryData }) =>
                                         ref={(el) => {
                                             imageRefs.current[index] = el;
                                         }}
-                                        className="mask-reveal relative h-[300px] rounded-2xl overflow-hidden shadow-2xl"
+                                        className="order-1 md:order-2 mask-reveal relative h-[300px] rounded-2xl overflow-hidden shadow-2xl"
                                     >
                                         <Image
                                             src={successStory.image}

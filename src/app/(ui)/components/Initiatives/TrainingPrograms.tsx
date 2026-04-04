@@ -15,10 +15,7 @@ export const TrainingPrograms = ({ trainings }: { trainings: initiatives[] }) =>
         const container = scrollRef.current;
 
         container.scrollBy({
-            left:
-                direction === "left"
-                    ? -container.offsetWidth
-                    : container.offsetWidth,
+            left: direction === "left" ? -container.offsetWidth : container.offsetWidth,
             behavior: "smooth",
         });
     };
@@ -42,13 +39,13 @@ export const TrainingPrograms = ({ trainings }: { trainings: initiatives[] }) =>
                         <div className="flex items-center gap-4 container">
                             <button
                                 onClick={() => scroll("left")}
-                                className="bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
+                                className="hidden sm:flex bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
                             >
-                                <FaChevronLeft size={20} className="text-secondary" />
+                                <FaChevronLeft size={20} className="text-primary" />
                             </button>
                             <div
                                 ref={scrollRef}
-                                className="flex overflow-x-hidden scroll-smooth snap-x snap-mandatory rounded-2xl">
+                                className="flex  overflow-x-auto scroll-smooth snap-x snap-mandatory rounded-2xl">
                                 {trainings?.map((training, index) => (
                                     <div
                                         key={training._id}
@@ -66,7 +63,7 @@ export const TrainingPrograms = ({ trainings }: { trainings: initiatives[] }) =>
                                             <h3 className="text-2xl font-semibold text-primary">
                                                 {training.title}
                                             </h3>
-                                            <p className="text-SlateBlueText text-lg mt-4 leading-relaxed">
+                                            <p className="text-SlateBlueText text-lg mt-4 leading-relaxed sm:text-justify">
                                                 {training.description}
                                             </p>
                                         </div>
@@ -75,13 +72,12 @@ export const TrainingPrograms = ({ trainings }: { trainings: initiatives[] }) =>
                             </div>
                             <button
                                 onClick={() => scroll("right")}
-                                className="bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
+                                className="hidden sm:flex bg-white shadow-lg p-3 rounded-full hover:scale-110 transition flex-shrink-0"
                             >
-                                <FaChevronRight size={20} className="text-[#262017]" />
+                                <FaChevronRight size={20} className="text-primary" />
                             </button>
                         </div>
                 }
-
             </div>
         </section>
     );

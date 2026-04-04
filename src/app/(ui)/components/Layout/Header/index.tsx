@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed sm:h-20 h-12  mt-2 top-6 sm:top-6 lg:top-10 bg-white z-50 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
+        className={`fixed sm:h-20 h-12  mt-2 top-5 sm:top-6 lg:top-8 bg-white z-50 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
           }`}
       >
         <div className="container">

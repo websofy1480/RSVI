@@ -5,7 +5,7 @@ export const ReachRecognition = () => {
         <section className="bg-formbg/20" id="reach-recognition">
             <div className="mx-auto px-6">
                 <div className="md:pb-12 text-center pb-8">
-                    <h2 className="text-4xl font-bold uppercase text-center text-primary">
+                    <h2 className="text-3xl sm:text-4xl font-bold uppercase text-center text-primary">
                         Reach/
                         <span className="text-secondary">Recognition</span>
                     </h2>
