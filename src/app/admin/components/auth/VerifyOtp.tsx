@@ -2,28 +2,21 @@
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState, Suspense } from "react";
 import { BallTriangle } from "react-loader-spinner";
-import Tooltip from "../common/Tooltip";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
-import Button from "../ui/button/Button";
+import { Tooltip, TooltipProps } from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Input } from "../form/input/InputField";
+import { Button } from "../ui/button/Button";
 import { Loader, Send } from "lucide-react";
-import Link from "next/link";
 
-function VerifyOtpPageContent() {
+export const VerifyOtpPageContent: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
 
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
+  const showTooltip = ({ message, type = "info" }: TooltipProps) => {
     setTooltip({ message, type });
     setTimeout(() => setTooltip(null), 3000);
   };
@@ -42,10 +35,10 @@ function VerifyOtpPageContent() {
         router.push("/admin/signin");
         setLoading(false);
       }, 2000)
-      showTooltip(data.message, "success");
+      showTooltip({ message: data.message, type: "success" });
     }
     else {
-      showTooltip(data.message, "error");
+      showTooltip({ message: data.message, type: "error" });
       setLoading(false);
     }
   };
@@ -109,7 +102,7 @@ function VerifyOtpPageContent() {
   );
 }
 
-export default function VerifyOtpPage() {
+export const VerifyOtpPage: React.FC = () => {
   return (
     <Suspense fallback={<div className="flex h-screen items-center justify-center">
       <BallTriangle

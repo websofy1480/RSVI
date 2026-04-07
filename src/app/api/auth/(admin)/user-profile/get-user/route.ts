@@ -1,23 +1,17 @@
-import { NextResponse } from "next/server";
-
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/admin-model/User";
+export const dynamic = "force-dynamic";
 
-export const dynamic = "force-dynamic"; // ensures fresh data in Next.js
-
-export async function GET(req: Request) {
+export const GET  = async (req: NextRequest) => {
   try {
-   await dbConnect();
-
-    // ✅ Extract email from query params
+    await dbConnect();
     const { searchParams } = new URL(req.url);
     const email = searchParams.get("email");
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
-
-    // ✅ Find user by email
     const user = await User.findOne({ email }).lean();
 
     if (!user) {
@@ -30,3 +24,4 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Failed to fetch user" }, { status: 500 });
   }
 }
+

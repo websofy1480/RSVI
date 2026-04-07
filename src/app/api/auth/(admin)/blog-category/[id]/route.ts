@@ -1,15 +1,12 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import BlogCategory from "@/models/admin-model/BlogCategory";
+import { RouteContext } from "@/types/RouteContext";
 
-type RouteContext = {
-    params: Promise<{ id: string }>;
-};
-
-export async function GET(req: Request, context: RouteContext) {
-    await dbConnect();
-    const { id } = await context.params;
+export const GET = async (req: NextRequest, context: RouteContext) => {
     try {
+        await dbConnect();
+        const { id } = await context.params;
         const blogCategory = await BlogCategory.findById(id);
         if (!blogCategory) {
             return NextResponse.json(
@@ -18,22 +15,20 @@ export async function GET(req: Request, context: RouteContext) {
             );
         }
         return NextResponse.json({ success: true, data: blogCategory });
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: err.message },
             { status: 500 }
         );
     }
 }
 
-export async function PUT(req: Request, context: RouteContext) {
-    await dbConnect();
-    const { id } = await context.params;
-    const body = await req.json();
-
-    try {       
+export const PUT = async (req: NextRequest, context: RouteContext) => {
+    try {
+        await dbConnect();
+        const { id } = await context.params;
+        const body = await req.json();
         const updated = await BlogCategory.findByIdAndUpdate(id, body, {
             new: true,
             runValidators: true,
@@ -46,22 +41,19 @@ export async function PUT(req: Request, context: RouteContext) {
             );
         }
         return NextResponse.json({ message: "Category updated successfully.", success: true, data: updated });
-    } 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: err.message },
             { status: 500 }
         );
     }
 }
 
-export async function DELETE(req: Request, context: RouteContext) {
-    await dbConnect();
-    const { id } = await context.params;
-
+export const DELETE = async (req: NextRequest, context: RouteContext) => {
     try {
-        
+        await dbConnect();
+        const { id } = await context.params;
         const deleted = await BlogCategory.findByIdAndDelete(id);
         if (!deleted) {
             return NextResponse.json(
@@ -70,11 +62,10 @@ export async function DELETE(req: Request, context: RouteContext) {
             );
         }
         return NextResponse.json({ success: true, message: "Category deleted successfully" });
-    } 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: err.message },
             { status: 500 }
         );
     }

@@ -1,9 +1,8 @@
 import { aboutUsPageProductSchema, successStoryPageMetaData } from "@/app/api/metaData";
 import { Metadata } from "next";
-
 export const metadata: Metadata = successStoryPageMetaData;
 
-export default function ContactLayout({
+export default function SuccessStoryLayout({
     children,
 }: {
     children: React.ReactNode;

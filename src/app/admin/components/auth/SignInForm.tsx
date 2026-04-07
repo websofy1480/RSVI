@@ -2,14 +2,14 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
-import Tooltip from "../common/Tooltip";
+import { Tooltip, TooltipProps } from "../common/Tooltip";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Eye, EyeOff, Key, Loader, MoveLeft, Send } from "lucide-react";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
-import Button from "../ui/button/Button";
+import { Label } from "../form/Label";
+import { Input } from "../form/input/InputField";
+import { Button } from "../ui/button/Button";
 
-export default function SignInForm() {
+export const SignInForm: React.FC = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -17,19 +17,12 @@ export default function SignInForm() {
   const captchaRef = useRef<ReCAPTCHA | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
 
   const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
+  const showTooltip = ({ message, type = "info" }: TooltipProps) => {
     setTooltip({ message, type });
     setTimeout(() => setTooltip(null), 3000);
   };
@@ -37,9 +30,9 @@ export default function SignInForm() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!captchaValue) {
-      showTooltip("Please verify the CAPTCHA before sign in.", "error");
+      showTooltip({ message: "Please verify the CAPTCHA before sign in.", type: "error" });
       return;
-    } 
+    }
     setLoading(true);
     const res = await fetch("/api/auth/signin", {
       method: "POST",
@@ -53,9 +46,9 @@ export default function SignInForm() {
         router.push("/admin/dashboard");
         setLoading(false)
       }, 2000)
-      showTooltip(data.message, "success");
+      showTooltip({ message: data.message, type: "success" });
     } else {
-      showTooltip(data.message, "error");
+      showTooltip({ message: data.message, type: "error" });
       setLoading(false);
       captchaRef.current?.reset();
       setCaptchaValue(null);
@@ -108,7 +101,7 @@ export default function SignInForm() {
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center justify-between">
                   <Link
                     href="/admin/reset-password"

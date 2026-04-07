@@ -1,13 +1,11 @@
 import dbConnect from "@/lib/dbConnect";
 import Image from "@/models/admin-model/Image";
+import { RouteContext } from "@/types/RouteContext";
+import { NextRequest } from "next/server";
 
-
-export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export const GET = async (req: NextRequest, context: RouteContext) => {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
 
     await dbConnect();
 

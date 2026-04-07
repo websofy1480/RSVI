@@ -4,10 +4,9 @@ import { EducationalPrograms } from "./EducationalPrograms"
 import { Projects } from "./Projects"
 import { ReachRecognition } from "./ReachRecognition"
 import { TrainingPrograms } from "./TrainingPrograms"
-import { FC } from "react"
 import { InitiativeProps } from "@/types/initiativesContext"
 
-export const Initiatives: FC<InitiativeProps> = ({ initiativesData }) => {
+export const Initiatives: React.FC<InitiativeProps> = ({ initiativesData }) => {
 
     const educations = initiativesData.filter(item => item.initiativesType === "Educational");
     const trainings = initiativesData.filter(item => item.initiativesType === "Training Programs");

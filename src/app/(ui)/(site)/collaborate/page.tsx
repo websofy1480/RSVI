@@ -1,8 +1,8 @@
 import { CollaboratePage } from '../../components/collaborate';
-import HeroSub from '../../components/SharedComponent/HeroSub';
+import { HeroSub } from '../../components/SharedComponent/HeroSub';
 export const dynamic = 'force-dynamic';
 
-const page = () => {
+const page: React.FC = () => {
   const breadcrumbLinks = [
     { href: "/", text: "Home" },
     { href: "/collaborate", text: "Collaborate" },

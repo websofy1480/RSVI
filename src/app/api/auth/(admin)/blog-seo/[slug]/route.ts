@@ -1,15 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import Blog from "@/models/admin-model/Blog";
 
-export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
+export const GET = async (req: NextRequest, { params }: { params: Promise<{ slug: string }> }) => {
   await dbConnect();
 
   const { slug } = await params;
-
   const blog = await Blog.findOne({ slug });
 
   if (!blog) {

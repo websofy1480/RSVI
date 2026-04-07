@@ -1,13 +1,13 @@
 "use client";
 import { ArrowUpDown } from "lucide-react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
-import Pagination from "../common/Pagination";
+import { MessageModel } from "../common/MessageModel";
+import { Pagination } from "../common/Pagination";
 import { contactUs, ContactUsProps } from "@/types/contactUsContext";
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-export const ContactUs: FC<ContactUsProps> = ({ contactUsData }) => {
+export const ContactUs: React.FC<ContactUsProps> = ({ contactUsData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [showMessage, setShowMessage] = useState(false);

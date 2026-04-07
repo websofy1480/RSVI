@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { InternshipProps } from "@/types/internshipContext";
-import { FC } from "react";
 
-export const WhatWeOffer: FC<InternshipProps> = ({ internshipData }) => {
+export const WhatWeOffer: React.FC<InternshipProps> = ({ internshipData }) => {
 
   return (
     <>
@@ -52,8 +51,5 @@ export const WhatWeOffer: FC<InternshipProps> = ({ internshipData }) => {
           </div>
       }
     </>
-
-
-
   );
 }

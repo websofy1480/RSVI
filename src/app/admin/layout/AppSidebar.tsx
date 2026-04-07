@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Ellipsis, KeySquare } from "lucide-react";
-import { RiHistoryLine, RiSpeakAiLine } from "react-icons/ri";
+import { RiHistoryLine } from "react-icons/ri";
 import { useSidebar } from "@/app/context/SidebarContext";
-import { FaBlogger, FaHandshake, FaPhoneAlt, FaQuestion, FaRegUser } from "react-icons/fa";
+import { FaHandshake, FaPhoneAlt, FaQuestion, FaRegUser } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { MdJoinInner, MdOutlineCategory } from "react-icons/md";
 import { PiHandCoinsBold, PiListStarBold } from "react-icons/pi";
@@ -20,7 +20,7 @@ type NavItem = {
   subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
 };
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     icon: <LuLayoutDashboard size={18} />,
     name: "Dashboard",
@@ -115,7 +115,7 @@ const othersItems: NavItem[] = [
   },
 ];
 
-const AppSidebar: React.FC = () => {
+export const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
 
@@ -348,5 +348,3 @@ const AppSidebar: React.FC = () => {
     </aside>
   );
 };
-
-export default AppSidebar;

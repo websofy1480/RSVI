@@ -1,22 +1,20 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react'
-import Tooltip from '../common/Tooltip';
+import { Tooltip, TooltipProps } from '../common/Tooltip';
 import { ThreeDots } from 'react-loader-spinner';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Logout = () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(null);
+export const Logout: React.FC = () => {
+    const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
     const router = useRouter();
-    const showTooltip = (
-        message: string,
-        type: "success" | "error" | "info" = "info"
-    ) => {
+
+    const showTooltip = ({ message, type = "info" }: TooltipProps) => {
         setTooltip({ message, type });
         setTimeout(() => setTooltip(null), 3000);
     };
+
     const handleLogout = async () => {
         try {
             const res = await fetch("/api/auth/logout", { method: "POST" });
@@ -25,12 +23,12 @@ const Logout = () => {
                 setTimeout(() => {
                     router.push("/admin/signin");
                 }, 1000)
-                showTooltip(data.message, "success");
+                showTooltip({ message: data.message, type: "success" });
             }
-        }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        catch (err: any) {
-            showTooltip(err, "success");
+        } catch (error) {
+            const err = error as Error;
+            console.log("Internal Server Error ", err)
+            showTooltip({ message: "Internal Server Error", type: "error" });
         }
     };
     useEffect(() => {
@@ -64,5 +62,3 @@ const Logout = () => {
         </div>
     )
 }
-
-export default Logout

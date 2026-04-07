@@ -1,16 +1,16 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
-import Tooltip from "../common/Tooltip";
+import { useRef, useState } from "react";
+import { Tooltip, TooltipProps } from "../common/Tooltip";
 import { Eye, EyeOff, KeySquare, Loader, MoveLeft, RotateCcwKey, Send } from "lucide-react";
 import ReCAPTCHA from "react-google-recaptcha";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
-import Button from "../ui/button/Button";
+import { Label } from "../form/Label";
+import { Input } from "../form/input/InputField";
+import { Button } from "../ui/button/Button";
 import { strongPasswordRegex } from "@/lib/strongPasswordRegex";
 
-export default function ResetPassword() {
+export const ResetPassword: React.FC = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState("");
@@ -21,15 +21,9 @@ export default function ResetPassword() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const captchaRef = useRef<ReCAPTCHA | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-        null
-    );
+    const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
 
-    const showTooltip = (
-        message: string,
-        type: "success" | "error" | "info" = "info"
-    ) => {
+    const showTooltip = ({ message, type = "info" }: TooltipProps) => {
         setTooltip({ message, type });
         setTimeout(() => setTooltip(null), 3000);
     };
@@ -48,9 +42,9 @@ export default function ResetPassword() {
                 setStep(2)
                 setLoading(false)
             }, 2000)
-            showTooltip(data.message, "success");
+            showTooltip({ message: data.message, type: "success" });
         } else {
-            showTooltip(data.message, "error");
+            showTooltip({ message: data.message, type: "error" });
             setLoading(false)
         }
     };
@@ -62,7 +56,7 @@ export default function ResetPassword() {
             setLoading(false);
             captchaRef.current?.reset();
             setCaptchaValue(null);
-            return showTooltip("New and Confirm Password do not match", "error");
+            return showTooltip({ message: "New and Confirm Password do not match", type: "error" });
         }
 
         if (!strongPasswordRegex.test(confirmPassword)) {
@@ -70,13 +64,15 @@ export default function ResetPassword() {
             captchaRef.current?.reset();
             setCaptchaValue(null);
             return showTooltip(
-                "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
-                "error"
+                {
+                    message: "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
+                    type: "error"
+                }
             );
         }
 
         if (!captchaValue) {
-            showTooltip("Please verify the CAPTCHA before reset password.", "error");
+            showTooltip({ message: "Please verify the CAPTCHA before reset password.", type: "error" });
             return;
         }
         setLoading(true)
@@ -91,12 +87,12 @@ export default function ResetPassword() {
                 router.push("/admin/signin");
                 setLoading(false)
             }, 2000)
-            showTooltip(data.message, "success");
+            showTooltip({ message: data.message, type: "success" });
             setEmail("");
             setOtp("");
             setNewPassword("");
         } else {
-            showTooltip(data.message, "error");
+            showTooltip({ message: data.message, type: "error" });
             setLoading(false)
             captchaRef.current?.reset();
             setCaptchaValue(null);
@@ -116,7 +112,7 @@ export default function ResetPassword() {
                             {step === 1 ? "Enter your email to send otp!" : "Enter password and varify otp to reset to your password!"}
                         </p>
                     </div>
-                    
+
                     <div>
                         {
                             step === 1 && (
@@ -165,58 +161,58 @@ export default function ResetPassword() {
                                     <div className="space-y-4">
 
                                         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                                        <div>
-                                            <Label>
-                                                New Password <span className="text-error">*</span>{" "}
-                                            </Label>
-                                            <div className="relative">
-                                                <Input
-                                                    type={showPassword ? "text" : "password"}
-                                                    placeholder="Enter your new password"
-                                                    value={newPassword}
-                                                    onChange={(e) => setNewPassword(e.target.value)}
-                                                    
-                                                    required
-                                                />
-                                                <span
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-6"
-                                                >
-                                                    {showPassword ? (
-                                                        <Eye size={17} className="text-SlateBlueText" />
-                                                    ) : (
-                                                        <EyeOff size={17} className="text-SlateBlueText" />
-                                                    )}
-                                                </span>
-                                            </div>
-                                        </div>
+                                            <div>
+                                                <Label>
+                                                    New Password <span className="text-error">*</span>{" "}
+                                                </Label>
+                                                <div className="relative">
+                                                    <Input
+                                                        type={showPassword ? "text" : "password"}
+                                                        placeholder="Enter your new password"
+                                                        value={newPassword}
+                                                        onChange={(e) => setNewPassword(e.target.value)}
 
-                                        <div>
-                                            <Label>
-                                                Confirm Password <span className="text-error">*</span>{" "}
-                                            </Label>
-                                            <div className="relative">
-                                                <Input
-                                                    type={showPassword ? "text" : "password"}
-                                                    placeholder="Enter confirm password"
-                                                    value={confirmPassword}
-                                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                                    required
-                                                />
-                                                <span
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
-                                                >
-                                                    {showPassword ? (
-                                                        <Eye size={17} className="text-SlateBlueText" />
-                                                    ) : (
-                                                        <EyeOff size={17} className="text-SlateBlueText" />
-                                                    )}
-                                                </span>
+                                                        required
+                                                    />
+                                                    <span
+                                                        onClick={() => setShowPassword(!showPassword)}
+                                                        className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-6"
+                                                    >
+                                                        {showPassword ? (
+                                                            <Eye size={17} className="text-SlateBlueText" />
+                                                        ) : (
+                                                            <EyeOff size={17} className="text-SlateBlueText" />
+                                                        )}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <Label>
+                                                    Confirm Password <span className="text-error">*</span>{" "}
+                                                </Label>
+                                                <div className="relative">
+                                                    <Input
+                                                        type={showPassword ? "text" : "password"}
+                                                        placeholder="Enter confirm password"
+                                                        value={confirmPassword}
+                                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                                        required
+                                                    />
+                                                    <span
+                                                        onClick={() => setShowPassword(!showPassword)}
+                                                        className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
+                                                    >
+                                                        {showPassword ? (
+                                                            <Eye size={17} className="text-SlateBlueText" />
+                                                        ) : (
+                                                            <EyeOff size={17} className="text-SlateBlueText" />
+                                                        )}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                        </div>
-                                         <p className="text-xs text-error">Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)</p>
+                                        <p className="text-xs text-error">Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)</p>
 
                                         <div>
                                             <Label>

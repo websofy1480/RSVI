@@ -1,17 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip, { TooltipProps } from "../common/Tooltip";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
+import { TooltipProps, Tooltip } from "../common/Tooltip";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
+import { MessageModel } from "../common/MessageModel";
 import { InternshipModel } from "./InternshipModel";
-import Pagination from "../common/Pagination";
+import { Pagination } from "../common/Pagination";
 import { Form, Mode } from "@/types/modelContext";
 import { internship } from "@/types/internshipContext";
 import { ApiResponseProps } from "@/types/apiResponseContext";
 import { searchKeys, SearchState, updateStateField } from "@/types/searchState";
 
-export const Internship = () => {
+export const Internship: React.FC = () => {
   const [data, setData] = useState<internship[]>([]);
   const [modal, setModal] = useState<{ mode: Mode; item?: internship } | null>(null);
   const [tooltip, setTooltip] = useState<TooltipProps | null>(null);

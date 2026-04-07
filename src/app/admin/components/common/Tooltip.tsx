@@ -6,7 +6,7 @@ export interface TooltipProps {
   type?: "success" | "error" | "info";
 }
 
-export default function Tooltip({ message, type = "info" }: TooltipProps) {
+export const Tooltip: React.FC<TooltipProps> = ({ message, type = "info" }) => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {

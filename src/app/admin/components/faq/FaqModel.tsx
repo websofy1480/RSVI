@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader, FiMinus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
@@ -10,7 +10,7 @@ import { IoIosAdd } from "react-icons/io";
 import { faq } from "@/types/faqContext";
 import { ModalProps } from "@/types/modelContext";
 
-export const FaqModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: faq }) => {
+export const FaqModel: React.FC<ModalProps & { initialData?: faq }> = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }) => {
 
     const [form, setForm] = useState<faq>(
         initialData || {

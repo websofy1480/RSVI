@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FaEnvelope, FaHeadset, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
 
-export const SupportChat = () => {
+export const SupportChat: React.FC = () => {
     const whatsappNumber = "919876543210"
     const whatsAppApi = `https://wa.me/${whatsappNumber}?text=Hi%20Support%2C%20I%20need%20help`
 

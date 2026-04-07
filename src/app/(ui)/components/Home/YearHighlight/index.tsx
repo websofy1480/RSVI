@@ -4,7 +4,7 @@ import Image from "next/image";
 import { statsData } from "@/app/api/data";
 import { Cta } from "../../Common/Cta";
 
-export const YearHighlight = () => {
+export const YearHighlight : React.FC  = () => {
   const [counts, setCounts] = useState(statsData.map(() => 0));
 
   useEffect(() => {

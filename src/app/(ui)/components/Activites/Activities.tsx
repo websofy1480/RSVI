@@ -1,11 +1,10 @@
 "use client"
 
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
-import { FC } from "react";
+import { PreLoader } from "../Common/PreLoader";
 import { SuccessStoryProps } from "@/types/successStoryContext";
 
-export const Activities: FC<SuccessStoryProps> = ({ activitiesData }) => {
+export const Activities: React.FC<SuccessStoryProps> = ({ activitiesData }) => {
 
     return (
         <section>

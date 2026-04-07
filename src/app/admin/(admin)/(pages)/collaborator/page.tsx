@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Collaborator | RSVI"
 };
 
-const page = () => {
-  return <CollaboratorPage/>
+const page: React.FC = () => {
+  return <CollaboratorPage />
 }
 
 export default page

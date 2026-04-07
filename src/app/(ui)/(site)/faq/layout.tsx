@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = faqPageMetaData;
 
-export default function ContactLayout({
+export default function FaqLayout({
     children,
 }: {
     children: React.ReactNode;

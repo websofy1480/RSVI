@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Initiatives | RSVI"
 };
 
-const page = () => {
+const page: React.FC = () => {
   return <Initiatives />
 }
 

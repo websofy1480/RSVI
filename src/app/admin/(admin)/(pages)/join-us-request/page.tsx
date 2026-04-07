@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: "Join Us Request | RSVI"
 };
 
-const page = () => {
-  return <JoinUsRequestPage/>
+const page: React.FC = () => {
+  return <JoinUsRequestPage />
 }
 
 export default page

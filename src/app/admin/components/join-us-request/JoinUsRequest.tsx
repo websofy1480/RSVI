@@ -1,10 +1,10 @@
 "use client";
 import { useState, useMemo, FC } from "react";
 import { ArrowUpDown } from "lucide-react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
-import Pagination from "../common/Pagination";
+import { MessageModel } from "../common/MessageModel";
+import { Pagination } from "../common/Pagination";
 import { joinus, JoinUsProps } from "@/types/joinUsContext";
 
 export const JoinUsRequest: FC<JoinUsProps> = ({ joinUsData }) => {

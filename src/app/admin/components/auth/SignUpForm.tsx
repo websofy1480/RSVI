@@ -3,35 +3,29 @@ import { Eye, EyeOff, Loader, Send } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
-import Label from "../form/Label";
-import Input from "../form/input/InputField";
+import { Label } from "../form/Label";
+import { Input } from "../form/input/InputField";
 import ReCAPTCHA from "react-google-recaptcha";
-import Tooltip from "../common/Tooltip";
-import Button from "../ui/button/Button";
+import { Tooltip, TooltipProps } from "../common/Tooltip";
+import { Button } from "../ui/button/Button";
 import { strongPasswordRegex } from "@/lib/strongPasswordRegex";
 
-export default function SignUpForm() {
+export const SignUpForm: React.FC = () => {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   })
+
   const captchaRef = useRef<ReCAPTCHA | null>(null);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
-    null
-  );
+  const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-
-  const showTooltip = (
-    message: string,
-    type: "success" | "error" | "info" = "info"
-  ) => {
+  const showTooltip = ({ message, type = "info" }: TooltipProps) => {
     setTooltip({ message, type });
     setTimeout(() => setTooltip(null), 3000);
   };
@@ -39,18 +33,20 @@ export default function SignUpForm() {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
-     if (!strongPasswordRegex.test(form.password)) {
-            setLoading(false);
-            captchaRef.current?.reset();
-            setCaptchaValue(null);
-            return showTooltip(
-                "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
-                "error"
-            );
+    if (!strongPasswordRegex.test(form.password)) {
+      setLoading(false);
+      captchaRef.current?.reset();
+      setCaptchaValue(null);
+      return showTooltip(
+        {
+          message: "Password must be 12–16 characters and include uppercase, lowercase, number, and special character (@ # $ % ! & *)",
+          type: "error"
         }
+      );
+    }
 
     if (!captchaValue) {
-      showTooltip("Please verify the CAPTCHA before sign in.", "error");
+      showTooltip({ message: "Please verify the CAPTCHA before sign in.", type: "error" });
       return;
     }
     setLoading(true);
@@ -65,9 +61,9 @@ export default function SignUpForm() {
         router.push("/admin/verify-otp?email=" + form.email);
         setLoading(false);
       }, 2000)
-      showTooltip(data.message, "success");
+      showTooltip({ message: data.message, type: "success" });
     } else {
-      showTooltip(data.message, "error");
+      showTooltip({ message: data.message, type: "error" });
       setLoading(false);
       captchaRef.current?.reset();
       setCaptchaValue(null);

@@ -33,7 +33,7 @@ const steps = [
     },
 ];
 
-export const HowWeWork = () => {
+export const HowWeWork: React.FC = () => {
 
     return (
         <section className="bg-formbg/20 py-16">

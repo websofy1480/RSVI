@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import Image from "next/image";
 
-export const Hero = () => {
+export const Hero: React.FC = () => {
   const settings = {
     infinite: true,
     autoplay: true,
@@ -33,7 +33,7 @@ export const Hero = () => {
                 src={src}
                 alt={`Slide ${index + 1}`}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
                 priority={index === 0}
               />
             </div>

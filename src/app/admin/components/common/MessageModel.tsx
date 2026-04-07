@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
+import React from "react";
 import { RxCross2 } from "react-icons/rx";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function MessageModel({ closedModel, data, mode }: any) {
+export const MessageModel: React.FC<any> = ({ closedModel, data, mode }) => {
   return (
     <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60"
       onClick={() => closedModel(false)}
@@ -27,7 +28,7 @@ export default function MessageModel({ closedModel, data, mode }: any) {
 
           <div className="space-y-4">
             {
-              mode === "collab" && 
+              mode === "collab" &&
               <div className="relative  h-48 rounded-md overflow-hidden shadow-xl transition duration-500 group-hover:scale-110">
                 <Image
                   src={data.image}

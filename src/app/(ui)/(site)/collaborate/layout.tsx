@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = collaboratePageMetaData;
 
-export default function ContactLayout({
+export default function CollaborateLayout({
     children,
 }: {
     children: React.ReactNode;

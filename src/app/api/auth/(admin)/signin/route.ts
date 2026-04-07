@@ -1,14 +1,14 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/admin-model/User";
 import bcrypt from "bcryptjs";
 import { generateToken } from "@/lib/generateToken";
 
-export async function POST(req: Request) {
+export const POST = async (req: NextRequest) => {
   try {
     await dbConnect();
     const { email, password, captcha } = await req.json();
-    
+
     const captchaVerify = await fetch(
       `${process.env.RECAPTCHA_BASE_URL! + process.env.RECAPTCHA_SECRET_KEY!}&response=${captcha}`,
       { method: "POST" }
@@ -36,9 +36,8 @@ export async function POST(req: Request) {
     res.cookies.set("token", token, {
       httpOnly: true,
       path: "/admin",
-      maxAge: 60 * 60 * 24, 
+      maxAge: 60 * 60 * 24,
     });
-
     return res;
   } catch (error) {
     console.error("Signin error:", error);

@@ -1,8 +1,8 @@
 "use client";
-import ImageUploader from "../common/ImageUploader";
-import { useState } from "react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { ImageUploader } from "../common/ImageUploader";
+import React, { useState } from "react";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
 import { RxCross2 } from "react-icons/rx";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader } from "react-icons/fi";
@@ -10,7 +10,7 @@ import { GiCancel } from "react-icons/gi";
 import { successStory } from "@/types/successStoryContext";
 import { ModalProps } from "@/types/modelContext";
 
-export const ActivitiesModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: successStory }) => {
+export const ActivitiesModel: React.FC<ModalProps & { initialData?: successStory }> = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }) => {
 
   const [form, setForm] = useState<successStory>(
     initialData || {

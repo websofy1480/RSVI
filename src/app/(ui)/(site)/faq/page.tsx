@@ -1,4 +1,4 @@
-import HeroSub from '../../components/SharedComponent/HeroSub';
+import { HeroSub } from '../../components/SharedComponent/HeroSub';
 import { FaqPage } from '../../components/Faq';
 export const dynamic = 'force-dynamic';
 
@@ -14,8 +14,8 @@ const page = () => {
         description="Discover a wealth of insightful materials meticulously crafted to provide you with a comprehensive."
         breadcrumbLinks={breadcrumbLinks}
         imageSrc='activities/activities-banner.png'
-      />  
-      <FaqPage/>     
+      />
+      <FaqPage />
     </>
   );
 };

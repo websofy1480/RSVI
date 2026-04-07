@@ -1,18 +1,16 @@
 "use client";
-import { contactPageDetails, footer } from "@/app/api/data";
 import { RiLoader2Fill } from "react-icons/ri";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
-import Link from "next/link";
-import Toast from "../Common/Toast";
+import { Toast } from "../Common/Toast";
+import { TooltipProps } from "@/app/admin/components/common/Tooltip";
+import { GoogleMap } from "./GoogleMap";
+import { FollowOurJournyCta } from "./FollowOurJournyCta";
+import { ContactInfo } from "./ContactInfo";
 
-
-export default function ContactPage() {
-  const [toast, setToast] = useState<{
-    message: string;
-    type: "success" | "error";
-  } | null>(null);
+export const ContactPage: React.FC = () => {
+  const [toast, setToast] = useState<TooltipProps | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -198,93 +196,10 @@ export default function ContactPage() {
                 </button>
               </div>
             </form>
-            <div className="bg-formbg/20 p-8 rounded-xl shadow-lg space-y-4">
-              <h2
-                className="text-2xl uppercase text-primary mb-4 font-semibold"
-                data-aos="fade-up">
-                Contact{" "}
-                <span className="text-secondary">Information</span>
-              </h2>
-              <div className="space-y-6">
-                {
-                  contactPageDetails?.map((item, i) => (
-                    <div key={i}>
-                      {
-                        i !== 3 ?
-                          <Link
-                            target={item.newTab}
-                            href={item.url}
-                            className="bg-white hover:bg-transparent flex border  shadow-md shadow-MidnightNavyText/50  p-6 items-center gap-4 rounded-2xl">
-
-                            <div className={`${i % 2 === 0 ? "text-primary" : "text-secondary"}`}>
-                              {item.icon}
-                            </div>
-                            <div className={`flex justify-center ${i !== 3 ? "flex-row" : "flex-col"} items-center gap-5 text-center`}>
-                              <h3 className="font-semibold bg-slat  text-sta">{item.title}</h3>
-                              <p className="text-SlateBlueText break-all sm:break-normal">
-                                {item.value}
-                              </p>
-                            </div>
-                          </Link>
-                          :
-                          <Link
-                            target={item.newTab}
-                            href={item.url}
-                            key={i}
-                            className="bg-white hover:bg-transparent flex border  shadow-md shadow-MidnightNavyText/50  p-6 items-center rounded-2xl">
-                            <div className="flex justify-center flex-col items-center gap-3 text-center">
-                              <div className="flex gap-4">
-                                <div className="text-secondary">
-                                  {item.icon}
-                                </div>
-                                <h3 className="font-semibold ">{item.title}</h3>
-                              </div>
-                              <p className="text-SlateBlueText break-all sm:break-normal">
-                                {item.value}
-                              </p>
-                            </div>
-                          </Link>
-                      }
-                    </div>
-                  ))}
-              </div>
-            </div>
+            <ContactInfo />
           </div>
-
-          <div className="container mb-10">
-            <div className="rounded-2xl overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3559.725241992749!2d80.950946!3d26.84869!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfdd302534c0d%3A0x6618eecac0f2ad60!2sRehabilitation%20Society%20of%20the%20Visually%20Impaired!5e0!3m2!1sen!2sin!4v1771320152894!5m2!1sen!2sin"
-                width="100%"
-                height="400"
-                loading="lazy"
-                className="w-full"
-              ></iframe>
-            </div>
-          </div>
-
-          <div className="container">
-            <div className="bg-primary rounded-2xl text-white py-10 px-10">
-              <div className="flex flex-col items-center gap-6">
-                <h3 className="text-lg font-medium">
-                  Follow our journey. Spread awareness.
-                </h3>
-                <div className="flex gap-5">
-                  {footer?.socialMedia.map((item, index) => (
-                    <Link key={index}
-                      title={item.title}
-                      href={item.url}
-                      target="_blank"
-                      className="w-12 h-12 flex items-center justify-center bg-secondary rounded-full shadow hover:bg-transparent hover:border transition"
-                    >
-                      {item.icon}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
+          <GoogleMap />
+          <FollowOurJournyCta />
         </div>
       </section>
       {toast && (

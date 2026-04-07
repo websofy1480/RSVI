@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { initiatives } from "@/types/initiativesContext";
 
-export const EducationalPrograms = ({ educations }: { educations: initiatives[] }) => {
+export const EducationalPrograms: React.FC<{ educations: initiatives[] }> = ({ educations }) => {
     const [active, setActive] = useState<number | null>(null);
 
     return (
@@ -68,8 +68,6 @@ export const EducationalPrograms = ({ educations }: { educations: initiatives[] 
                             />
                         )}
                     </div>}
-
         </>
-
     );
 }

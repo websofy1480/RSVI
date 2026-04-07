@@ -1,10 +1,10 @@
 "use client";
-import { FC, useState } from "react";
+import { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { FaqProps } from "@/types/faqContext";
 
-export const FAQSection: FC<FaqProps> = ({ faqData }) => {
+export const FAQSection: React.FC<FaqProps> = ({ faqData }) => {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     const toggle = (index: number) => {

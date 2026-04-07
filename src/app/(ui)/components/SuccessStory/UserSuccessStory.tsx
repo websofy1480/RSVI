@@ -1,17 +1,16 @@
 "use client"
 import Image from 'next/image';
-import { FC, useEffect, useRef } from 'react';
-import PreLoader from '../Common/PreLoader';
+import { useEffect, useRef } from 'react';
+import { PreLoader } from '../Common/PreLoader';
 import { SuccessStoryProps } from '@/types/successStoryContext';
 
-export const UserSuccessStory: FC<SuccessStoryProps> = ({ successStoryData }) => {
+export const UserSuccessStory: React.FC<SuccessStoryProps> = ({ successStoryData }) => {
     const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => {
         const handleScroll = () => {
             imageRefs.current.forEach((el) => {
                 if (!el) return;
-
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight - 100) {
                     el.classList.add("show");

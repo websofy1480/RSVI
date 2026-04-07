@@ -1,7 +1,7 @@
-import HeroSub from "../../components/SharedComponent/HeroSub";
-import ContactPage from "../../components/Contact";
+import { HeroSub } from "../../components/SharedComponent/HeroSub";
+import { ContactPage } from "../../components/Contact";
 
-const page = () => {
+const page: React.FC = () => {
   const breadcrumbLinks = [
     { href: "/", text: "Home" },
     { href: "/contact", text: "Contact" },

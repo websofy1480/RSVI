@@ -2,17 +2,17 @@
 import { useEffect, useState, useMemo } from "react";
 import { ArrowUpDown } from "lucide-react";
 import { Radio } from "react-loader-spinner";
-import PageBreadcrumb from "../common/PageBreadCrumb";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
-import Pagination from "../common/Pagination";
-import Tooltip, { TooltipProps } from "../common/Tooltip";
+import { MessageModel } from "../common/MessageModel";
+import { Pagination } from "../common/Pagination";
+import { TooltipProps, Tooltip } from "../common/Tooltip";
 import { LuToggleLeft, LuToggleRight } from "react-icons/lu";
 import { collab } from "@/types/collabContext";
 import { Mode } from "@/types/modelContext";
 import { ApiResponseProps } from "@/types/apiResponseContext";
 
-export const Collaborator = () => {
+export const Collaborator: React.FC = () => {
   const [collabs, setCollabs] = useState<collab[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState(1);

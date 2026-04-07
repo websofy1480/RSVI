@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { whatWeDo } from "@/app/api/data";
 
 
-export const WhatWeDo = () => {
+export const WhatWeDo: React.FC = () => {
   const router = useRouter();
 
   return (

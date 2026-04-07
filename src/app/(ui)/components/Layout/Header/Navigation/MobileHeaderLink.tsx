@@ -3,7 +3,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { HeaderItem } from '@/types/menu';
 import { useData } from '@/app/context/DataContext';
 
-const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
+export const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const { setNavbarOpen } = useData();
 
@@ -53,4 +53,3 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   );
 };
 
-export default MobileHeaderLink;

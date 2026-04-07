@@ -3,7 +3,7 @@ import { Cta } from "../Common/Cta";
 import { TbHandFingerRight } from "react-icons/tb";
 import { rsviMagnitudeProblem } from "@/app/api/data";
 
-export const AboutUs = () => {
+export const AboutUs: React.FC = () => {
     return (
         <section>
             <div>
@@ -109,7 +109,7 @@ export const AboutUs = () => {
                         className="absolute inset-0 w-full h-full object-cover">
                         <source src="/videos/ngo-video.mp4" type="video/mp4" />
                     </video>
-                    
+
                     <div className="absolute inset-0 bg-black/60" />
                     <div className="relative z-10 text-center px-6">
                         <h1 className="text-4xl md:text-6xl font-bold leading-tight">

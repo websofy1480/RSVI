@@ -29,7 +29,7 @@ interface InputProps {
   | "decimal";
 }
 
-const Input: FC<InputProps> = ({
+export const Input: FC<InputProps> = ({
   type = "text",
   id,
   name,
@@ -97,4 +97,3 @@ const Input: FC<InputProps> = ({
   );
 };
 
-export default Input;

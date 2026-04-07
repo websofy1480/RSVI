@@ -1,10 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/admin-model/User";
 import { sendEmail } from "@/lib/sendEmail";
 
-
-export async function POST(req: Request) {
+export const POST = async (req: NextRequest) => {
   try {
     await dbConnect();
     const { email } = await req.json();

@@ -2,11 +2,10 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export const Activities = () => {
+export const Activities: React.FC = () => {
     const router = useRouter()
 
     return (
-        <>
             <section className="bg-formbg/20">
                 <div className="container">
                     <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-4 mx-auto">
@@ -51,6 +50,5 @@ export const Activities = () => {
                     </div>
                 </div>
             </section>
-        </>
     );
 };

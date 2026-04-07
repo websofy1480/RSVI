@@ -1,8 +1,8 @@
 import dbConnect from "@/lib/dbConnect";
 import Image from "@/models/admin-model/Image";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: Request) {
+export  const POST = async (req: NextRequest) => {
   try {
     await dbConnect();
     const formData = await req.formData();
@@ -29,7 +29,8 @@ export async function POST(req: Request) {
       public_id: image._id,
       secure_url : `/api/auth/upload/${image._id}`
     });
-  } catch (err: any) {
+  } catch (error) {
+    const err = error as Error;
     return NextResponse.json(
       { error: err.message },
       { status: 500 }

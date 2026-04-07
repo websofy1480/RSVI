@@ -1,17 +1,18 @@
 "use client";
-import ImageUploader from "../common/ImageUploader";
+import { ImageUploader } from "../common/ImageUploader";
 import { useState, useMemo, useRef } from "react";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
+
 const JoditEditor = dynamic(
   () => import("jodit-react"),
   { ssr: false }
 );
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function BlogModel({ mode, onClose, onSave, initialData, blogCategorydata }: any) {
+export const BlogModel: React.FC<any> = ({ mode, onClose, onSave, initialData, blogCategorydata }) => {
   const editor = useRef(null);
   const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
     null
@@ -228,7 +229,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                 />
               </div> */}
 
-            
+
               <Label>Blog Image</Label>
               <ImageUploader
                 label="Blog Image"

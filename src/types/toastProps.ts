@@ -1,5 +1,5 @@
-export  interface ToastProps {
+export interface ToastProps {
     message: string;
-    type?: "success" | "error";
+    type?: "success" | "error" | "info";
     onClose: () => void;
 };

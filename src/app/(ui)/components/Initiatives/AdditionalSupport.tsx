@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { initiatives } from "@/types/initiativesContext";
 
-export const AdditionalSupport = ({ additionalSupports }: { additionalSupports: initiatives[] }) => {
+export const AdditionalSupport: React.FC<{ additionalSupports: initiatives[] }> = ({ additionalSupports }) => {
     const [activeSupport, setActiveSupport] = useState<string>("Rail Concession");
     const [index, setIndex] = useState<number>(0);
 
@@ -59,7 +59,6 @@ export const AdditionalSupport = ({ additionalSupports }: { additionalSupports: 
                         </div>
                     </div>
             }
-
         </div>
     );
 }

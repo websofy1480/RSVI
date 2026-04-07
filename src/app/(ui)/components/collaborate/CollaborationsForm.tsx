@@ -3,14 +3,12 @@ import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FiSend } from "react-icons/fi";
 import { RiLoader2Fill } from "react-icons/ri";
-import Toast from "../Common/Toast";
-import ImageUploader from "@/app/admin/components/common/ImageUploader";
+import { Toast } from "../Common/Toast";
+import { ImageUploader } from "@/app/admin/components/common/ImageUploader";
+import { TooltipProps } from "@/app/admin/components/common/Tooltip";
 
 export const CollaborationsForm = () => {
-    const [toast, setToast] = useState<{
-        message: string;
-        type: "success" | "error";
-    } | null>(null);
+    const [toast, setToast] = useState<TooltipProps | null>(null);
 
     const [formData, setFormData] = useState({
         name: "",

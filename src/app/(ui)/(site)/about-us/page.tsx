@@ -1,7 +1,7 @@
 import { AboutUs } from '../../components/AboutUs';
-import HeroSub from '../../components/SharedComponent/HeroSub';
+import { HeroSub } from '../../components/SharedComponent/HeroSub';
 
-const page = () => {
+const page: React.FC = () => {
   const breadcrumbLinks = [
     { href: "/", text: "Home" },
     { href: "/about-us", text: "About Us" },

@@ -1,8 +1,8 @@
 "use client";
-import ImageUploader from "../common/ImageUploader";
+import { ImageUploader } from "../common/ImageUploader";
 import { useState } from "react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
 import { RxCross2 } from "react-icons/rx";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader } from "react-icons/fi";
@@ -10,7 +10,7 @@ import { GiCancel } from "react-icons/gi";
 import { ModalProps } from "@/types/modelContext";
 import { internship } from "@/types/internshipContext";
 
-export const PerksModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: internship }) => {
+export const PerksModel: React.FC<ModalProps & { initialData?: internship }> = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }) => {
 
   const [form, setForm] = useState<internship>(
     initialData || {

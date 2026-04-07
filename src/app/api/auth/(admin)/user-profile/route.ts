@@ -3,23 +3,18 @@ import { NextResponse } from "next/server";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/admin-model/User";
 
-
 export const PUT = async (req: Request) => {
   try {
-    // Connect to MongoDB
     await dbConnect();
-
-    // Parse request body
     const { email, ...updateFields } = await req.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
-    // Update user by email
     const user = await User.findOneAndUpdate(
       { email },
       { $set: updateFields },
-      { new: true } // Return updated document
+      { new: true }
     );
 
     if (!user) {

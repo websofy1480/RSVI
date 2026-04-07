@@ -1,5 +1,5 @@
 
-import SignInForm from "@/app/admin/components/auth/SignInForm";
+import { SignInForm } from "@/app/admin/components/auth/SignInForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +7,6 @@ export const metadata: Metadata = {
 
 };
 
-export default function SignIn() {
-  return <SignInForm />;
-}
+const SignIn: React.FC = () => <SignInForm />;
+
+export default SignIn;

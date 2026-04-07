@@ -1,11 +1,9 @@
 "use client";
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
-import { FC } from "react";
+import { PreLoader } from "../Common/PreLoader";
 import { InternshipProps } from "@/types/internshipContext";
 
-export const OurPerks: FC<InternshipProps> = ({ perksData }) => {
-
+export const OurPerks: React.FC<InternshipProps> = ({ perksData }) => {
   return (
     <section className="bg-formbg/20 relative overflow-hidden">
       <div className="container">

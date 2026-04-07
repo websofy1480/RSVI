@@ -4,7 +4,7 @@ import { FaLightbulb } from "react-icons/fa6";
 import { CoreFeatures } from "./CoreFeatures";
 import { HowWeWork } from "./HowWeWork";
 
-export const Features = () => {
+export const Features: React.FC = () => {
   return (
     <section className="pb-0">
       <div className="container">

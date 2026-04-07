@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Logo: React.FC = () => {
+export const Logo: React.FC = () => {
 
   return (
     <Link href="/">
@@ -17,5 +17,3 @@ const Logo: React.FC = () => {
     </Link>
   );
 };
-
-export default Logo;

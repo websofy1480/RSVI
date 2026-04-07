@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = aboutUsPageMetaData;
 
-export default function ContactLayout({
+export default function AboutUsLayout({
     children,
 }: {
     children: React.ReactNode;

@@ -3,13 +3,11 @@ import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FiSend } from "react-icons/fi";
 import { RiLoader2Fill } from "react-icons/ri";
-import Toast from "./Toast";
+import { Toast } from "./Toast";
+import { TooltipProps } from "@/app/admin/components/common/Tooltip";
 
-export const JoinUs = () => {
-    const [toast, setToast] = useState<{
-        message: string;
-        type: "success" | "error";
-    } | null>(null);
+export const JoinUs: React.FC = () => {
+    const [toast, setToast] = useState<TooltipProps | null>(null);
 
     const [formData, setFormData] = useState({
         name: "",

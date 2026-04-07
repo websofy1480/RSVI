@@ -73,11 +73,10 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { initiatives } from "@/types/initiativesContext";
 
-
-export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
+export const Projects: React.FC<{ projetcs: initiatives[] }> = ({ projetcs }) => {
 
     const [filter, setFilter] = useState<"all" | "Upcoming" | "Udaan">("all");
     const [openModal, setOpenModal] = useState(false);
@@ -125,8 +124,8 @@ export const Projects = ({ projetcs }: { projetcs: initiatives[] }) => {
                                         key={type}
                                         onClick={() => setFilter(type as any)}
                                         className={`px-3 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md font-semibold transition-all duration-300 ${filter === type
-                                                ? "bg-primary text-white scale-105"
-                                                : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"
+                                            ? "bg-primary text-white scale-105"
+                                            : "border border-secondary/50 text-primary hover:bg-primary hover:text-white"
                                             }`}
                                     >
                                         {type === "all" ? "All" : type}

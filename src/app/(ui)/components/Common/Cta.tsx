@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
-export const Cta = ({ style, title, description, buttonText, nevigateUrl }: { style?: string, title: string, description: string, buttonText: string, nevigateUrl: string }) => {
+export const Cta: React.FC<{ style?: string, title: string, description: string, buttonText: string, nevigateUrl: string }> = ({ style, title, description, buttonText, nevigateUrl }) => {
     const router = useRouter();
 
     return (

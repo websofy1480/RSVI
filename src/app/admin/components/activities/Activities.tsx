@@ -1,17 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip, { TooltipProps } from "../common/Tooltip";
+import React, { useEffect, useState } from "react";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
+import { Tooltip, TooltipProps } from "../common/Tooltip";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
+import { MessageModel } from "../common/MessageModel";
 import { ActivitiesModel } from "./ActivitiesModel";
-import Pagination from "../common/Pagination";
+import { Pagination } from "../common/Pagination";
 import { successStory } from "@/types/successStoryContext";
 import { Form, Mode } from "@/types/modelContext";
 import { ApiResponseProps } from "@/types/apiResponseContext";
 import { searchKeys, SearchState, updateStateField } from "@/types/searchState";
 
-export const Activity = () => {
+export const Activity: React.FC = () => {
   const [data, setData] = useState<successStory[]>([]);
   const [modal, setModal] = useState<{ mode: Mode; item?: successStory } | null>(null);
   const [tooltip, setTooltip] = useState<TooltipProps | null>(null);
@@ -43,7 +43,7 @@ export const Activity = () => {
   }, []);
 
   const filteredData = data.filter((item) =>
-      item.title?.toLowerCase().includes(search.title!.toLowerCase())
+    item.title?.toLowerCase().includes(search.title!.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredData.length / recordsPerPage);
@@ -57,7 +57,7 @@ export const Activity = () => {
     setLoading(true);
     let res: Response;
     let data: ApiResponseProps<successStory>;
-    
+
     try {
       if (modal.mode === "create") {
         res = await fetch("/api/auth/activity", {

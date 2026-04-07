@@ -50,7 +50,7 @@ const steps = [
   },
 ];
 
-export const CoreFeatures = () => {
+export const CoreFeatures: React.FC = () => {
   return (
     <div className="flex flex-wrap justify-center gap-10 relative">
       {steps.map((step, index) => (

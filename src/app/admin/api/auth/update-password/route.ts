@@ -4,8 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import { jwtVerify } from "jose";
 import User from "@/models/admin-model/User";
 
-export async function POST(req: NextRequest) {
-  try { 
+export const POST = async (req: NextRequest) => {
+  try {
     await dbConnect();
     const token = req.cookies.get("token")?.value;
 
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     const { payload } = await jwtVerify(token, secret);
     const email = payload.email as string;
     const { oldPassword, newPassword, confirmPassword, captcha } = await req.json();
-    
+
     const captchaVerify = await fetch(
       `${process.env.RECAPTCHA_BASE_URL! + process.env.RECAPTCHA_SECRET_KEY!}&response=${captcha}`,
       { method: "POST" }

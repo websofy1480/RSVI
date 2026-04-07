@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import User from "@/models/admin-model/User";
 
@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import { sendEmail } from "@/lib/sendEmail";
 
-export async function POST(req: Request) {
+export const POST = async (req: NextRequest) => {
   try {
     await dbConnect();
 

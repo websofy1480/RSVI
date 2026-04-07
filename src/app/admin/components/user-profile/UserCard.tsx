@@ -1,15 +1,15 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useModal } from "../../hooks/useModal";
 import { Modal } from "../ui/modal";
-import Button from "../ui/button/Button";
-import Label from "../form/Label";
+import { Button } from "../ui/button/Button";
+import { Label } from "../form/Label";
 import Image from "next/image";
 import { Radio } from "react-loader-spinner";
-import Tooltip, { TooltipProps } from "../common/Tooltip";
+import { TooltipProps, Tooltip } from "../common/Tooltip";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useRouter } from "next/navigation";
-import PageBreadcrumb from "../common/PageBreadCrumb";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
 import { strongPasswordRegex } from "@/lib/strongPasswordRegex";
 import { GiCancel } from "react-icons/gi";
 import { FiLoader } from "react-icons/fi";
@@ -28,7 +28,7 @@ interface User {
   postalCode?: string;
 }
 
-export default function UserCard() {
+export const UserCard: React.FC = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState<User | null>(null);

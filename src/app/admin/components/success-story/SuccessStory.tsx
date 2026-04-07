@@ -1,17 +1,17 @@
 "use client";
 import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip, { TooltipProps } from "../common/Tooltip";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
+import { TooltipProps, Tooltip } from "../common/Tooltip";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
+import { MessageModel } from "../common/MessageModel";
 import { SuccessStoryModel } from "./SuccessStoryModel";
-import Pagination from "../common/Pagination";
+import { Pagination } from "../common/Pagination";
 import { successStory } from "@/types/successStoryContext";
 import { ApiResponseProps } from "@/types/apiResponseContext";
 import { searchKeys, SearchState, updateStateField } from "@/types/searchState";
 import { Form, Mode } from "@/types/modelContext";
 
-export const SuccessStory = () => {
+export const SuccessStory: React.FC = () => {
   const [data, setData] = useState<successStory[]>([]);
   const [modal, setModal] = useState<{ mode: Mode; item?: successStory } | null>(null);
   const [tooltip, setTooltip] = useState<TooltipProps | null>(null);

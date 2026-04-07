@@ -12,7 +12,7 @@ import {
   Cell,
 } from "recharts";
 import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
 import { Radio } from "react-loader-spinner";
 import { useRouter } from "next/navigation";
 
@@ -91,16 +91,16 @@ const DashboardPage = () => {
           :
           <div className="space-y-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="bg-error shadow rounded-lg p-6 cursor-pointer" onClick={()=>router.push("/admin/collaborator")}>
+              <div className="bg-error shadow rounded-lg p-6 cursor-pointer" onClick={() => router.push("/admin/collaborator")}>
                 <p className="text-white font-semibold">Total Collaborations</p>
                 <h2 className="text-3xl text-white font-bold">{collaborations.length}</h2>
               </div>
-              <div className="bg-success shadow rounded-lg p-6 cursor-pointer" onClick={()=>router.push("/admin/join-us-request")}>               
+              <div className="bg-success shadow rounded-lg p-6 cursor-pointer" onClick={() => router.push("/admin/join-us-request")}>
                 <p className="text-white font-semibold">Total Join Us Request</p>
                 <h2 className="text-3xl text-white font-bold">{joinUs.length}</h2>
               </div>
-              <div className="bg-goldenOrange shadow rounded-lg p-6 cursor-pointer col-span-2" onClick={()=>router.push("/admin/contact-us")}>
-                 <p className="text-white font-semibold">Total Contacts Request</p>
+              <div className="bg-goldenOrange shadow rounded-lg p-6 cursor-pointer col-span-2" onClick={() => router.push("/admin/contact-us")}>
+                <p className="text-white font-semibold">Total Contacts Request</p>
                 <h2 className="text-3xl text-white font-bold">{contacts.length}</h2>
               </div>
             </div>
@@ -168,7 +168,7 @@ const DashboardPage = () => {
 
             <div className="bg-white shadow rounded-lg p-4">
               <h3 className="text-lg text-primary font-semibold mb-3">
-                <span className="text-error">Collaborations{" "}</span>vs{" "}<span className="text-success">Join Us{" "}</span>vs{" "}<span className="text-goldenOrange">Contact{" "}</span>  Ratio 
+                <span className="text-error">Collaborations{" "}</span>vs{" "}<span className="text-success">Join Us{" "}</span>vs{" "}<span className="text-goldenOrange">Contact{" "}</span>  Ratio
               </h3>
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>

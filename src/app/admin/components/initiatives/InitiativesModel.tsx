@@ -1,8 +1,8 @@
 "use client";
-import ImageUploader from "../common/ImageUploader";
+import { ImageUploader } from "../common/ImageUploader";
 import { useState } from "react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
 import { additionalSupport, projects } from "@/app/api/data";
 import { RxCross2 } from "react-icons/rx";
 import { GiCancel } from "react-icons/gi";
@@ -11,7 +11,7 @@ import { LiaCheckCircle } from "react-icons/lia";
 import { ModalProps } from "@/types/modelContext";
 import { initiatives } from "@/types/initiativesContext";
 
-export const InitiativesModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: initiatives }) => {
+export const InitiativesModel: React.FC<ModalProps & { initialData?: initiatives }> = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }) => {
 
     const [form, setForm] = useState(
         initialData || {

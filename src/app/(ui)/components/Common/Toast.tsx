@@ -2,7 +2,7 @@
 import { ToastProps } from "@/types/toastProps";
 import { useEffect } from "react";
 
-const Toast = ({ message, type = "success", onClose }: ToastProps) => {
+export const Toast: React.FC<ToastProps> = ({ message, type = "success", onClose }) => {
     useEffect(() => {
         const timer = setTimeout(onClose, 3000);
         return () => clearTimeout(timer);
@@ -20,4 +20,3 @@ const Toast = ({ message, type = "success", onClose }: ToastProps) => {
     );
 };
 
-export default Toast;

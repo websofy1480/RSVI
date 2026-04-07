@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-export const ReachRecognition = () => {
+export const ReachRecognition: React.FC = () => {
     return (
         <section className="bg-formbg/20" id="reach-recognition">
             <div className="mx-auto px-6">

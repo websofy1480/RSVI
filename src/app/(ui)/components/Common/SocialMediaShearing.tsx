@@ -1,9 +1,9 @@
 import { sociaMediaBlogShearing } from "@/app/api/data";
 import { FaShareAlt } from "react-icons/fa";
 import { useState } from "react";
-import Toast from "./Toast";
+import { Toast } from "./Toast";
 
-const SocialMediaShearing = ({ title }: { title?: string }) => {
+export const SocialMediaShearing: React.FC<{ title?: string }> = ({ title }) => {
   const [toast, setToast] = useState<{
     message: string;
     type: "success" | "error";
@@ -65,7 +65,7 @@ const SocialMediaShearing = ({ title }: { title?: string }) => {
           }
         </div>
         <button className="w-20 gap-2 h-6 mb-4 rounded-full border flex items-center justify-center bg-white text-primary hover:bg-learning/10">
-        <span className="text-formbg">Share</span>
+          <span className="text-formbg">Share</span>
           <FaShareAlt size={10} />
         </button>
       </div>
@@ -93,5 +93,3 @@ const SocialMediaShearing = ({ title }: { title?: string }) => {
     </>
   );
 }
-
-export default SocialMediaShearing;

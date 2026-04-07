@@ -1,10 +1,12 @@
-import UserCard from "@/app/admin/components/user-profile/UserCard";
+import { UserCard } from "@/app/admin/components/user-profile/UserCard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "User Profile | RSVI",
 };
 
-export default function Profile() {
+const page: React.FC = () => {
   return <UserCard />
 }
+
+export default page

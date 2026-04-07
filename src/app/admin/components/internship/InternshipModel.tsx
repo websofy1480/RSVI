@@ -1,8 +1,8 @@
 "use client";
-import ImageUploader from "../common/ImageUploader";
+import { ImageUploader } from "../common/ImageUploader";
 import { useState } from "react";
-import Label from "../form/Label";
-import Tooltip from "../common/Tooltip";
+import { Label } from "../form/Label";
+import { Tooltip } from "../common/Tooltip";
 import { RxCross2 } from "react-icons/rx";
 import { LiaCheckCircle } from "react-icons/lia";
 import { FiLoader } from "react-icons/fi";
@@ -10,7 +10,7 @@ import { GiCancel } from "react-icons/gi";
 import { ModalProps } from "@/types/modelContext";
 import { internship } from "@/types/internshipContext";
 
-export const InternshipModel = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }: ModalProps & { initialData?: internship }) => {
+export const InternshipModel: React.FC<ModalProps & { initialData?: internship }> = ({ mode, onClose, onSave, initialData, loading, setLoading, showTooltip, tooltip }) => {
 
   const [form, setForm] = useState(
     initialData || {
@@ -31,7 +31,7 @@ export const InternshipModel = ({ mode, onClose, onSave, initialData, loading, s
       !form.image ||
       !form.image_publicId
     ) {
-      showTooltip({message:"Please fill all fields!", type: "error"});
+      showTooltip({ message: "Please fill all fields!", type: "error" });
       setLoading(false);
       return;
     }

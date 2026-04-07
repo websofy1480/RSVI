@@ -3,8 +3,9 @@ import { FAQSection } from "./FrequentlyQA"
 import { SupportChat } from "./SupportChat"
 import Faq from "@/models/admin-model/Faq"
 
-export const FaqPage = async () => {
+export const FaqPage: React.FC = async () => {
     const faqData = await getData(Faq);
+
     return (
         <section>
             <div className="container">
@@ -19,7 +20,6 @@ export const FaqPage = async () => {
                         We are here to answer
                     </p>
                 </div>
-
             </div>
             <div className="mb-10">
                 <FAQSection faqData={faqData} />

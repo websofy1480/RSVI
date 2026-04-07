@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   title: "Contact Us | Stintwol"
 };
 
-const page = () => {
-  return <ContactUsPage/>
+const page: React.FC = () => {
+  return <ContactUsPage />
 }
 
 export default page

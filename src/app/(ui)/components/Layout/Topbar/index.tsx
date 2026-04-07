@@ -3,8 +3,8 @@ import { dynamicFont, footer } from "@/app/api/data";
 import { useData } from "@/app/context/DataContext";
 import Link from "next/link";
 
-export const TopBar = () => {
-  const { setFontSize} = useData();
+export const TopBar: React.FC = () => {
+  const { setFontSize } = useData();
 
   const changeFont = (size: number) => {
     setFontSize(size);

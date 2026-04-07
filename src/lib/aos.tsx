@@ -8,7 +8,5 @@ export const Aoscompo = () => {
       AOS.init({ once: true });
     });
   }, []);
-
-
   return null;
 }

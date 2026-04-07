@@ -7,7 +7,7 @@ import React, { useState, useEffect, useRef } from "react";
 import UserDropdown from "../components/header/UserDropdown";
 import { LuChevronsRightLeft } from "react-icons/lu";
 
-const AppHeader: React.FC = () => {
+export const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar, isExpanded, isHovered } = useSidebar();
 
@@ -85,8 +85,6 @@ const AppHeader: React.FC = () => {
     </header>
   );
 };
-
-export default AppHeader;
 
 
 

@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "Faq | RSVI"
 };
 
-const page = () => {
-  return <Faq/>
+const page: React.FC = () => {
+  return <Faq />
 }
 
 export default page

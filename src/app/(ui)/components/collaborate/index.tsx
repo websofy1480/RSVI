@@ -3,7 +3,7 @@ import { CollaborationsForm } from "./CollaborationsForm"
 import { OurCollaborations } from "./OurCollaborations"
 import Collaborate from "@/models/ui-model/Collaborate"
 
-export const CollaboratePage = async () => {
+export const CollaboratePage: React.FC = async () => {
     const collaborateData = await getData(Collaborate);
 
     return (

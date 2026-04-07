@@ -1,6 +1,7 @@
+import { constants } from "buffer";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export const POST = async () => {
   const res = NextResponse.json({ message: "Log out successfully." });
   res.cookies.set({
     name: "token",

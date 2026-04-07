@@ -1,11 +1,10 @@
 "use client"
 import Slider from "react-slick";
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
-import { FC } from "react";
+import { PreLoader } from "../Common/PreLoader";
 import { CollaborateProps } from "@/types/collaborateContext";
 
-export const OurCollaborations: FC<CollaborateProps> = ({ collaborateData }) => {
+export const OurCollaborations: React.FC<CollaborateProps> = ({ collaborateData }) => {
   const verifiedCollab = collaborateData?.filter(item => item.isVerified);
 
   var settings = {
@@ -79,7 +78,7 @@ export const OurCollaborations: FC<CollaborateProps> = ({ collaborateData }) => 
                   <p className="text-sm p-3 sm:p-0 text-justify font-medium text-SlateBlueText ">
                     {collab.message}
                   </p>
-                  
+
                 </div>
               </div>
             ))}

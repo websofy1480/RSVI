@@ -1,12 +1,10 @@
 "use client"
 import { useState } from 'react';
 import Link from 'next/link';
-
-
 import { usePathname } from 'next/navigation';
 import { HeaderItem } from '@/types/menu';
 
-const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
+export const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const path = usePathname()
 
@@ -62,4 +60,3 @@ const HeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   );
 };
 
-export default HeaderLink;

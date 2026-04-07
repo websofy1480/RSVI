@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { headerData } from "../Header/Navigation/menuData";
-import Logo from "./Logo";
-import HeaderLink from "../Header/Navigation/HeaderLink";
-import MobileHeaderLink from "../Header/Navigation/MobileHeaderLink";
+import { Logo } from "./Logo";
+import { HeaderLink } from "../Header/Navigation/HeaderLink";
+import { MobileHeaderLink } from "../Header/Navigation/MobileHeaderLink";
 import { IoMdMenu } from "react-icons/io";
 import { useData } from "@/app/context/DataContext";
 

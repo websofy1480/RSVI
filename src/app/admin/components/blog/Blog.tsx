@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
-import BlogModel from "./BlogModel";
-import Tooltip from "../common/Tooltip";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
+import { BlogModel } from "./BlogModel";
+import { Tooltip } from "../common/Tooltip";
 import { extractExcerpt } from "@/lib/extractExcerpt";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
+import { MessageModel } from "../common/MessageModel";
 
-export default function Blog() {
+export const Blog: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any[]>([]);
   const [blogCategorydata, setBlogCategoryData] = useState<any[]>([]);
@@ -201,7 +201,7 @@ export default function Blog() {
         />
       )}
       {
-        showDescription && <MessageModel closedModel={setShowDescription} data={blogDescription}  mode="blog" />
+        showDescription && <MessageModel closedModel={setShowDescription} data={blogDescription} mode="blog" />
       }
     </div>
   );

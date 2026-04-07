@@ -1,12 +1,12 @@
 
 import Image from "next/image";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import Award from "@/models/admin-model/Award";
 import { getData } from "@/lib/getData";
 
-export const Awards = async () => {
+export const Awards: React.FC = async () => {
     const awards = await getData(Award);
-    
+
     return (
         <div>
             <div className="md:pb-12 text-center pb-8">

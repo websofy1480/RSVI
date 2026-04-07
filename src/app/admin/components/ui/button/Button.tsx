@@ -12,7 +12,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   size = "md",
   variant = "primary",
@@ -38,11 +38,9 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`inline-flex items-center cursor-pointer justify-center font-medium gap-2 rounded-lg transition ${className} ${
-        sizeClasses[size]
-      } ${variantClasses[variant]} ${
-        disabled ? "cursor-not-allowed opacity-50" : ""
-      }`}
+      className={`inline-flex items-center cursor-pointer justify-center font-medium gap-2 rounded-lg transition ${className} ${sizeClasses[size]
+        } ${variantClasses[variant]} ${disabled ? "cursor-not-allowed opacity-50" : ""
+        }`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -52,5 +50,3 @@ const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
-
-export default Button;

@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { BreadcrumbsProps } from '@/types/breadcrumb';
 
-
-const Breadcrumb: FC<BreadcrumbsProps> = ({ links }) => {
+export const Breadcrumb: React.FC<BreadcrumbsProps> = ({ links }) => {
     const lastIndex = links.length - 1;
 
     return (
@@ -24,5 +23,3 @@ const Breadcrumb: FC<BreadcrumbsProps> = ({ links }) => {
         </div>
     );
 };
-
-export default Breadcrumb;

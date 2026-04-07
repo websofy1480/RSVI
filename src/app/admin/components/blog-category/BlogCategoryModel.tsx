@@ -1,11 +1,11 @@
 "use client";
-import { useState, useRef } from "react";
+import React, { useState } from "react";
 import { X } from "lucide-react";
-import Label from "../form/Label";
+import { Label } from "../form/Label";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function BlogCategoryModel({ mode, onClose, onSave, initialData }: any) {
-  const [form, setForm] = useState(initialData || {category: ""});
+export const BlogCategoryModel: React.FC<any> = ({ mode, onClose, onSave, initialData }) => {
+  const [form, setForm] = useState(initialData || { category: "" });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleChange = (e: any) => setForm({ ...form, [e.target.name]: e.target.value });

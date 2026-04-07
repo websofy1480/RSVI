@@ -1,8 +1,8 @@
 "use client";
 
 import { useSidebar } from "@/app/context/SidebarContext";
-import AppSidebar from "../layout/AppSidebar";
-import AppHeader from "../layout/AppHeader";
+import { AppSidebar } from "../layout/AppSidebar";
+import { AppHeader } from "../layout/AppHeader";
 import React from "react";
 
 export default function AdminLayout({
@@ -14,8 +14,8 @@ export default function AdminLayout({
   const mainContentMargin = isMobileOpen
     ? "ml-0"
     : isExpanded || isHovered
-    ? "lg:ml-[290px]"
-    : "lg:ml-[90px]";
+      ? "lg:ml-[290px]"
+      : "lg:ml-[90px]";
 
   return (
     <div className="min-h-screen xl:flex">

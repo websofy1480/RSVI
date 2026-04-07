@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import PageBreadcrumb from "../common/PageBreadCrumb";
-import Tooltip from "../common/Tooltip";
-import BlogCategoryModel from "./BlogCategoryModel";
+import { PageBreadcrumb } from "../common/PageBreadCrumb";
+import { Tooltip } from "../common/Tooltip";
+import { BlogCategoryModel } from "./BlogCategoryModel";
 
-export default function BlogCategory() {
+export const BlogCategory: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,7 +25,7 @@ export default function BlogCategory() {
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
 
-  const [search, setSearch] = useState({category: "" });
+  const [search, setSearch] = useState({ category: "" });
 
   const fetchData = async () => {
     const res = await fetch("/api/auth/blog-category");
@@ -81,7 +81,7 @@ export default function BlogCategory() {
       }
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-     catch (error) {
+    catch (error) {
       console.log("Internal Server Error ", error)
       showTooltip("Internal Server Error", "error");
     } finally {
@@ -112,7 +112,7 @@ export default function BlogCategory() {
           />
         ))}
       </div>
-          <table className="min-w-full bg-white border rounded shadow">
+      <table className="min-w-full bg-white border rounded shadow">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-2 px-3 border">Category</th>
@@ -135,8 +135,6 @@ export default function BlogCategory() {
           ))}
         </tbody>
       </table>
-      
-
       <div className="flex justify-center items-center gap-2 mt-4">
         <button
           className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"

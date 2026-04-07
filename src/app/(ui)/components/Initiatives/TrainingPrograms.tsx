@@ -2,11 +2,10 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import PreLoader from "../Common/PreLoader";
+import { PreLoader } from "../Common/PreLoader";
 import { initiatives } from "@/types/initiativesContext";
 
-
-export const TrainingPrograms = ({ trainings }: { trainings: initiatives[] }) => {
+export const TrainingPrograms: React.FC<{ trainings: initiatives[] }> = ({ trainings }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {

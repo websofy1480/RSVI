@@ -1,9 +1,9 @@
 "use client";
-import { useRef, useState, useCallback, useEffect } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Cropper from "react-easy-crop";
 import { X } from "lucide-react";
-import Button from "../ui/button/Button";
+import { Button } from "../ui/button/Button";
 
 type ImageUploaderProps = {
   folder: string;
@@ -49,12 +49,12 @@ const getCroppedImg = async (imageSrc: string, crop: any) => {
   });
 };
 
-export default function ImageUploader({
+export const ImageUploader: React.FC<ImageUploaderProps> = ({
   folder,
   label,
   onUpload,
   defaultPreview = null,
-}: ImageUploaderProps) {
+}) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);

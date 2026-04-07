@@ -1,9 +1,9 @@
 "use client"
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { BreadcrumbLink } from "@/types/breadcrumb";
-import Breadcrumb from "../../Breadcrumb";
+import { Breadcrumb } from "../../Breadcrumb";
 
 interface HeroSubProps {
     title?: string;
@@ -12,7 +12,7 @@ interface HeroSubProps {
     breadcrumbLinks: BreadcrumbLink[];
 }
 
-const HeroSub: FC<HeroSubProps> = ({
+export const HeroSub: React.FC<HeroSubProps> = ({
     title,
     description,
     breadcrumbLinks,
@@ -45,14 +45,14 @@ const HeroSub: FC<HeroSubProps> = ({
                         data-aos-duration="1000"
                     >
                         <h2 className={` ${title?.includes("PCC") ? "text-sm" : "text-xl"} md:text-[40px] font-bold text-white leading-tight`}>
-                            {title} 
+                            {title}
                         </h2>
 
                         {/* <p className="text-lg text-white/80 font-normal max-w-[506px] mt-3">
                             {description}
                         </p> */}
                     </div>
-                    
+
                     <div
                         data-aos="fade-left"
                         data-aos-delay="200"
@@ -65,5 +65,3 @@ const HeroSub: FC<HeroSubProps> = ({
         </section>
     );
 };
-
-export default HeroSub;
