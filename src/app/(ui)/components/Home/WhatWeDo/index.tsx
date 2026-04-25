@@ -16,7 +16,7 @@ export const WhatWeDo: React.FC = () => {
           </h2>
           <p className="text-primary font-normal
             sm:text-19  text-center m-auto">
-            Empowering the Visually Impaired Through Care, Education & Inclusion
+            We are not just empowering the visually impaired we are empowering the society, the nation and the world
           </p>
         </div>
         <div

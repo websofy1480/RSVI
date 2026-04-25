@@ -1,6 +1,7 @@
 "use client";
-import { DataContextType, ThemeType } from "@/types/dataContext";
+import { DataContextType } from "@/types/dataContext";
 import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { dynamicTheme } from "../api/data";
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
@@ -19,7 +20,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
     const [blogs, setBlogs] = useState<any[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
     const [fontSize, setFontSize] = useState<number>(16);
-    const [theme, setTheme] = useState<ThemeType>("default");
+    const [color, setColor] = useState("default");
     const [navbarOpen, setNavbarOpen] = useState(false);
 
     const categoryCounts = useMemo(() => {
@@ -55,18 +56,31 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
         localStorage.setItem("fontSize", fontSize.toString());
     }, [fontSize]);
 
-    useEffect(() => {
-        document.documentElement.className = theme;
-        localStorage.setItem("theme", theme);
-    }, [theme]);
 
     useEffect(() => {
-        const savedFont = localStorage.getItem("fontSize");
-        const savedTheme = localStorage.getItem("theme") as ThemeType | null;
-        if (savedFont) setFontSize(Number(savedFont));
-        if (savedTheme) setTheme(savedTheme);
+        document.documentElement.classList.remove(
+            ...dynamicTheme.map(t => `theme-${t.value}`)
+        );
+
+        localStorage.removeItem("color-theme");
+        setColor("default");
         fetchData();
     }, []);
+
+
+    const changeColor = (newColor: string) => {
+        const themes = ["default", "red", "green", "blue", "dark"];
+
+        document.documentElement.classList.remove(
+            ...themes.map(t => `theme-${t}`)
+        );
+
+        if (newColor !== "default") {
+            document.documentElement.classList.add(`theme-${newColor}`);
+        }
+        localStorage.setItem("color-theme", newColor);
+        setColor(newColor);
+    };
 
     return (
         <DataContext.Provider
@@ -79,8 +93,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
                     filteredBlogs,
                     fontSize,
                     setFontSize,
-                    theme,
-                    setTheme,
+                    color,
+                    changeColor,
                     navbarOpen,
                     setNavbarOpen
                 }

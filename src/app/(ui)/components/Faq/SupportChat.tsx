@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FaEnvelope, FaHeadset, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa'
 
 export const SupportChat: React.FC = () => {
-    const whatsappNumber = "919876543210"
+    const whatsappNumber = "919305106040"
     const whatsAppApi = `https://wa.me/${whatsappNumber}?text=Hi%20Support%2C%20I%20need%20help`
 
     return (
@@ -20,8 +20,8 @@ export const SupportChat: React.FC = () => {
                     </p>
 
                     <div className='flex sm:flex-row flex-col sm:items-center mt-2 gap-3 sm:gap-6'>
-                        <Link href="tel:+9198765432" className="text-gray flex items-center gap-2 font-medium"><FaPhoneAlt className="text-error" /> <span>0522 3019456</span> </Link>
-                        <Link href="mailto:hr@rsvi.org" className="font-medium text-gray flex items-center gap-2"><FaEnvelope className="text-learning" /> <span>hr@rsvi.org</span> </Link>
+                        <Link href="tel:+9105224070138 " className="text-gray flex items-center gap-2 font-medium"><FaPhoneAlt className="text-error" /> <span>0522-4070138 </span> </Link>
+                        <Link href="mailto:info@rsvi.org" className="font-medium text-gray flex items-center gap-2"><FaEnvelope className="text-learning" /> <span>info@rsvi.org</span> </Link>
                     </div>
                 </div>
             </div>

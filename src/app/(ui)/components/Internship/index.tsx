@@ -8,7 +8,6 @@ import Perks from "@/models/admin-model/Perks";
 export const InternshipPage: React.FC = async () => {
     const internshipData = await getData(Internship);
     const perksData = await getData(Perks);
-
     return (
         <section>
             <div className="container">

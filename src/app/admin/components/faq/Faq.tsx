@@ -160,7 +160,6 @@ export const Faq: React.FC = () => {
                     ))}
                 </tbody>
             </table>
-
             {
                 totalPages > 1 && <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
             }

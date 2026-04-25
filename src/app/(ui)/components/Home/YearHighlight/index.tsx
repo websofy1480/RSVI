@@ -4,7 +4,7 @@ import Image from "next/image";
 import { statsData } from "@/app/api/data";
 import { Cta } from "../../Common/Cta";
 
-export const YearHighlight : React.FC  = () => {
+export const YearHighlight: React.FC = () => {
   const [counts, setCounts] = useState(statsData.map(() => 0));
 
   useEffect(() => {
@@ -30,19 +30,22 @@ export const YearHighlight : React.FC  = () => {
         data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
         <div className="text-center mb-4 sm:mb-11">
           <h2 className="text-primary md:text-40 text-28 pb-4 font-bold uppercase">
-            Empowering Vision{" "}<span className="text-secondary">Transforming Lives</span>
+            Beyond sight, toward insight:{" "}<span className="text-secondary">Empowering independence</span>
           </h2>
           <p className="text-lg font-normal text-primary">
-            For more than 15 years, RSVI has been dedicated to restoring independence, dignity, and opportunity
+            For more than 20 years, RSVI has been dedicated to restoring independence, dignity, and opportunity
             for visually impaired individuals in Lucknow.
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {statsData?.map((stat, index) => (
-            <div key={index} className="w-full sm:w-[45%] lg:w-[22%] relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
-              data-aos="zoom-in" data-aos-delay={`${index * 150}`}>
+            <div
+              key={index}
+              data-aos="zoom-in"
+              data-aos-delay={index * 150}
+              className="relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
+            >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary rounded-t-3xl" />
-
               <div className="mb-6 relative w-full aspect-square overflow-hidden rounded-lg">
                 <Image
                   src={stat.imageUrl!}
@@ -52,9 +55,9 @@ export const YearHighlight : React.FC  = () => {
                   className="group-hover:scale-110 transition duration-300"
                 />
               </div>
-
               <h3 className={`text-4xl text-center font-bold ${stat.stateTextCol}`}>
-                {counts[index]}{stat.suffix}
+                {counts[index]}
+                {stat.suffix}
               </h3>
               <p className={`mt-3 text-center ${stat.stateTextCol} font-medium`}>
                 {stat.label}

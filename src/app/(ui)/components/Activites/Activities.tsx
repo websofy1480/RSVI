@@ -1,10 +1,19 @@
 "use client"
-
 import Image from "next/image";
 import { PreLoader } from "../Common/PreLoader";
 import { SuccessStoryProps } from "@/types/successStoryContext";
+import { useState } from "react";
+import { Pagination } from "@/app/admin/components/common/Pagination";
 
 export const Activities: React.FC<SuccessStoryProps> = ({ activitiesData }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const recordsPerPage = 10;
+
+    const totalPages = Math.ceil(activitiesData!.length / recordsPerPage);
+    const currentData = activitiesData!.slice(
+        (currentPage - 1) * recordsPerPage,
+        currentPage * recordsPerPage
+    );
 
     return (
         <section>
@@ -12,19 +21,18 @@ export const Activities: React.FC<SuccessStoryProps> = ({ activitiesData }) => {
                 <div className="mb-12 text-center "
                     data-aos="fade-up">
                     <h1 className="text-3xl md:text-4xl font-bold leading-tight uppercase text-primary">
-                        Our{" "}
+                        Ongoing{" "}
                         <span className="text-secondary">Activities</span>
                     </h1>
                     <p className="mt-5 sm:text-19 text-primary sm:text-center text-justify ">
                         Engaging activities for visually impaired individuals to support learning and overall growth</p>
                 </div>
-
                 {
-                    activitiesData?.length === 0 ?
+                    currentData?.length === 0 ?
                         <PreLoader />
                         :
-                        activitiesData && <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                            {activitiesData?.map((activity) => (
+                        currentData && <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                            {currentData?.map((activity) => (
                                 <div
                                     key={activity._id}
                                     className="group perspective h-80 cursor-pointer">
@@ -51,6 +59,10 @@ export const Activities: React.FC<SuccessStoryProps> = ({ activitiesData }) => {
                                 </div>
                             ))}
                         </div>
+                }
+                {
+                    totalPages > 1 &&
+                    <div className="mt-12"><Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} /></div>
                 }
             </div>
         </section>

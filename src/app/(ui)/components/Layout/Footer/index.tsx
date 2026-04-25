@@ -9,40 +9,33 @@ export const Footer = () => {
       <div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center text-center md:text-left">
           <div>
-            <div className="flex items-center justify-center">
-              <Link href="/">
-                <Image
-                  src="/images/logo/rsvi-logo.png"
-                  alt="logo"
-                  width={160}
-                  height={50}
-                  quality={100}
-                  className='sm:w-28'
-                  loading="eager"
-                />
-              </Link>
-            </div>
-            <div className="w-72 text-justify text-primary text-[16px] hover:text-secondary font-medium transition">
-              RSVI is a Lucknow-based NGO founded in 2005, dedicated to the rehabilitation and empowerment of visually impaired individuals.
-            </div>
+            <Link href="/">
+              <Image
+                src="/images/logo/rsvi-logo-1.jpg"
+                alt="logo"
+                width={160}
+                height={50}
+                quality={100}
+                className='sm:w-28'
+                loading="eager"
+              />
+            </Link>
           </div>
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <h4 className="text-xl font-semibold mb-4 text-MidnightNavyText">
-              Support
+              Support the cause of rsvi
             </h4>
-            <ul className="space-y-2">
-              {footer?.support.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.url}
-                    className="text-primary text-[16px] font-medium hover:text-secondary transition"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <Image
+              src="/images/footer/qr-code.jpg"
+              alt="logo"
+              width={160}
+              height={50}
+              quality={100}
+              className='w-auto h-auto'
+              loading="eager"
+            />
           </div>
+
           <div>
             <h4 className="text-xl font-semibold mb-4 text-MidnightNavyText">
               Contact Details
@@ -86,7 +79,7 @@ export const Footer = () => {
             href="/"
             className="text-primary hover:text-secondary font-medium"
           >
-            RSVI | Rehabilitation Society of the Visually Impaired. {" "}
+            RSVI {" "}
           </Link>
           Designed by{" "}
           <Link

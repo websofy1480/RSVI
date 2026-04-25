@@ -229,8 +229,8 @@ export const collaboratePageMetaData = {
   },
 };
 
-export const initiativesPageMetaData = {
-  title: "Initiatives | RSVI",
+export const AwardsRecognitionsPageMetaData = {
+  title: "Awards & Recognitions | RSVI",
   description: "Learn about Stintwol and our goal to help learners speak English confidently through practical, easy-to-understand online speaking courses.",
   keywords: [
     "Stintwol, online English speaking courses, spoken English training",
@@ -275,8 +275,8 @@ export const initiativesPageMetaData = {
   },
 };
 
-export const featuresPageMetaData = {
-  title: "Features | RSVI",
+export const projectsPageMetaData = {
+  title: "Projects | RSVI",
   description: "Learn about Stintwol and our goal to help learners speak English confidently through practical, easy-to-understand online speaking courses.",
   keywords: [
     "Stintwol, online English speaking courses, spoken English training",

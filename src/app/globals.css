@@ -5,6 +5,77 @@
 @tailwind components;
 @tailwind utilities;
 
+
+:root {
+  --color-primary: #3c3c30;
+  --color-secondary: #727057;
+  --color-formbg: #f3eccd;
+  --color-midnight: #102D47;
+  --color-slate: #547593;
+  --color-learning: #2563EB;
+  --color-primary-pink: #c02c68;
+  --color-burnt-orange: #de644b;
+  --color-golden-orange: #ef914e;
+  --color-success: #429b5e;
+  --color-error: #dc2626;
+  --color-yellow-light: #FFE15A;
+  --color-yellow-rating: #FAB446;
+  --color-nav-bg : #FFFFFF;
+
+
+  /* Optional*/
+  --color-electric-aqua: #46C4FF;
+  --color-icy-breeze: #EFFBFF;
+  --color-pale-cyan: #CFF4FF;
+  --color-pale-sky-blue: #E0F7FF;
+  --color-sky-blue-mist: #C0D5FB;
+  --color-light-sky-blue: #B2D5EA;
+  --color-pale-cerulean: #A3BBD1;
+  --color-aquamarine: #7DF9C2;
+  --color-salem: #1C7C52;
+  --color-misty-teal: #6F9DAC;
+  --color-cadet-blue: #879AAC;
+  --color-olive-drab: #73713C;
+  --color-dandelion: #F2EC1D;
+  --color-periwinkle-border: #C0D5FB;
+  --color-light-blue-border: #4F8BFB;
+  --color-ocean-depths-border: #224767;
+  --color-powder-blue-border: #E1F1F6;
+
+}
+
+
+/* BLUE THEME */
+.theme-blue {
+  --color-primary: #2563eb;
+  --color-secondary: #60a5fa;
+}
+
+/* RED THEME */
+.theme-red {
+  --color-primary: #dc2626;
+  --color-secondary: #f87171;
+}
+
+/* DARK MODE (can combine with above) */
+.theme-dark {
+  --color-primary: #e5e7eb;
+  --color-secondary: #9ca3af;
+  --color-formbg: #0f172a;
+  --color-midnight: #f1f5f9;
+  --color-slate: #cbd5f5;
+  --color-learning: #3b82f6;
+  --color-primary-pink: #ec4899;
+  --color-burnt-orange: #f97316;
+  --color-golden-orange: #f59e0b;
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-yellow-light: #fde047;
+  --color-yellow-rating: #fbbf24;
+   --color-nav-bg : #000000;
+}
+
+
 ::-webkit-scrollbar {
   display: none;
 }
@@ -48,24 +119,7 @@ html {
 
 body {
   overflow-x: hidden;
-  background-color: var(--bg-color);
-  color: var(--text-color);
   transition: all 0.3s ease;
-}
-
-.default {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-}
-
-.dark {
-  --bg-color: #111827;
-  --text-color: #ffffff;
-}
-
-.high-contrast {
-  --bg-color: #000000;
-  --text-color: #ffff00;
 }
 
 

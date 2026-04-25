@@ -15,7 +15,7 @@ export const Activities: React.FC = () => {
                             data-aos-delay="200"
                             data-aos-duration="1000"
                         >
-                            <h2 className="text-primary uppercase md:text-40 text-28 font-bold">Our{" "}
+                            <h2 className="text-primary uppercase md:text-40 text-28 font-bold">Ongoing {" "}
                                 <span className="text-secondary">Activities</span>
                             </h2>
                             <p className="text-lg  text-SlateBlueText text-justify max-w-404 pt-7 pb-4 sm:pb-10">

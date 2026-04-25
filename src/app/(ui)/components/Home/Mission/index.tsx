@@ -10,7 +10,7 @@ export const Mission: React.FC = () => {
             <div className="container">
                 <div className="md:pb-12 text-center pb-8" data-aos="fade-up">
                     <h2 className="md:text-40 text-28 font-bold uppercase text-primary">
-                        Our{" "}<span className="text-secondary">Mission</span>
+                        Our vision{" "}<span className="text-secondary">and mission</span>
                     </h2>
                 </div>
                 <div className="bg-formbg/20 shadow-lg border border-secondary/20 text-lg rounded-2xl p-6 sm:p-8 lg:p-10 space-y-6 text-SlateBlueText leading-relaxed text-justify" data-aos="fade-up">
@@ -41,9 +41,8 @@ export const Mission: React.FC = () => {
                         description="RSVI has given many beautiful gems whose success stories are inspiring. They have proved that a dream doesn’t need vision — it needs determination and passion."
                         borderColor="#dc2626"
                         images={["/images/hero/rsvi-hero-1.jpg", "/images/hero/rsvi-hero-1.jpg"]}
-                        link="/success-story"
+                        link="/impact/success-story"
                     />
-
                     <HighlightBlock
                         title="Media Coverage"
                         description="RSVI has been featured in newspapers, news channels, and social platforms. Its impactful initiatives continue to inspire communities."
@@ -56,16 +55,18 @@ export const Mission: React.FC = () => {
             <div className="w-full container">
                 <div className="max-w-7xl space-y-14">
                     <InfoCapsule
-                        title="RVSI INFO-CAPSULE"
+                        title="Upcoming Activities "
                         description="RSVI aims to establish its presence and awareness through digital platforms, launched RSVI Info Capsule, which is an audio initiative to spread learning and development through digital platforms like WhatsApp where Visually Impaired across the globe are connected."
                         image="/images/hero/rsvi-hero-1.jpg"
+                        link="#"
                     />
 
                     <InfoCapsule
-                        title="Collaborations at RSVI"
+                        title="Collaborations of RSVI"
                         description="RSVI has been successful in humungous collaborations till date for its visibility and reach. Majorly being Rehabilitation Council Of India (RCI) New Delhi , NIVH for the distribution of Aids & Appliances, Agency of advocacy cell in Uttar Pradesh being run by All India Confederation of the Blind (AICB).Besides receiving support and technical expertise from a number of Organizations, RSVI joins hands with SAKSHAM New Delhi, NAB (Along with its various States and district branches), Arushi Bhopal, Score Foundation New Delhi and very recently collaborated with Uber India."
                         image="/images/hero/rsvi-hero-1.jpg"
                         reverse
+                        link="/projects"
                     />
                 </div>
             </div>
@@ -91,6 +92,7 @@ const HighlightBlock: React.FC<HighlightBlockProps> = ({
     reverse = false,
     link,
 }) => {
+
     return (
         <div
             data-aos={reverse ? "fade-left" : "fade-right"}
@@ -116,8 +118,6 @@ const HighlightBlock: React.FC<HighlightBlockProps> = ({
                     </div>
                 ))}
             </div>
-
-            {/* Text Content */}
             <div
                 data-aos="fade-up"
                 className="relative bg-formbg/20  p-6 sm:h-64 h-68 rounded-xl shadow-md">
@@ -149,6 +149,7 @@ interface InfoCapsuleProps {
     image: string;
     comingSoon?: boolean;
     reverse?: boolean;
+    link: string;
 }
 
 const InfoCapsule: React.FC<InfoCapsuleProps> = ({
@@ -157,13 +158,14 @@ const InfoCapsule: React.FC<InfoCapsuleProps> = ({
     image,
     comingSoon = true,
     reverse = false,
+    link
 }) => {
 
 
     return (
 
         <section className="bg-formbg/20 shadow-lg border border-secondary/20 text-lg rounded-2xl p-6 sm:p-8 lg:p-10 ">
-            <div
+            <Link href={link}
                 className={`max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-12 ${reverse ? "lg:flex-row-reverse" : ""
                     }`}
             >
@@ -190,7 +192,7 @@ const InfoCapsule: React.FC<InfoCapsuleProps> = ({
                         {description}
                     </p>
                 </div>
-            </div>
+            </Link>
         </section>
     );
 };
