@@ -28,7 +28,7 @@ export const WhatWeDo: React.FC = () => {
               key={index}
               className="bg-white h-68 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 px-4 pt-4 cursor-pointer border hover:border-secondary/30"
               data-aos="zoom-in"
-              onClick={() => router.push(`/initiatives#${item.slug}`)}
+              onClick={() => router.push(`${item.slug}`)}
             >
               <div className="relative w-full h-52 mb-3">
                 <Image

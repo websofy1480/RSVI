@@ -1,5 +1,5 @@
+import { RailConcessionPage } from '@/app/(ui)/components/ProgrammsAndServices/RailConcession';
 import { HeroSub } from '../../../components/SharedComponent/HeroSub';
-import { SuccessStoryPage } from '../../../components/Impact/SuccessStory';
 export const dynamic = 'force-dynamic';
 
 const page: React.FC = () => {
@@ -15,7 +15,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <SuccessStoryPage />
+            <RailConcessionPage />
         </>
     );
 };

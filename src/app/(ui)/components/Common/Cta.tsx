@@ -15,7 +15,7 @@ export const Cta: React.FC<{ style?: string, title: string, description: string,
             </p>
             <button
                 onClick={() => router.push(`/${nevigateUrl}`)}
-                className="mt-10 sm:px-10 px-4 py-4 bg-white text-primary font-semibold rounded-xl
+                className="mt-10 sm:px-10 px-4 py-4 bg-navBg text-primary font-semibold rounded-xl
                     hover:bg-secondary hover:text-white transition duration-300 shadow-lg">
 
                 <span className="flex items-center gap-2 bg-slate-">{buttonText}

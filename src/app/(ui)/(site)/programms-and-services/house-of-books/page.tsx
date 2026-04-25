@@ -1,4 +1,4 @@
-import { HouseOfBooks } from '@/app/(ui)/components/ProgrammsAndServices/HouseOfBooks';
+import { HouseOfBooksPage } from '@/app/(ui)/components/ProgrammsAndServices/HouseOfBooks';
 import { HeroSub } from '../../../components/SharedComponent/HeroSub';
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +15,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <HouseOfBooks />
+            <HouseOfBooksPage />
         </>
     );
 };

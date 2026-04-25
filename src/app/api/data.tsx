@@ -1,4 +1,3 @@
-import { ThemeType } from "@/types/dataContext";
 import { FaEnvelope, FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaWhatsapp, FaTwitter, } from "react-icons/fa";
 import { FaLink } from "react-icons/fa6";
 import { FiYoutube } from "react-icons/fi";
@@ -8,12 +7,12 @@ export const whatWeDo = [
   {
     title: "Programs & Services",
     image: "/highlight/rsvi.png",
-    slug: "training-programme"
+    slug: "/programms-and-services/trainings#training-programme"
   },
   {
     title: "House of Books",
     image: "/highlight/rsvi.png",
-    slug: "additional-support"
+    slug: "/programms-and-services/house-of-books#books"
   },
   {
     title: "Unique Projects ",
@@ -217,4 +216,136 @@ export const dynamicTheme: { color: string, value: any }[] = [
 export const additionalSupport = ["Rail Concession", "Eyes & Health Checkup", "Old Age Support", "Aids & Appliances center", "Exposure After Training"];
 
 export const projects = ["Upcoming", "Udaan"];
+
+
+export const trainingAreas = [
+  {
+    title: "Digital Literacy",
+    desc: "Learn smartphones, computers, internet browsing, email, and basic software usage.",
+  },
+  {
+    title: "Assistive Technology Training",
+    desc: "Hands-on training with screen readers like NVDA, JAWS, and VoiceOver for independent device usage.",
+  },
+  {
+    title: "Vocational Skills Development",
+    desc: "Tailoring, handicrafts, and small business skills for self-employment.",
+  },
+  {
+    title: "Communication & Language Skills",
+    desc: "Spoken English, confidence building, and interview preparation.",
+  },
+  {
+    title: "Mobility & Orientation Training",
+    desc: "Techniques for safe and independent movement in daily environments.",
+  },
+];
+
+export const ourApproach = ["Accessible learning materials (audio & screen-reader friendly)", "Experienced trainers specialized in visual impairment", "Hands-on practical sessions", "Personalized learning paths"];
+
+export const whoCanJoin = ["Individuals with partial or complete visual impairment", "Students, job seekers, and professionals", "Beginners to advanced learners"];
+
+export const outcomes = ["Digital independence", "Job-ready skills", "Job-ready skills"];
+
+export const books = [
+    {
+        id: 1,
+        title: "Learn Computers",
+        author: "RSVI",
+        description: "Basic digital literacy book.",
+        image: "/books/book1.jpg",
+        format: "pdf",
+        language: "hindi"
+    },
+    {
+        id: 2,
+        title: "Spoken English Guide",
+        author: "RSVI",
+        description: "Improve communication skills.",
+        image: "/books/book2.jpg",
+        format: "audio",
+        language: "english"
+    },
+    {
+        id: 3,
+        title: "Introduction to Braille",
+        author: "RSVI",
+        description: "Learn the basics of Braille reading and writing.",
+        image: "/books/book3.jpg",
+        format: "braille",
+        language: "english"
+    },
+    {
+        id: 4,
+        title: "Mobile Phone Training",
+        author: "RSVI",
+        description: "Guide to using smartphones with accessibility features.",
+        image: "/books/book4.jpg",
+        format: "pdf",
+        language: "hindi"
+    },
+    {
+        id: 5,
+        title: "Career Skills for Beginners",
+        author: "RSVI",
+        description: "Develop essential job and communication skills.",
+        image: "/books/book5.jpg",
+        format: "audio",
+        language: "english"
+    },
+    {
+        id: 6,
+        title: "Daily Life Independence",
+        author: "RSVI",
+        description: "Practical skills for independent living.",
+        image: "/books/book6.jpg",
+        format: "pdf",
+        language: "hindi"
+    },
+    {
+        id: 7,
+        title: "Basic Computer Shortcuts",
+        author: "RSVI",
+        description: "Learn essential keyboard shortcuts for faster navigation.",
+        image: "/books/book7.jpg",
+        format: "pdf",
+        language: "english"
+    },
+    {
+        id: 8,
+        title: "Audio Learning for Beginners",
+        author: "RSVI",
+        description: "Step-by-step guide to learning through audio resources.",
+        image: "/books/book8.jpg",
+        format: "audio",
+        language: "hindi"
+    },
+    {
+        id: 9,
+        title: "Personality Development Guide",
+        author: "RSVI",
+        description: "Improve confidence, communication, and personal growth.",
+        image: "/books/book9.jpg",
+        format: "pdf",
+        language: "english"
+    }
+];
+
+export const railInfo = [
+    {
+        id: "01",
+        title: "Eligibility Criteria",
+        description: ["Must have 100% vision loss", "Valid medical certificate is required", "Open to individuals across India"],
+    },
+    {
+        id: "02",
+        title: "Required Documents",
+        description: ["Disability certificate", "Identity proof", "Passport size photograph are required for application"],
+    },
+    {
+        id: "03",
+        title: "Application Process",
+        description: ["Contact RSVI", "Submit documents", "Complete verification", "Receive your certificate"],
+    },
+];
 

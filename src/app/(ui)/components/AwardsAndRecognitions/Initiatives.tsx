@@ -3,7 +3,6 @@ import { Awards } from "./Awards"
 import { EducationalPrograms } from "./EducationalPrograms"
 import { Projects } from "./Projects"
 import { ReachRecognition } from "./ReachRecognition"
-import { TrainingPrograms } from "./TrainingPrograms"
 import { InitiativeProps } from "@/types/initiativesContext"
 
 export const Initiatives: React.FC<InitiativeProps> = ({ initiativesData }) => {
@@ -12,7 +11,7 @@ export const Initiatives: React.FC<InitiativeProps> = ({ initiativesData }) => {
     const trainings = initiativesData.filter(item => item.initiativesType === "Training Programs");
     const additionalSupports = initiativesData.filter(item => item.initiativesType === "Additional Support");
     const projects = initiativesData.filter(item => item.initiativesType === "Projects");
-
+    
     return (
         <section className="pb-0">
             <div className="container">
@@ -27,9 +26,6 @@ export const Initiatives: React.FC<InitiativeProps> = ({ initiativesData }) => {
                     </p>
                 </div>
                 <div className="mb-10"><EducationalPrograms educations={educations} /></div>
-            </div>
-            <div className="mb-10">
-                <TrainingPrograms trainings={trainings} />
             </div>
 
             <div className="container mb-10">
