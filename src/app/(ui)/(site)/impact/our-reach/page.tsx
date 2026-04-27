@@ -1,5 +1,5 @@
 import { HeroSub } from '../../../components/SharedComponent/HeroSub';
-import { OurReach } from '@/app/(ui)/components/Impact/OurReach';
+import { OurReachPage } from '@/app/(ui)/components/Impact/OurReach';
 export const dynamic = 'force-dynamic';
 
 const page: React.FC = () => {
@@ -15,7 +15,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <OurReach />
+            <OurReachPage />
         </>
     );
 };

@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative text-white overflow-hidden mt-8 sm:mt-4 lg:mt-[3em]">
-      <div className="relative h-[12vh] sm:h-[65vh] md:h-[22vh] lg:h-[73vh] w-full -z-10">
+      <div className="relative h-[12vh] sm:h-[65vh] md:h-[22vh] lg:h-[72vh] w-full -z-10">
         <Slider {...settings} className="h-full">
           {carouselImages.map((src, index) => (
             <div

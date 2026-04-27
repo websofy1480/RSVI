@@ -106,6 +106,9 @@ export function SemiCircleInfographic() {
   );
 }
 
+
+
+
 const milestones = [
   {
     year: "1990",
@@ -140,6 +143,7 @@ const milestones = [
 ];
 
 export default function CircularMilestones() {
+
   return (
     <section
       className="bg-gradient-to-br from-slate-200 to-slate-300 py-24"
@@ -205,5 +209,3 @@ export default function CircularMilestones() {
     </section>
   );
 }
-
-

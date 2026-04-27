@@ -1,10 +1,18 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { statsData } from "@/app/api/data";
 import { Cta } from "../../Common/Cta";
 
-export const YearHighlight: React.FC = () => {
+
+
+
+export interface statsType { label: string, value: number, suffix: string, imageUrl?: string, stateTextCol: string, icon?: string }
+
+export interface statesProps {
+  statsData: statsType[]
+}
+
+export const YearHighlight: React.FC<statesProps> = ({ statsData }) => {
   const [counts, setCounts] = useState(statsData.map(() => 0));
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export const YearHighlight: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative bg-formbg/20 overflow-hidden">
+    <section className="relative bg-sectionPrimary overflow-hidden">
       <div className="container relative z-10"
         data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
         <div className="text-center mb-4 sm:mb-11">
@@ -46,15 +54,19 @@ export const YearHighlight: React.FC = () => {
               className="relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary rounded-t-3xl" />
-              <div className="mb-6 relative w-full aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={stat.imageUrl!}
-                  alt="RSVI Impact"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="group-hover:scale-110 transition duration-300"
-                />
-              </div>
+
+              {
+                stat.imageUrl ? <div className="mb-6 relative w-full aspect-square overflow-hidden rounded-lg">
+                  <Image
+                    src={stat.imageUrl}
+                    alt="RSVI Impact"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="group-hover:scale-110 transition duration-300"
+                  />
+                </div> : <div className="text-3xl mb-2"><div className="text-3xl mb-2">{stat.icon}</div></div>
+              }
+
               <h3 className={`text-4xl text-center font-bold ${stat.stateTextCol}`}>
                 {counts[index]}
                 {stat.suffix}

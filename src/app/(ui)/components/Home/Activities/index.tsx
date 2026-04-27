@@ -6,7 +6,7 @@ export const Activities: React.FC = () => {
     const router = useRouter()
 
     return (
-            <section className="bg-formbg/20">
+            <section className="bg-sectionSecondary">
                 <div className="container">
                     <div className="grid md:grid-cols-12 grid-cols-1 items-center gap-4 mx-auto">
                         <div

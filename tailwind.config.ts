@@ -94,7 +94,12 @@ const config: Config = {
         lengthightYellow: "rgb(var(--color-yellow-light) / <alpha-value>)",
         yellowRating: "rgb(var(--color-yellow-rating) / <alpha-value>)",
         navBg: "rgb(var(--color-nav-bg) / <alpha-value>)",
+        varLine: "rgb(var(--color-var-line) / <alpha-value>)",
+        sectionPrimary : "rgb(var(--color-section-primary) / <alpha-value>)",
+        sectionSecondary : "rgb(var(--color-section-secondary) / <alpha-value>)",
 
+
+        
         // Optional
         ElectricAqua: "var(--color-electric-aqua)",
         IcyBreeze: "var(--color-icy-breeze)",

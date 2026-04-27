@@ -2,7 +2,9 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { RailInfoStep } from "./RailInfoStep";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { RailCamp } from "./RailCamp";
+import { RailCampForm } from "./RailCampForm";
 
 export const RailConcession: React.FC = () => {
     const router = useRouter();
@@ -56,8 +58,7 @@ export const RailConcession: React.FC = () => {
                             </button>
                         </div>
                     </div>
-                    <div
-                        className="col-span-7  hidden sm:block"
+                    <div className="col-span-7  hidden sm:block"
                         data-aos="fade-left"
                         data-aos-delay="200"
                         data-aos-duration="1000"
@@ -78,138 +79,8 @@ export const RailConcession: React.FC = () => {
             </div>
             <RailInfoStep />
             <RailCamp onOpen={() => setOpen(true)} />
-            <RailForm
-                open={open}
-                onClose={() => setOpen(false)}
-            />
+            <RailCampForm open={open} onClose={() => setOpen(false)} />
         </section>
     )
 }
 
-
-export function RailCamp({ onOpen }: { onOpen: () => void }) {
-    return (
-        <section
-            className="py-14 px-4 md:px-10 bg-primary text-white"
-            data-aos="fade-up"
-            data-aos-duration="800"
-        >
-            <div className="container text-center max-w-4xl mx-auto">
-                <h2
-                    className="md:text-40 text-28 font-bold mb-4"
-                    data-aos="fade-up"
-                    data-aos-delay="100"
-                >
-                    Organize a Railway Concession Camp
-                </h2>
-                <p
-                    className="text-lg mb-6 text-white/90"
-                    data-aos="fade-up"
-                    data-aos-delay="200"
-                >
-                    RSVI organizes camps at schools, NGOs, and community locations
-                    to help visually impaired individuals obtain Railway Concession Certificates.
-                </p>
-                <button
-                    onClick={onOpen}
-                    data-aos="zoom-in"
-                    data-aos-delay="300"
-                    className="bg-white text-primary font-semibold px-8 py-3 rounded-full  transition hover:scale-105 focus:outline-none focus:ring-2"
-                >
-                    Request a Camp
-                </button>
-
-            </div>
-        </section>
-    );
-}
-
-export const RailForm = ({
-    open,
-    onClose,
-}: {
-    open: boolean;
-    onClose: () => void;
-}) => {
-    const [show, setShow] = useState(false);
-
-    useEffect(() => {
-        if (open) {
-            setShow(true);
-        } else {
-            const timeout = setTimeout(() => setShow(false), 200);
-            return () => clearTimeout(timeout);
-        }
-    }, [open]);
-
-    if (!show) return null;
-
-    return (
-        <div
-            onClick={onClose}
-            className={`fixed inset-0 flex items-center justify-center z-50 px-4 transition-all duration-200
-                ${open ? "bg-black/60 opacity-100" : "bg-black/0 opacity-0"}
-            `}
-        >
-            <div
-                onClick={(e) => e.stopPropagation()}
-                className={`bg-white w-full max-w-lg rounded-2xl p-6 relative transform transition-all duration-200
-                    ${open
-                        ? "scale-100 translate-y-0 opacity-100"
-                        : "scale-95 translate-y-6 opacity-0"}
-                `}
-            >
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute top-3 right-3 text-xl"
-                    aria-label="Close form"
-                >
-                    ✕
-                </button>
-
-                {/* Heading */}
-                <h2
-                    className="text-2xl font-bold text-primary mb-6"
-                    data-aos="fade-up"
-                >
-                    Apply or Request a Camp
-                </h2>
-
-                {/* Form */}
-                <form className="space-y-4">
-                    <input
-                        data-aos="fade-up"
-                        data-aos-delay="100"
-                        className="w-full border p-3 rounded"
-                        placeholder="Name"
-                    />
-
-                    <input
-                        data-aos="fade-up"
-                        data-aos-delay="150"
-                        className="w-full border p-3 rounded"
-                        placeholder="Phone"
-                    />
-
-                    <select
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                        className="w-full border p-3 rounded"
-                    >
-                        <option>Individual Application</option>
-                        <option>Camp Request</option>
-                    </select>
-
-                    <button
-                        data-aos="zoom-in"
-                        data-aos-delay="250"
-                        className="bg-learning text-white px-6 py-3 rounded-lg w-full"
-                    >
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
-}

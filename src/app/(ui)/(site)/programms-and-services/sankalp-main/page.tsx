@@ -1,4 +1,4 @@
-import { SankalpMain } from '@/app/(ui)/components/ProgrammsAndServices/SankalpMain';
+import { SankalpMainPage } from '@/app/(ui)/components/ProgrammsAndServices/SankalpMain';
 import { HeroSub } from '../../../components/SharedComponent/HeroSub';
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +15,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <SankalpMain />
+            <SankalpMainPage />
         </>
     );
 };

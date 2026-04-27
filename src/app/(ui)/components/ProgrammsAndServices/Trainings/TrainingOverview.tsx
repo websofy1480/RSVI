@@ -38,7 +38,7 @@ export const TrainingOverview = () => {
                                        hover:-translate-y-1 hover:shadow-xl
                                        focus:outline-none focus:ring-2 focus:ring-formbg"
                         >
-                            <h3 className="text-2xl text-primary font-semibold mb-2">
+                            <h3 className="text-lg text-primary font-semibold mb-2">
                                 {item.title}
                             </h3>
                             <p className="text-SlateBlueText text-justify text-lg">

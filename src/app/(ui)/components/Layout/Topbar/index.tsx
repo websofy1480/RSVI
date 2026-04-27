@@ -12,7 +12,7 @@ export const TopBar: React.FC = () => {
 
 
   return (
-    <div className="w-full flex fixed top-0 sm:h-20 h-8  bg-formbg dark:bg-green-500 text-sm z-50">
+    <div className="w-full flex fixed top-0 sm:h-20 h-8 bg-formbg  text-sm z-50">
       <div className="flex  h-full container items-center sm:justify-between justify-center gap-2">
         <div className="sm:block hidden">
           <Logo />
@@ -32,12 +32,12 @@ export const TopBar: React.FC = () => {
                           {item.icon}
                           <Link
                             href={item.url}
-                            className="hover:text-secondary text-primary dark:bg-error dark:text-white font-semibold mb-0"
+                            className="hover:text-secondary text-primary font-semibold mb-0"
                           >
                             {item.title}
                           </Link>
                         </div>
-                        <div className="h-4 w-px bg-black" />
+                        <div className="h-4 w-px bg-varLine" />
                       </div>
                       :
                       <div
@@ -52,7 +52,7 @@ export const TopBar: React.FC = () => {
                             {item.title}
                           </Link>
                         </div>
-                        <div className="h-4 w-px bg-black sm:block hidden" />
+                        <div className="h-4 w-px bg-varLine sm:block hidden" />
                       </div>
                   }
                 </div>
@@ -75,9 +75,7 @@ export const TopBar: React.FC = () => {
         <div className="hidden sm:flex flex-wrap  items-center gap-2 justify-center sm:justify-start">
           <div className="flex gap-1">
 
-            {/* Dark Mode  */}
-            {/* <button onClick={() => setTheme("dark")}>🌙</button>
-              <button onClick={() => setTheme("light")}>☀️</button> */}
+   
 
             {
               dynamicTheme?.map((item, index) => (
@@ -88,7 +86,7 @@ export const TopBar: React.FC = () => {
 
 
 
-          <div className="h-8 w-px bg-black" />
+          <div className="h-8 w-px bg-varLine"/>
 
           <div>
 
@@ -107,9 +105,6 @@ export const TopBar: React.FC = () => {
             }
           </div>
         </div>
-
-
-
       </div>
     </div>
   );

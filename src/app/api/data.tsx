@@ -17,12 +17,12 @@ export const whatWeDo = [
   {
     title: "Unique Projects ",
     image: "/highlight/rsvi.png",
-    slug: "project"
+    slug: "/projects"
   },
   {
     title: "Store House of Assistive Devices",
     image: "/highlight/rsvi.png",
-    slug: "reach-recognition"
+    slug: "/programms-and-services/store-house-of-assistive-devices"
   }
 ];
 
@@ -37,6 +37,8 @@ export const statsData = [
   { label: "Healthcare Camps", value: 250, suffix: "+", imageUrl: "/images/highlight/rsvi.png", stateTextCol: "text-goldenOrange" },
   { label: "Railway Concessions", value: 2500, suffix: "+", imageUrl: "/images/highlight/rsvi.png", stateTextCol: "text-OceanDepthsDarkBorder" },
 ];
+
+
 
 export const footer = {
   socialMedia: [
@@ -248,104 +250,123 @@ export const whoCanJoin = ["Individuals with partial or complete visual impairme
 export const outcomes = ["Digital independence", "Job-ready skills", "Job-ready skills"];
 
 export const books = [
-    {
-        id: 1,
-        title: "Learn Computers",
-        author: "RSVI",
-        description: "Basic digital literacy book.",
-        image: "/books/book1.jpg",
-        format: "pdf",
-        language: "hindi"
-    },
-    {
-        id: 2,
-        title: "Spoken English Guide",
-        author: "RSVI",
-        description: "Improve communication skills.",
-        image: "/books/book2.jpg",
-        format: "audio",
-        language: "english"
-    },
-    {
-        id: 3,
-        title: "Introduction to Braille",
-        author: "RSVI",
-        description: "Learn the basics of Braille reading and writing.",
-        image: "/books/book3.jpg",
-        format: "braille",
-        language: "english"
-    },
-    {
-        id: 4,
-        title: "Mobile Phone Training",
-        author: "RSVI",
-        description: "Guide to using smartphones with accessibility features.",
-        image: "/books/book4.jpg",
-        format: "pdf",
-        language: "hindi"
-    },
-    {
-        id: 5,
-        title: "Career Skills for Beginners",
-        author: "RSVI",
-        description: "Develop essential job and communication skills.",
-        image: "/books/book5.jpg",
-        format: "audio",
-        language: "english"
-    },
-    {
-        id: 6,
-        title: "Daily Life Independence",
-        author: "RSVI",
-        description: "Practical skills for independent living.",
-        image: "/books/book6.jpg",
-        format: "pdf",
-        language: "hindi"
-    },
-    {
-        id: 7,
-        title: "Basic Computer Shortcuts",
-        author: "RSVI",
-        description: "Learn essential keyboard shortcuts for faster navigation.",
-        image: "/books/book7.jpg",
-        format: "pdf",
-        language: "english"
-    },
-    {
-        id: 8,
-        title: "Audio Learning for Beginners",
-        author: "RSVI",
-        description: "Step-by-step guide to learning through audio resources.",
-        image: "/books/book8.jpg",
-        format: "audio",
-        language: "hindi"
-    },
-    {
-        id: 9,
-        title: "Personality Development Guide",
-        author: "RSVI",
-        description: "Improve confidence, communication, and personal growth.",
-        image: "/books/book9.jpg",
-        format: "pdf",
-        language: "english"
-    }
+  {
+    id: 1,
+    title: "Learn Computers",
+    author: "RSVI",
+    description: "Basic digital literacy book.",
+    image: "/books/book1.jpg",
+    format: "pdf",
+    language: "hindi"
+  },
+  {
+    id: 2,
+    title: "Spoken English Guide",
+    author: "RSVI",
+    description: "Improve communication skills.",
+    image: "/books/book2.jpg",
+    format: "audio",
+    language: "english"
+  },
+  {
+    id: 3,
+    title: "Introduction to Braille",
+    author: "RSVI",
+    description: "Learn the basics of Braille reading and writing.",
+    image: "/books/book3.jpg",
+    format: "braille",
+    language: "english"
+  },
+  {
+    id: 4,
+    title: "Mobile Phone Training",
+    author: "RSVI",
+    description: "Guide to using smartphones with accessibility features.",
+    image: "/books/book4.jpg",
+    format: "pdf",
+    language: "hindi"
+  },
+  {
+    id: 5,
+    title: "Career Skills for Beginners",
+    author: "RSVI",
+    description: "Develop essential job and communication skills.",
+    image: "/books/book5.jpg",
+    format: "audio",
+    language: "english"
+  },
+  {
+    id: 6,
+    title: "Daily Life Independence",
+    author: "RSVI",
+    description: "Practical skills for independent living.",
+    image: "/books/book6.jpg",
+    format: "pdf",
+    language: "hindi"
+  },
+  {
+    id: 7,
+    title: "Basic Computer Shortcuts",
+    author: "RSVI",
+    description: "Learn essential keyboard shortcuts for faster navigation.",
+    image: "/books/book7.jpg",
+    format: "pdf",
+    language: "english"
+  },
+  {
+    id: 8,
+    title: "Audio Learning for Beginners",
+    author: "RSVI",
+    description: "Step-by-step guide to learning through audio resources.",
+    image: "/books/book8.jpg",
+    format: "audio",
+    language: "hindi"
+  },
+  {
+    id: 9,
+    title: "Personality Development Guide",
+    author: "RSVI",
+    description: "Improve confidence, communication, and personal growth.",
+    image: "/books/book9.jpg",
+    format: "pdf",
+    language: "english"
+  }
 ];
 
 export const railInfo = [
-    {
-        id: "01",
-        title: "Eligibility Criteria",
-        description: ["Must have 100% vision loss", "Valid medical certificate is required", "Open to individuals across India"],
-    },
-    {
-        id: "02",
-        title: "Required Documents",
-        description: ["Disability certificate", "Identity proof", "Passport size photograph are required for application"],
-    },
-    {
-        id: "03",
-        title: "Application Process",
-        description: ["Contact RSVI", "Submit documents", "Complete verification", "Receive your certificate"],
-    },
+  {
+    id: "01",
+    title: "Eligibility Criteria",
+    description: ["Must have 100% vision loss", "Valid medical certificate is required", "Open to individuals across India"],
+  },
+  {
+    id: "02",
+    title: "Required Documents",
+    description: ["Disability certificate", "Identity proof", "Passport size photograph are required for application"],
+  },
+  {
+    id: "03",
+    title: "Application Process",
+    description: ["Contact RSVI", "Submit documents", "Complete verification", "Receive your certificate"],
+  },
 ];
 
+export const deviceProcesssteps = [
+  "Browse available devices",
+  "Select and request a device",
+  "RSVI verifies your request",
+  "Receive device or assistance",
+];
+
+export const benefitsOfVolunteer = [
+    "Make a real difference in people’s lives",
+    "Gain valuable experience",
+    "Build communication and leadership skills",
+    "Be part of a meaningful community",
+];
+
+export const VolunteerStatsData = [
+    { value: "500+", label: "Active Volunteers" },
+    { value: "10K+", label: "Lives Impacted" },
+    { value: "200+", label: "Events Conducted" },
+];

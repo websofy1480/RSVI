@@ -1,5 +1,5 @@
 import { HeroSub } from '../../components/SharedComponent/HeroSub';
-import { Features } from '../../components/Features';
+import { ProjectsPage } from '../../components/Projects';
 
 const page: React.FC = () => {
     const breadcrumbLinks = [
@@ -14,7 +14,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <Features />
+            <ProjectsPage />
         </>
     );
 };

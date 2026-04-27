@@ -1,4 +1,4 @@
-import { Donors } from '@/app/(ui)/components/GetAssociated/Donors';
+import { DonorsPage } from '@/app/(ui)/components/GetAssociated/Donors';
 import { HeroSub } from '../../../components/SharedComponent/HeroSub';
 export const dynamic = 'force-dynamic';
 
@@ -15,7 +15,7 @@ const page: React.FC = () => {
                 breadcrumbLinks={breadcrumbLinks}
                 imageSrc='activities/activities-banner.png'
             />
-            <Donors />
+            <DonorsPage />
         </>
     );
 };

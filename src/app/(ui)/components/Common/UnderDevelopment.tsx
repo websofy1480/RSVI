@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "../Layout/Navbar/Logo";
 
 export const UnderDevelopment = () => {
-    const launchDate = new Date("2026-07-01T00:00:00").getTime();
+    const launchDate = new Date("2026-06-01T00:00:00").getTime();
     const [timeLeft, setTimeLeft] = useState(launchDate - new Date().getTime());
 
     useEffect(() => {

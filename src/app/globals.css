@@ -21,7 +21,9 @@
   --color-yellow-light: 255 225 90;
   --color-yellow-rating: 250 180 70;
   --color-nav-bg: 255 255 255;
-
+  --color-var-line: 0 0 0;
+  --color-section-primary: 255 255 255;
+  --color-section-secondary: 242 239 228;
 
   /* Optional*/
   --color-electric-aqua: #46C4FF;
@@ -59,20 +61,23 @@
 
 /* DARK MODE (can combine with above) */
 .theme-dark {
-  --color-primary: #e5e7eb;
-  --color-secondary: #9ca3af;
-  --color-formbg: #0f172a;
+  --color-primary: 229 231 235;
+  --color-secondary: 156 163 175;
+  --color-formbg: 15 23 42;
   --color-midnight: #f1f5f9;
   --color-slate: #cbd5f5;
   --color-learning: #3b82f6;
-  --color-primary-pink: #ec4899;
+  --color-primary-pink: 192 44 104;
   --color-burnt-orange: #f97316;
   --color-golden-orange: #f59e0b;
   --color-success: #22c55e;
   --color-error: #ef4444;
   --color-yellow-light: #fde047;
   --color-yellow-rating: #fbbf24;
-  --color-nav-bg: #000000;
+  --color-nav-bg: 0 0 0;
+  --color-var-line: 229 231 235;
+  --color-section-primary: 15 23 42;
+  --color-section-secondary: 51 65 85;
 }
 
 

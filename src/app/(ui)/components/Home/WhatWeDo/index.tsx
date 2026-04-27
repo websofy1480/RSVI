@@ -8,7 +8,7 @@ export const WhatWeDo: React.FC = () => {
   const router = useRouter();
 
   return (
-    <section>
+    <section className="bg-sectionSecondary">
       <div className="container">
         <div className="md:pb-12 text-center pb-8" data-aos="fade-up">
           <h2 className="pb-4 md:text-40 text-28 font-bold uppercase text-primary">

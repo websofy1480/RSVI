@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export const Mission: React.FC = () => {
     const router = useRouter();
     return (
-        <section>
+        <section className="bg-sectionPrimary">
             <div className="container">
                 <div className="md:pb-12 text-center pb-8" data-aos="fade-up">
                     <h2 className="md:text-40 text-28 font-bold uppercase text-primary">

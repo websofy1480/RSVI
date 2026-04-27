@@ -5,8 +5,7 @@ export const RailInfoStep: React.FC = () => {
     return (
         <section className="bg-formbg/20">
             <div className="container">
-                <div
-                    className="text-center mb-4 sm:mb-11"
+                <div className="text-center mb-4 sm:mb-11"
                     data-aos="fade-up"
                     data-aos-duration="800"
                 >
@@ -25,18 +24,15 @@ export const RailInfoStep: React.FC = () => {
                         <div
                             key={index}
                             data-aos="fade-up"
-                            data-aos-delay={index * 150}   // ✅ stagger effect
+                            data-aos-delay={index * 150}
                             data-aos-duration="800"
                             className="relative flex items-center bg-white rounded-2xl shadow-md overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition"
                         >
-                            <div
-                                className="flex flex-col justify-center items-center text-white font-bold text-xl w-20 h-full bg-formbg"
-                            >
+                            <div className="flex flex-col justify-center items-center text-white font-bold text-xl w-20 h-full bg-formbg">
                                 <span className="text-2xl text-primary">{item.id}</span>
                             </div>
                             <div className="p-5 flex-1">
-                                <h3
-                                    className="font-semibold text-lg text-primary mb-2"
+                                <h3 className="font-semibold text-lg text-primary mb-2"
                                     data-aos="fade-right"
                                     data-aos-delay={index * 150 + 100}
                                 >

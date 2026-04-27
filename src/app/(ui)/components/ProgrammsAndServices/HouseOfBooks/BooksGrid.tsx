@@ -150,8 +150,6 @@ export const BooksGrid: React.FC = () => {
                             </div>
                     }
                 </div>
-
-
             </div>
             {
                 totalPages > 1 &&

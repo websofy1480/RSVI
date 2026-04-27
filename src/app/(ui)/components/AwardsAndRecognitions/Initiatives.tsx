@@ -1,7 +1,7 @@
 import { AdditionalSupport } from "./AdditionalSupport"
 import { Awards } from "./Awards"
 import { EducationalPrograms } from "./EducationalPrograms"
-import { Projects } from "./Projects"
+import { Projects } from "../Projects/Projects"
 import { ReachRecognition } from "./ReachRecognition"
 import { InitiativeProps } from "@/types/initiativesContext"
 
@@ -36,9 +36,6 @@ export const Initiatives: React.FC<InitiativeProps> = ({ initiativesData }) => {
             </div>
             <div className="mb-10 container">
                 <Awards />
-            </div>
-            <div className="mb-10">
-                <Projects projetcs={projects} />
             </div>
         </section>
     )
