@@ -206,6 +206,10 @@ export const dynamicTheme: { color: string, value: any }[] = [
     value: "red"
   },
   {
+    color: "#FFC107",
+    value: "yellow"
+  },
+  {
     color: "#429b5e",
     value: "green"
   },

@@ -6,14 +6,12 @@ import { MobileHeaderLink } from "./Navigation/MobileHeaderLink";
 import { IoMdMenu } from "react-icons/io";
 import { useData } from "@/app/context/DataContext";
 import { Logo } from "./Logo";
+import { ThemeMode } from "../Topbar/ThemeMode";
 
 export const Navbar: React.FC = () => {
 
   const { navbarOpen, setNavbarOpen } = useData();
-  
-
   const [sticky, setSticky] = useState(false);
-
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const handleScroll = () => {
     setSticky(window.scrollY >= 80);
@@ -43,18 +41,21 @@ export const Navbar: React.FC = () => {
       <header
         className={`fixed h-12 mt-2 top-5 sm:top-6 lg:top-[4.5em] bg-navBg  z-50 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
           }`}
-      > 
+      >
         <div className="container">
           <div className="flex items-center justify-between ">
-            <div className="sm:hidden block"><Logo/></div>
-          
+            <div className="sm:hidden block"><Logo /></div>
+
             <ul className="hidden lg:flex flex-grow items-center justify-end space-x-6">
               {headerData.map((item, index) => (
                 <HeaderLink key={index} item={item} />
               ))}
             </ul>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-2">
+              <div className="lg:hidden block">
+                <ThemeMode isMobile={true} />
+              </div>
               <button
                 onClick={() => setNavbarOpen(!navbarOpen)}
                 className="block lg:hidden p-2 rounded-lg"
@@ -62,8 +63,10 @@ export const Navbar: React.FC = () => {
                 <IoMdMenu size={30} className="text-secondary" />
               </button>
             </div>
+
           </div>
         </div>
+
         {navbarOpen && (
           <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40" />
         )}

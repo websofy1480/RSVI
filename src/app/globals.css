@@ -27,7 +27,7 @@
   --color-section-secondary: 242 239 228;
   --color-cta-bg: 60 60 48;
   --color-ocean-depths-border: 34 71 103;
-  --color-primary-button : 60 60 48;
+  --color-primary-button: 60 60 48;
 
   /* Optional*/
   --color-electric-aqua: #46C4FF;
@@ -51,16 +51,107 @@
 }
 
 
+
+/* Green THEME */
+.theme-green {
+  --color-primary: 66 155 94;
+  --color-secondary: 0 122 74;
+  --color-formbg: 15 23 42;
+  --color-midnight: 229 231 235;
+  --color-slate: 156 163 175;
+  --color-learning: 37 99 235;
+  --color-primary-pink: 192 44 104;
+  --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
+  --color-golden-orange: 239 145 78;
+  --color-ocean-depths-border: 80 152 163;
+  --color-success: 66 155 94;
+  --color-error: 220 38 38;
+  --color-yellow-light: #fde047;
+  --color-yellow-rating: 250 180 70;
+  --color-nav-bg: 0 0 0;
+  --color-var-line: 229 231 235;
+  --color-section-primary: 13 24 50;
+  --color-section-secondary: 15 23 42;
+  --color-cta-bg: 5 12 29;
+  --color-primary-button: 15 23 42;
+}
+
+
+/* Yellow THEME */
+.theme-yellow {
+  --color-primary: 255 193 7;
+  --color-secondary: 255 213 79;
+  --color-formbg: 15 23 42;
+  --color-midnight: 229 231 235;
+  --color-slate: 156 163 175;
+  --color-learning: 37 99 235;
+  --color-primary-pink: 192 44 104;
+  --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
+  --color-golden-orange: 239 145 78;
+  --color-ocean-depths-border: 80 152 163;
+  --color-success: 66 155 94;
+  --color-error: 220 38 38;
+  --color-yellow-light: #fde047;
+  --color-yellow-rating: 250 180 70;
+  --color-nav-bg: 0 0 0;
+  --color-var-line: 229 231 235;
+  --color-section-primary: 13 24 50;
+  --color-section-secondary: 15 23 42;
+  --color-cta-bg: 5 12 29;
+  --color-primary-button: 15 23 42;
+}
+
 /* BLUE THEME */
 .theme-blue {
-  --color-primary: #2563eb;
-  --color-secondary: #60a5fa;
+  --color-primary: 37 99 235;
+  --color-secondary: 96 165 250;
+
+  --color-formbg: 15 23 42;
+  --color-midnight: 229 231 235;
+  --color-slate: 156 163 175;
+  --color-learning: 37 99 235;
+  --color-primary-pink: 192 44 104;
+  --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
+  --color-golden-orange: 239 145 78;
+  --color-ocean-depths-border: 80 152 163;
+  --color-success: 66 155 94;
+  --color-error: 220 38 38;
+  --color-yellow-light: #fde047;
+  --color-yellow-rating: 250 180 70;
+  --color-nav-bg: 0 0 0;
+  --color-var-line: 229 231 235;
+  --color-section-primary: 13 24 50;
+  --color-section-secondary: 15 23 42;
+  --color-cta-bg: 5 12 29;
+  --color-primary-button: 15 23 42;
 }
 
 /* RED THEME */
 .theme-red {
-  --color-primary: #dc2626;
-  --color-secondary: #f87171;
+  --color-primary: 220 38 38;
+  --color-secondary: 248 113 113;
+  --color-formbg: 15 23 42;
+  --color-midnight: 229 231 235;
+  --color-slate: 156 163 175;
+  --color-learning: 37 99 235;
+  --color-primary-pink: 192 44 104;
+  --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
+  --color-golden-orange: 239 145 78;
+  --color-ocean-depths-border: 80 152 163;
+  --color-success: 66 155 94;
+  --color-error: 220 38 38;
+  --color-yellow-light: #fde047;
+  --color-yellow-rating: 250 180 70;
+  --color-nav-bg: 0 0 0;
+  --color-var-line: 229 231 235;
+  --color-section-primary: 13 24 50;
+  --color-section-secondary: 15 23 42;
+  --color-cta-bg: 5 12 29;
+  --color-primary-button: 15 23 42;
 }
 
 /* DARK MODE (can combine with above) */
@@ -85,7 +176,7 @@
   --color-section-primary: 13 24 50;
   --color-section-secondary: 15 23 42;
   --color-cta-bg: 5 12 29;
-  --color-primary-button : 15 23 42;
+  --color-primary-button: 15 23 42;
 }
 
 

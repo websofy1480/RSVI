@@ -1,15 +1,11 @@
 "use client";
-import { dynamicFont, dynamicTheme, footer } from "@/app/api/data";
-import { useData } from "@/app/context/DataContext";
+import { footer } from "@/app/api/data";
 import Link from "next/link";
 import { Logo } from "../Navbar/Logo";
+import { ThemeMode } from "./ThemeMode";
+import { FontMode } from "./FontMode";
 
 export const TopBar: React.FC = () => {
-  const { setFontSize, fontSize, changeColor } = useData();
-  const changeFont = (size: number) => {
-    setFontSize(size);
-  };
-
 
   return (
     <div className="w-full flex fixed top-0 sm:h-20 h-8 bg-formbg  text-sm z-50">
@@ -73,40 +69,13 @@ export const TopBar: React.FC = () => {
         </div>
 
         <div className="hidden sm:flex flex-wrap  items-center gap-2 justify-center sm:justify-start">
-          <div className="flex gap-1">
-
-   
-
-            {
-              dynamicTheme?.map((item, index) => (
-                <button key={index} onClick={() => changeColor(`${item.value}`)} style={{ backgroundColor: item.color }} className={`w-5 h-5 rounded-full`} />
-              ))
-            }
-          </div>
-
-
-
-          <div className="h-8 w-px bg-varLine"/>
-
-          <div>
-
-            {
-              <select
-                onChange={(e) => changeFont(Number(e.target.value))}
-                className="px-2 py-2 rounded-lg border border-primary bg-white shadow-md text-sm focus:outline-none focus:ring-2 focus:ring-secondary w-28 cursor-pointer"
-              >
-                <option value={16}>{fontSize === 18 || fontSize === 20 || fontSize === 22 || fontSize === 24 || fontSize === 26 ? "Default size" : "Text size"}</option>
-                {dynamicFont?.map((item: any, index: number) => (
-                  <option key={index} value={item.value}>
-                    {item.key}
-                  </option>
-                ))}
-              </select>
-            }
-          </div>
+          <ThemeMode />
+          <div className="h-8 w-px bg-varLine" />
+          <FontMode />
         </div>
       </div>
     </div>
   );
 };
+
 

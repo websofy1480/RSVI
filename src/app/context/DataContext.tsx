@@ -69,10 +69,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({
 
 
     const changeColor = (newColor: string) => {
-        const themes = ["default", "red", "green", "blue", "dark"];
-
         document.documentElement.classList.remove(
-            ...themes.map(t => `theme-${t}`)
+            ...dynamicTheme.map(t => `theme-${t.value}`)
         );
 
         if (newColor !== "default") {
