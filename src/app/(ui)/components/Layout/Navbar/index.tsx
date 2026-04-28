@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed h-12 mt-2 top-5 sm:top-6 lg:top-[4.5em] bg-navBg  z-40 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
+        className={`fixed h-12 mt-2 top-5 sm:top-6 lg:top-[4.5em] bg-navBg ${navbarOpen ? "z-50":"z-40"}   w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
           }`}
       >
         <div className="container">
