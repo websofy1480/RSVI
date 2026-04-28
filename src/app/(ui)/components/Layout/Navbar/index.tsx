@@ -39,7 +39,7 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed h-12 mt-2 top-5 sm:top-6 lg:top-[4.5em] bg-navBg  z-50 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
+        className={`fixed h-12 mt-2 top-5 sm:top-6 lg:top-[4.5em] bg-navBg  z-40 w-full  transition-all  ${sticky ? "shadow-lg" : "shadow-none"
           }`}
       >
         <div className="container">
@@ -52,9 +52,9 @@ export const Navbar: React.FC = () => {
               ))}
             </ul>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <div className="lg:hidden block">
-                <ThemeMode isMobile={true} />
+                <ThemeMode />
               </div>
               <button
                 onClick={() => setNavbarOpen(!navbarOpen)}

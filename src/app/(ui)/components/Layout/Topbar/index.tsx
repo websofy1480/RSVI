@@ -69,8 +69,8 @@ export const TopBar: React.FC = () => {
         </div>
 
         <div className="hidden sm:flex flex-wrap  items-center gap-2 justify-center sm:justify-start">
-          <ThemeMode />
-          <div className="h-8 w-px bg-varLine" />
+          <ThemeMode/>
+          <div className="h-6 w-px bg-varLine" />
           <FontMode />
         </div>
       </div>

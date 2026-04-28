@@ -189,12 +189,16 @@ export const dynamicFont: { key: string, value: Number }[] = [
     key: "250%",
     value: 24
   },
+  {
+    key: "300%",
+    value: 26
+  },
 ];
 
 
 export const dynamicTheme: { color: string, value: any }[] = [
   {
-    color: "#FFFFFF",
+    color: "#F3ECCD",
     value: "default"
   },
   {
