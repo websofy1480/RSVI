@@ -3,9 +3,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Cta } from "../../Common/Cta";
 
-
-
-
 export interface statsType { label: string, value: number, suffix: string, imageUrl?: string, stateTextCol: string, icon?: string }
 
 export interface statesProps {
@@ -33,16 +30,16 @@ export const YearHighlight: React.FC<statesProps> = ({ statsData }) => {
   }, []);
 
   return (
-    <section className="relative bg-sectionPrimary overflow-hidden">
+    <section className="relative bg-sectionSecondary overflow-hidden">
       <div className="container relative z-10"
         data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
         <div className="text-center mb-4 sm:mb-11">
           <h2 className="text-primary md:text-40 text-28 pb-4 font-bold uppercase">
-            Beyond sight, toward insight:{" "}<span className="text-secondary">Empowering independence</span>
+            Beyond sight, toward insight :{" "}<span className="text-secondary">Empowering independence</span>
           </h2>
           <p className="text-lg font-normal text-primary">
             For more than 20 years, RSVI has been dedicated to restoring independence, dignity, and opportunity
-            for visually impaired individuals in Lucknow.
+            for visually impaired individuals in Lucknow
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -51,7 +48,7 @@ export const YearHighlight: React.FC<statesProps> = ({ statsData }) => {
               key={index}
               data-aos="zoom-in"
               data-aos-delay={index * 150}
-              className="relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
+              className="relative group p-8 rounded-3xl bg-formbg/20 shadow-xl hover:shadow-2xl transition duration-500 hover:-translate-y-3 border border-secondary/30"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary to-secondary rounded-t-3xl" />
 

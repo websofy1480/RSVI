@@ -15,6 +15,7 @@
   --color-learning: 37 99 235;
   --color-primary-pink: 192 44 104;
   --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
   --color-golden-orange: 239 145 78;
   --color-success: 66 155 94;
   --color-error: 220 38 38;
@@ -24,6 +25,9 @@
   --color-var-line: 0 0 0;
   --color-section-primary: 255 255 255;
   --color-section-secondary: 242 239 228;
+  --color-cta-bg: 60 60 48;
+  --color-ocean-depths-border: 34 71 103;
+  --color-primary-button : 60 60 48;
 
   /* Optional*/
   --color-electric-aqua: #46C4FF;
@@ -37,11 +41,11 @@
   --color-salem: #1C7C52;
   --color-misty-teal: #6F9DAC;
   --color-cadet-blue: #879AAC;
-  --color-olive-drab: #73713C;
+
   --color-dandelion: #F2EC1D;
   --color-periwinkle-border: #C0D5FB;
   --color-light-blue-border: #4F8BFB;
-  --color-ocean-depths-border: #224767;
+
   --color-powder-blue-border: #E1F1F6;
 
 }
@@ -64,20 +68,24 @@
   --color-primary: 229 231 235;
   --color-secondary: 156 163 175;
   --color-formbg: 15 23 42;
-  --color-midnight: #f1f5f9;
-  --color-slate: #cbd5f5;
-  --color-learning: #3b82f6;
+  --color-midnight: 229 231 235;
+  --color-slate: 156 163 175;
+  --color-learning: 37 99 235;
   --color-primary-pink: 192 44 104;
-  --color-burnt-orange: #f97316;
-  --color-golden-orange: #f59e0b;
-  --color-success: #22c55e;
-  --color-error: #ef4444;
+  --color-burnt-orange: 222 100 75;
+  --color-olive-drab: 115 113 60;
+  --color-golden-orange: 239 145 78;
+  --color-ocean-depths-border: 80 152 163;
+  --color-success: 66 155 94;
+  --color-error: 220 38 38;
   --color-yellow-light: #fde047;
-  --color-yellow-rating: #fbbf24;
+  --color-yellow-rating: 250 180 70;
   --color-nav-bg: 0 0 0;
   --color-var-line: 229 231 235;
-  --color-section-primary: 15 23 42;
-  --color-section-secondary: 51 65 85;
+  --color-section-primary: 13 24 50;
+  --color-section-secondary: 15 23 42;
+  --color-cta-bg: 5 12 29;
+  --color-primary-button : 15 23 42;
 }
 
 

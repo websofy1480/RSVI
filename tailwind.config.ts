@@ -97,6 +97,10 @@ const config: Config = {
         varLine: "rgb(var(--color-var-line) / <alpha-value>)",
         sectionPrimary : "rgb(var(--color-section-primary) / <alpha-value>)",
         sectionSecondary : "rgb(var(--color-section-secondary) / <alpha-value>)",
+        ctaBg : "rgb(var(--color-cta-bg) / <alpha-value>)",
+        OliveDrab: "rgb(var(--color-olive-drab) / <alpha-value>)",
+        OceanDepthsDarkBorder: "rgb(var(--color-ocean-depths-border) / <alpha-value>)",
+        primaryButton: "rgb(var(--color-primary-button) / <alpha-value>)",
 
 
         
@@ -112,11 +116,10 @@ const config: Config = {
         Salem: "var(--color-salem)",
         MistyTealText: "var(--color-misty-teal)",
         CadetBlue: "var(--color-cadet-blue)",
-        OliveDrab: "var(--color-olive-drab)",
+        
         Dandelion: "var(--color-dandelion)",
         PeriwinkleBorder: "var(--color-periwinkle-border)",
         LightBlueBorder: "var(--color-light-blue-border)",
-        OceanDepthsDarkBorder: "var(--color-ocean-depths-border)",
         PowderBlueBorder: "var(--color-powder-blue-border)",
       },
       fontSize: {

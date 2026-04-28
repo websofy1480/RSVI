@@ -22,7 +22,7 @@ export const Footer = () => {
             </Link>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h4 className="text-xl font-semibold mb-4 text-MidnightNavyText">
+            <h4 className="text-xl font-semibold mb-4 uppercase text-MidnightNavyText">
               Support the cause of rsvi
             </h4>
             <Image
@@ -35,9 +35,8 @@ export const Footer = () => {
               loading="eager"
             />
           </div>
-
           <div>
-            <h4 className="text-xl font-semibold mb-4 text-MidnightNavyText">
+            <h4 className="text-xl font-semibold uppercase mb-4 text-MidnightNavyText">
               Contact Details
             </h4>
 

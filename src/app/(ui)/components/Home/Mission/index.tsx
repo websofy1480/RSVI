@@ -53,7 +53,7 @@ export const Mission: React.FC = () => {
                 </div>
             </div>
             <div className="w-full container">
-                <div className="max-w-7xl space-y-14">
+                <div className="space-y-4">
                     <InfoCapsule
                         title="Upcoming Activities "
                         description="RSVI aims to establish its presence and awareness through digital platforms, launched RSVI Info Capsule, which is an audio initiative to spread learning and development through digital platforms like WhatsApp where Visually Impaired across the globe are connected."
@@ -120,7 +120,7 @@ const HighlightBlock: React.FC<HighlightBlockProps> = ({
             </div>
             <div
                 data-aos="fade-up"
-                className="relative bg-formbg/20  p-6 sm:h-64 h-68 rounded-xl shadow-md">
+                className="relative bg-formbg/20 shadow-lg border border-secondary/20  p-6 sm:h-64 h-68 rounded-xl">
                 <div className="absolute left-0 top-0 h-full w-2 rounded-l-xl" style={{ backgroundColor: borderColor }} />
 
                 <h3 className="text-2xl font-semibold text-primary sm:text-3xl mb-4">

@@ -8,7 +8,7 @@ export const WhatWeDo: React.FC = () => {
   const router = useRouter();
 
   return (
-    <section className="bg-sectionSecondary">
+    <section className="bg-sectionPrimary">
       <div className="container">
         <div className="md:pb-12 text-center pb-8" data-aos="fade-up">
           <h2 className="pb-4 md:text-40 text-28 font-bold uppercase text-primary">
@@ -26,7 +26,7 @@ export const WhatWeDo: React.FC = () => {
           {whatWeDo?.map((item, index) => (
             <div
               key={index}
-              className="bg-white h-68 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 px-4 pt-4 cursor-pointer border hover:border-secondary/30"
+              className="bg-formbg/20 h-68 rounded-xl  border border-secondary/30 shadow-md hover:shadow-xl transition-all duration-300 px-4 pt-4 cursor-pointer"
               data-aos="zoom-in"
               onClick={() => router.push(`${item.slug}`)}
             >

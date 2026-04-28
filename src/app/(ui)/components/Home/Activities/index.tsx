@@ -24,7 +24,7 @@ export const Activities: React.FC = () => {
                             </p>
                             <button
                                 onClick={() => router.push("/activities")}
-                                className="mt-2 inline-block px-6 py-3 bg-primary text-white rounded-md font-semibold hover:bg-transparent hover:border hover:border-secondary/50 hover:text-primary  transition"
+                                className="mt-2 inline-block px-6 py-3 bg-primaryButton text-white rounded-md font-semibold hover:bg-transparent  border border-secondary/30 hover:border hover:border-secondary/50 hover:text-primary  transition"
                             >
                                 Know More
                             </button>
